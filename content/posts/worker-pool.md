@@ -2,6 +2,8 @@
 title: "[Go] Worker Pool併發處理模型"
 date: 2021-04-19T05:03:58-04:00
 draft: false
+tags: ["go", "concurrency"]
+categories: ["programming"]
 ---
 
 前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
