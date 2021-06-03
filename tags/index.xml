@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 林宣佑 | Nathan Lin</title>
+    <link>http://nathan-tw.github.io/tags/</link>
+    <description>Recent content in Tags on 林宣佑 | Nathan Lin</description>
+    <image>
+      <url>http://nathan-tw.github.io/papermod-cover.png</url>
+      <link>http://nathan-tw.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 May 2021 01:28:04 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>intern</title>
+      <link>http://nathan-tw.github.io/tags/intern/</link>
+      <pubDate>Thu, 06 May 2021 01:28:04 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/tags/intern/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>murmur</title>
+      <link>http://nathan-tw.github.io/tags/murmur/</link>
+      <pubDate>Thu, 22 Apr 2021 07:56:39 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/tags/murmur/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>concurrency</title>
+      <link>http://nathan-tw.github.io/tags/concurrency/</link>
+      <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>http://nathan-tw.github.io/tags/go/</link>
+      <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

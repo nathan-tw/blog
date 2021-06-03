@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>intern on 林宣佑 | Nathan Lin</title>
+    <link>http://nathan-tw.github.io/tags/intern/</link>
+    <description>Recent content in intern on 林宣佑 | Nathan Lin</description>
+    <image>
+      <url>http://nathan-tw.github.io/papermod-cover.png</url>
+      <link>http://nathan-tw.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 May 2021 01:28:04 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/intern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[心得] 2021面試心得 Dcard/Garmin/Amazon/IBM</title>
+      <link>http://nathan-tw.github.io/posts/intern/</link>
+      <pubDate>Thu, 06 May 2021 01:28:04 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/intern/</guid>
+      <description>my github contribution
+  背景 投遞時間落在2021/3-5月，大四即將畢業，實在對讀書沒什麼熱忱，雖然讀碩對職涯來說體質比較好，試著花了大約一個半月讀研究所(看github 的 contribution就知道有一個多月的空白qq)，但最後只有備取就認命開始找工作吧。想過將兵役提前，但今年因為疫情許多本來要出國的人或在國外的學生回台，造成等待兵役的人數增加，提前未必能在畢業後馬上進入軍營，於是有了先找工作慢慢等兵單的念頭，因此主要找的是可以給preoffer或以轉正為目標的實習為主。
+Dcard (backend intern)   dcard logo
+  從大二就注意到Dcard的實習了，第一印象是年輕有活力的公司讓我很嚮往，但那時我的web知識匱乏連題目都看不懂(題目google就有，每年都一樣)，只好花時間多充實自己。大三時看到一位厲害的學長分享Dcard實習，覺得裡面的人對技術都相當有熱忱，也在gopher conf聽了Dcard backend精彩的演講，於是這次完成了作業決定嘗試看看。
+作業要求 Dcard 每天午夜都有大量使用者湧入抽卡，請設計一個 middleware：
+ 限制每小時來自同一個 IP 的請求數量不得超過 1000 在 response headers 中加入剩餘的請求數量 (X-RateLimit-Remaining) 以及 rate limit 歸零的時間 (X-RateLimit-Reset) 如果超過限制的話就回傳 429 (Too Many Requests) 可以使用各種資料庫達成  實做方式 限定只能用golang或nodejs，資料庫並沒有限制。我是以golang寫，資料庫的部份以單線程為主的redis，使得單個transaction不用考慮race condition，加上存取快速高併發的特性，以及方便的ttl對這次的作業十分友善，因此選擇redis作為這次作業的資料庫。至於來自不同client的get和set可能造成race condition，我在github repo中有詳細說明我如何實做lock。
+一面 可以提早到hr會帶你參觀辦公室，由兩位backend面試後換hr面，先自我介紹約5-10分鐘，backend會針對以前的專案經驗追根究底的問，一定要對自己做過的專案非常熟悉，不然會和我一樣被問倒XD，加上以前在底層的計算機基礎知識不夠扎實，例如被問到為何mips要分成五個stage的pipeline來設計，當場腦袋空白只好說不知道，結果離開後馬上想到zzz。所以基礎也非常重要，面完就知道不會上了，期待蠻久的面試以失望落幕，果然自己還有許多基礎需要補足。和hr的面試就是一般的behavior問題，這個網路上有許多厲害的技巧分享，我就不多花篇幅了。
+結果 感謝信
+IBM (Associate developer) 官網投遞校園招募後一星期收到線上趣味測驗，趣味測驗結束就收到感謝信了。
+結果 感謝信
+Amazon Ring (SWE)   amazon ring</description>
+    </item>
+    
+  </channel>
+</rss>

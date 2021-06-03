@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>林宣佑 | Nathan Lin</title>
+    <link>http://nathan-tw.github.io/</link>
+    <description>Recent content on 林宣佑 | Nathan Lin</description>
+    <image>
+      <url>http://nathan-tw.github.io/papermod-cover.png</url>
+      <link>http://nathan-tw.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Jun 2021 16:52:44 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</title>
+      <link>http://nathan-tw.github.io/posts/mapreduce2/</link>
+      <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/mapreduce2/</guid>
+      <description>distributed network, src: https://unsplash.com/photos/OKOOGO578eo
+  前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
+題目要求 首先我們再回顧一下論文中的圖：
+  mapReduce in paper
+  我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
+ 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。  系統架構設計 根據以上幾點要求，我的想法是：
+ 用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
+  my mapReduce design
+  基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
+// main/mrcoordinator.go func main() { if len(os.Args) &amp;lt; 2 { fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles.</description>
+    </item>
+    
+    <item>
+      <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</title>
+      <link>http://nathan-tw.github.io/posts/mapreduce/</link>
+      <pubDate>Sun, 23 May 2021 23:37:48 +0800</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/mapreduce/</guid>
+      <description>spark and hadoop
+  前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
+什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
+hello world -&amp;gt; {hello:1, world:1}
+接著將這些key-value pair 存成中介檔案後排序，Reduce function則根據key將所有value加總，如果以上流程在一台電腦上完成，會像下圖，前兩列中的A、B、C其實分別是Ａ:1、 B:1、C:1：
+  mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
+  上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
+  mapreduce in distributed systems
+  MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
+  mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
+  整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
+map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：</description>
+    </item>
+    
+    <item>
+      <title>[心得] 2021面試心得 Dcard/Garmin/Amazon/IBM</title>
+      <link>http://nathan-tw.github.io/posts/intern/</link>
+      <pubDate>Thu, 06 May 2021 01:28:04 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/intern/</guid>
+      <description>my github contribution
+  背景 投遞時間落在2021/3-5月，大四即將畢業，實在對讀書沒什麼熱忱，雖然讀碩對職涯來說體質比較好，試著花了大約一個半月讀研究所(看github 的 contribution就知道有一個多月的空白qq)，但最後只有備取就認命開始找工作吧。想過將兵役提前，但今年因為疫情許多本來要出國的人或在國外的學生回台，造成等待兵役的人數增加，提前未必能在畢業後馬上進入軍營，於是有了先找工作慢慢等兵單的念頭，因此主要找的是可以給preoffer或以轉正為目標的實習為主。
+Dcard (backend intern)   dcard logo
+  從大二就注意到Dcard的實習了，第一印象是年輕有活力的公司讓我很嚮往，但那時我的web知識匱乏連題目都看不懂(題目google就有，每年都一樣)，只好花時間多充實自己。大三時看到一位厲害的學長分享Dcard實習，覺得裡面的人對技術都相當有熱忱，也在gopher conf聽了Dcard backend精彩的演講，於是這次完成了作業決定嘗試看看。
+作業要求 Dcard 每天午夜都有大量使用者湧入抽卡，請設計一個 middleware：
+ 限制每小時來自同一個 IP 的請求數量不得超過 1000 在 response headers 中加入剩餘的請求數量 (X-RateLimit-Remaining) 以及 rate limit 歸零的時間 (X-RateLimit-Reset) 如果超過限制的話就回傳 429 (Too Many Requests) 可以使用各種資料庫達成  實做方式 限定只能用golang或nodejs，資料庫並沒有限制。我是以golang寫，資料庫的部份以單線程為主的redis，使得單個transaction不用考慮race condition，加上存取快速高併發的特性，以及方便的ttl對這次的作業十分友善，因此選擇redis作為這次作業的資料庫。至於來自不同client的get和set可能造成race condition，我在github repo中有詳細說明我如何實做lock。
+一面 可以提早到hr會帶你參觀辦公室，由兩位backend面試後換hr面，先自我介紹約5-10分鐘，backend會針對以前的專案經驗追根究底的問，一定要對自己做過的專案非常熟悉，不然會和我一樣被問倒XD，加上以前在底層的計算機基礎知識不夠扎實，例如被問到為何mips要分成五個stage的pipeline來設計，當場腦袋空白只好說不知道，結果離開後馬上想到zzz。所以基礎也非常重要，面完就知道不會上了，期待蠻久的面試以失望落幕，果然自己還有許多基礎需要補足。和hr的面試就是一般的behavior問題，這個網路上有許多厲害的技巧分享，我就不多花篇幅了。
+結果 感謝信
+IBM (Associate developer) 官網投遞校園招募後一星期收到線上趣味測驗，趣味測驗結束就收到感謝信了。
+結果 感謝信
+Amazon Ring (SWE)   amazon ring</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://nathan-tw.github.io/about/</link>
+      <pubDate>Thu, 22 Apr 2021 11:57:26 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/about/</guid>
+      <description>not done yet</description>
+    </item>
+    
+    <item>
+      <title>[生活碎念] 關於Star67</title>
+      <link>http://nathan-tw.github.io/posts/star67/</link>
+      <pubDate>Thu, 22 Apr 2021 07:56:39 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/star67/</guid>
+      <description>  unsplash: https://unsplash.com/photos/cABs_SSYua0
+  Star67 其實部落格的命名和星星完全沒有關係，大學時在新光路67號住了最久，也最喜歡在那生活的日子，所以部落格本想以此為名，不過如果取為New67或是Light67聽起來蠻蠢的，所以乾脆想成Star67aka星光路67號，而且在這的日子常常熬夜，五成是和朋友打傳說通霄，另外五成則是寫程式和書法到半夜停不下來所致，這些事的樂趣是日光還在時體會不到的，畢竟深夜才是適合苦惱的時候，而苦惱正是這些事精華之處。即使每天早上都不省人事，卻很享受這種報復性的作息，享受這種女友睡了，鄰居關燈了，剩下星光亮著的時光。
+重蹈覆轍  愛是讓你不重蹈覆轍，讓你生而為人 &amp;ndash; 羅于婷 &amp;lt;喜歡的話可以試穿&amp;gt;
+ 其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首神曲走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子，寫下許多許多的字從來就不是為了讓誰滿意，而是我就想任性放肆的寫而已。
+  </description>
+    </item>
+    
+    <item>
+      <title>[技術雜談] Worker Pool併發處理模型</title>
+      <link>http://nathan-tw.github.io/posts/worker-pool/</link>
+      <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/worker-pool/</guid>
+      <description>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
+Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
+type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
+func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
+func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &amp;lt;- task } close(tasksChan) pool := &amp;amp;WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool.</description>
+    </item>
+    
+    
+  </channel>
+</rss>
