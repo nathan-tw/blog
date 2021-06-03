@@ -10,25 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jun 2021 16:52:44 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</title>
-      <link>http://nathan-tw.github.io/posts/mapreduce2/</link>
-      <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
-      
-      <guid>http://nathan-tw.github.io/posts/mapreduce2/</guid>
-      <description>distributed network, src: https://unsplash.com/photos/OKOOGO578eo
-  前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
-題目要求 首先我們再回顧一下論文中的圖：
-  mapReduce in paper
-  我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
- 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。  系統架構設計 根據以上幾點要求，我的想法是：
- 用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
-  my mapReduce design
-  基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
-// main/mrcoordinator.go func main() { if len(os.Args) &amp;lt; 2 { fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles.</description>
-    </item>
-    
+    <lastBuildDate>Sun, 23 May 2021 23:37:48 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</title>
       <link>http://nathan-tw.github.io/posts/mapreduce/</link>
