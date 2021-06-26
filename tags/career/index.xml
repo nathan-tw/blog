@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>intern on 林宣佑 | Nathan Lin</title>
-    <link>http://nathan-tw.github.io/tags/intern/</link>
-    <description>Recent content in intern on 林宣佑 | Nathan Lin</description>
+    <title>Career on 林宣佑 | Nathan Lin</title>
+    <link>http://nathan-tw.github.io/tags/career/</link>
+    <description>Recent content in Career on 林宣佑 | Nathan Lin</description>
     <image>
       <url>http://nathan-tw.github.io/papermod-cover.png</url>
       <link>http://nathan-tw.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 May 2021 01:28:04 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/intern/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 May 2021 01:28:04 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/career/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[心得] 2021面試心得 Dcard/Garmin/Amazon/IBM</title>
       <link>http://nathan-tw.github.io/posts/intern/</link>

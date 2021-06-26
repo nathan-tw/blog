@@ -5,7 +5,19 @@
     <loc>http://nathan-tw.github.io/posts/mapreduce2/</loc>
     <lastmod>2021-06-01T16:52:44+08:00</lastmod>
   </url><url>
+    <loc>http://nathan-tw.github.io/categories/</loc>
+    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
+  </url><url>
+    <loc>http://nathan-tw.github.io/tags/distirbuted-system/</loc>
+    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
+  </url><url>
     <loc>http://nathan-tw.github.io/posts/</loc>
+    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
+  </url><url>
+    <loc>http://nathan-tw.github.io/categories/programming/</loc>
+    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
+  </url><url>
+    <loc>http://nathan-tw.github.io/tags/</loc>
     <lastmod>2021-06-01T16:52:44+08:00</lastmod>
   </url><url>
     <loc>http://nathan-tw.github.io/</loc>
@@ -17,10 +29,7 @@
     <loc>http://nathan-tw.github.io/posts/intern/</loc>
     <lastmod>2021-05-06T01:28:04-04:00</lastmod>
   </url><url>
-    <loc>http://nathan-tw.github.io/tags/intern/</loc>
-    <lastmod>2021-05-06T01:28:04-04:00</lastmod>
-  </url><url>
-    <loc>http://nathan-tw.github.io/tags/</loc>
+    <loc>http://nathan-tw.github.io/tags/career/</loc>
     <lastmod>2021-05-06T01:28:04-04:00</lastmod>
   </url><url>
     <loc>http://nathan-tw.github.io/about/</loc>
@@ -29,22 +38,10 @@
     <loc>http://nathan-tw.github.io/posts/star67/</loc>
     <lastmod>2021-04-22T07:56:39-04:00</lastmod>
   </url><url>
-    <loc>http://nathan-tw.github.io/tags/murmur/</loc>
-    <lastmod>2021-04-22T07:56:39-04:00</lastmod>
-  </url><url>
     <loc>http://nathan-tw.github.io/posts/worker-pool/</loc>
     <lastmod>2021-04-19T05:03:58-04:00</lastmod>
   </url><url>
-    <loc>http://nathan-tw.github.io/categories/</loc>
-    <lastmod>2021-04-19T05:03:58-04:00</lastmod>
-  </url><url>
-    <loc>http://nathan-tw.github.io/tags/concurrency/</loc>
-    <lastmod>2021-04-19T05:03:58-04:00</lastmod>
-  </url><url>
     <loc>http://nathan-tw.github.io/tags/go/</loc>
-    <lastmod>2021-04-19T05:03:58-04:00</lastmod>
-  </url><url>
-    <loc>http://nathan-tw.github.io/categories/programming/</loc>
     <lastmod>2021-04-19T05:03:58-04:00</lastmod>
   </url><url>
     <loc>http://nathan-tw.github.io/archives/</loc>
