@@ -2,7 +2,6 @@
 title: "[生活碎念] 關於Star67"
 date: 2021-04-22T07:56:39-04:00
 draft: false
-tags: ["murmur"]
 ---
 
 {{< figure src="/images/star67.jpg" attr="unsplash: https://unsplash.com/photos/cABs_SSYua0">}}

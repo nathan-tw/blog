@@ -2,7 +2,7 @@
 title: "[心得] 2021面試心得 Dcard/Garmin/Amazon/IBM"
 date: 2021-05-06T01:28:04-04:00
 draft: false
-tags: ["intern"]
+tags: ["Career"]
 ---
 
 {{< figure src="/images/contribution.png" attr="my github contribution">}}

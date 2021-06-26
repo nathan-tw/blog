@@ -2,7 +2,7 @@
 title: "[技術雜談] Worker Pool併發處理模型"
 date: 2021-04-19T05:03:58-04:00
 draft: false
-tags: ["go", "concurrency"]
+tags: ["Go"]
 categories: ["programming"]
 ---
 
