@@ -6,4 +6,4 @@ tags: ["Operating System"]
 categories: ["programming"]
 ---
 
-{{< figure src="/images/direction.png" attr="src: https://unsplash.com/photos/pKeF6Tt3c08">}}
+{{< figure src="/images/direction.jpg" attr="src: https://unsplash.com/photos/pKeF6Tt3c08">}}
