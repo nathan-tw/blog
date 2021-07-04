@@ -4,11 +4,9 @@ date: 2021-06-01T16:52:44+08:00
 draft: false
 tags: ["Distirbuted System"]
 categories: ["programming"]
+cover:
+    image: "/images/distributed_network.jpg"
 ---
-
-
-{{< figure src="/images/distributed_network.jpg"  attr="distributed network, src: https://unsplash.com/photos/OKOOGO578eo">}}
-
 
 ## 前言
 

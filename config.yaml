@@ -25,16 +25,19 @@ languages:
             main:
                 - name: Archive
                   url: archives
-                  weight: 5
+                  weight: 2
                 - name: Tags
                   url: tags/
-                  weight: 10
+                  weight: 3
                 - name: About
                   url: about/
-                  weight: 11
+                  weight: 6
                 - name: Categories
                   url: categories/
-                  weight: 10
+                  weight: 4
+                - name: Search
+                  url: search/
+                  weight: 5
 
 
 outputs:
@@ -78,9 +81,11 @@ params:
     homeInfoParams:
         Title: "Star67"
         Content: >
-            Welcome to my blog **Star67**.
+            Welcome to my blog [**Star67**](/posts/star67/).
 
-            - Software develope and DevOps.
+            - I'm a MIS major graduated from Chengchi University.
+
+            - Passionate about software engineering and DevOps.
 
     socialIcons:
         - name: github
@@ -90,6 +95,14 @@ params:
         - name: facebook
           url: "https://www.facebook.com/lin.steven9/"
 
+    fuseOpts:
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ["title", "permalink", "summary", "content"]
     # label:
     #     text: "Home"
     #     icon: icon.png
@@ -111,14 +124,8 @@ params:
     #     hiddenInList: true # hide on list pages and home
     #     hiddenInSingle: true # hide on single page
 
-    # fuseOpts:
-    #     isCaseSensitive: false
-    #     shouldSort: true
-    #     location: 0
-    #     distance: 1000
-    #     threshold: 0.4
-    #     minMatchCharLength: 0
-    #     keys: ["title", "permalink", "summary", "content"]
+
+
 
 taxonomies:
     category: categories
