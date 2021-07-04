@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>programming on 林宣佑 | Nathan Lin</title>
     <link>http://nathan-tw.github.io/categories/programming/</link>
@@ -17,8 +17,7 @@
       <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
       
       <guid>http://nathan-tw.github.io/posts/mapreduce2/</guid>
-      <description>distributed network, src: https://unsplash.com/photos/OKOOGO578eo
-  前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
+      <description>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
   mapReduce in paper
   我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
@@ -26,7 +25,7 @@
  用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
   my mapReduce design
   基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
-// main/mrcoordinator.go func main() { if len(os.Args) &amp;lt; 2 { fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles.</description>
+// main/mrcoordinator.go func main() { if len(os.Args) &amp;lt; 2 { fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles...\n&amp;#34;) os.Exit(1) } // 第一個參數是*.txt，代表切分後的文件 	// 第二個參數則是worker數量(nReduce) 	m := mr.</description>
     </item>
     
     <item>
