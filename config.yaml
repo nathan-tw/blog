@@ -12,6 +12,8 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 # googleAnalytics: UA-123-45
+disqusShortname: 163sogood
+
 
 minify:
     disableXML: true
