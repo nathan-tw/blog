@@ -1,7 +1,7 @@
 baseURL: "http://nathan-tw.github.io/"
 languageCode: "en-us"
 title: "林宣佑 | Nathan Lin"
-theme: "PaperMod"
+theme: "hugo-PaperMod"
 
 
 paginate: 5
