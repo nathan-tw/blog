@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Operating System on 林宣佑 | Nathan Lin</title>
+    <link>http://nathan-tw.github.io/tags/operating-system/</link>
+    <description>Recent content in Operating System on 林宣佑 | Nathan Lin</description>
+    <image>
+      <url>http://nathan-tw.github.io/papermod-cover.png</url>
+      <link>http://nathan-tw.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Jun 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[技術雜談] 淺談 file descriptor 及 I/O Redirection</title>
+      <link>http://nathan-tw.github.io/posts/io-redirection/</link>
+      <pubDate>Sat, 26 Jun 2021 01:55:05 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
+      <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
+什麼是 file  Everything is a file
+ 先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
+int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
+fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
+ A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
+    </item>
+    
+  </channel>
+</rss>

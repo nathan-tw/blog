@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jun 2021 16:52:44 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Jun 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Operating System</title>
+      <link>http://nathan-tw.github.io/tags/operating-system/</link>
+      <pubDate>Sat, 26 Jun 2021 01:55:05 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/tags/operating-system/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Distirbuted System</title>
       <link>http://nathan-tw.github.io/tags/distirbuted-system/</link>
