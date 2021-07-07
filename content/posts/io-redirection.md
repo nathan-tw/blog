@@ -116,6 +116,10 @@ if(fork()==0) { // child process
 ```
 經由`pipe`串接不同的process，原本用法單調的程式就可以有許多組合技！下一篇寫file system對不同層的設計，讓我們如此方便的使用**Everything is a file**的概念。
 
+## 心得
+
+因為很常使用linux，但對linux卻一直是一知半解，所以才決定寫這篇。但寫的時候很怕出錯，許多細節都更深入的查資料，還是有許多地方自己也看不懂的，如果有任何錯誤也歡迎在底下留言～
+
 ## Reference
 
 - 宅色夫老師筆記: https://hackmd.io/@sysprog/c-stream-io?type=view
