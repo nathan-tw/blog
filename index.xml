@@ -10,21 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Jun 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[技術雜談] 淺談 file descriptor 及 I/O Redirection</title>
-      <link>http://nathan-tw.github.io/posts/io-redirection/</link>
-      <pubDate>Sat, 26 Jun 2021 01:55:05 -0400</pubDate>
-      
-      <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
-      <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
-什麼是 file  Everything is a file
- 先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
-int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
-fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
- A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
-    </item>
-    
+    <lastBuildDate>Tue, 01 Jun 2021 16:52:44 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</title>
       <link>http://nathan-tw.github.io/posts/mapreduce2/</link>
@@ -114,6 +100,20 @@ Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSi
 type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
 func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
 func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &amp;lt;- task } close(tasksChan) pool := &amp;amp;WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool.</description>
+    </item>
+    
+    <item>
+      <title>[技術雜談] 淺談 file descriptor 及 I/O Redirection</title>
+      <link>http://nathan-tw.github.io/posts/io-redirection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
+      <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
+什麼是 file  Everything is a file
+ 先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
+int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
+fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
+ A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
     </item>
     
     
