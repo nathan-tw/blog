@@ -9,11 +9,12 @@
       <link>http://nathan-tw.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://nathan-tw.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Jul 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/operating-system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[技術雜談] 淺談 file descriptor 及 I/O Redirection</title>
       <link>http://nathan-tw.github.io/posts/io-redirection/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
       <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
       <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
