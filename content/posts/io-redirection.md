@@ -69,7 +69,7 @@ int stat(char *file, struct stat *st)
 ```c
 int fprintf(FILE *stream, const char *format, ...)
 ```
-如同有人可能會問不同process對同一個file做`open`會得到一樣的fd嗎？如同前面所說fd table是每個process各自擁有的，所以理論上會不同(或碰巧相同)，但有些情況卻不是碰巧，要了解原因必須先回答開頭的問題，`fprintf`中第一個參數`1`是什麼呢？相信很多人已經猜到，答案便是fd1，因為POSIX <unistd.h> 的定義是process在啟動時會先開啟三個stream: stdin, stdout, stderr，也就是我們剛剛說的fd0, 1, 2，預設是分別連接到用戶的終端設備，通常就是鍵盤和螢幕啦，如同下圖表示：
+有人可能會問不同process對同一個file做`open`會得到一樣的fd嗎？如同前面所說fd table是每個process各自擁有的，所以理論上會不同(或碰巧相同)，但有些情況卻不是碰巧，要了解原因必須先回答開頭的問題，`fprintf`中第一個參數`1`是什麼呢？相信很多人已經猜到，答案便是fd1，因為POSIX <unistd.h> 的定義是process在啟動時會先開啟三個stream: stdin, stdout, stderr，也就是我們剛剛說的fd 0, 1, 2，預設是分別連接到用戶的終端設備，通常就是鍵盤和螢幕啦，如同下圖表示：
 
 {{< figure src="/images/io_redirection.jpg" attr="stdin, stdout, stderr">}}
 
@@ -91,7 +91,7 @@ if (fork()==0) { // child process
 }
 ```
 
-上面的例子是在shell執行`cat < input.txt`的簡單範例，因為shell本身也是一個process，所以要透過`fork`去執行其他process，當`fork`回傳0代表示child process，這也是為什麼`fork`和`exec`要分成兩個system call，如果沒辦法抽換stdin, stdout和stderr，i/o就沒有彈性，也就是cat只能吃到shell的輸入，無法吃一個file作為輸入。既然可以child會複製parent，而我們又可以抽換他，因此偉大的`pipe`程式(`|`)也被人發明出來，以簡單的指令`echo "hello world" | wc`為例：
+上面的例子是在shell執行`cat < input.txt`的簡單範例，因為shell本身也是一個process，所以透過`fork`去執行其他process時才有機會抽換fd 0, 1, 2，當`fork`回傳0代表示child process，這也是為什麼`fork`和`exec`要分成兩個system call，如果沒辦法抽換stdin, stdout和stderr，i/o就沒有彈性，也就是cat只能吃到shell的輸入，無法吃一個file作為輸入。既然child會複製parent，而我們又可以抽換他，因此偉大的`pipe`程式(`|`)也被人發明出來，以簡單的指令`echo "hello world" | wc`為例：
 
 ```c
 int p[2];
