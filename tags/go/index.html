@@ -77,7 +77,7 @@
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
-<h2>[技術雜談] Worker Pool併發處理模型</h2>
+<h2>[技術] Worker Pool併發處理模型</h2>
 </header>
 <section class=entry-content>
 <p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
@@ -88,7 +88,7 @@ func (task *Task) Do() error { return task.f() Worker Pool是利用buffered chan
 func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &lt;- task } close(tasksChan) pool := &WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool....</p>
 </section>
 <footer class=entry-footer>April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] Worker Pool併發處理模型" href=http://nathan-tw.github.io/posts/worker-pool/></a>
+<a class=entry-link aria-label="post link to [技術] Worker Pool併發處理模型" href=http://nathan-tw.github.io/posts/worker-pool/></a>
 </article>
 </main>
 <footer class=footer>

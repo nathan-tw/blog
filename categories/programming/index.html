@@ -79,7 +79,7 @@
 <figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/direction.jpg alt>
 </figure>
 <header class=entry-header>
-<h2>[技術雜談] 淺談 file descriptor 及 I/O Redirection</h2>
+<h2>[技術] 淺談 file descriptor 及 I/O Redirection</h2>
 </header>
 <section class=entry-content>
 <p>前言 fprintf(1, "hello world\n"); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
@@ -90,13 +90,13 @@ fd = open("/tmp/temp", O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？
 A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to....</p>
 </section>
 <footer class=entry-footer>July 7, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] 淺談 file descriptor 及 I/O Redirection" href=http://nathan-tw.github.io/posts/io-redirection/></a>
+<a class=entry-link aria-label="post link to [技術] 淺談 file descriptor 及 I/O Redirection" href=http://nathan-tw.github.io/posts/io-redirection/></a>
 </article>
 <article class="post-entry tag-entry">
 <figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/distributed_network.jpg alt>
 </figure>
 <header class=entry-header>
-<h2>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</h2>
+<h2>[技術] 你不能不知道的軟體架構--MapReduce (二)</h2>
 </header>
 <section class=entry-content>
 <p>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構–MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
@@ -110,11 +110,11 @@ my mapReduce design
 // main/mrcoordinator.go func main() { if len(os.Args) &lt; 2 { fmt.Fprintf(os.Stderr, "Usage: mrcoordinator inputfiles...\n") os.Exit(1) } // 第一個參數是*.txt，代表切分後的文件 // 第二個參數則是worker數量(nReduce) m := mr....</p>
 </section>
 <footer class=entry-footer>June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] 你不能不知道的軟體架構--MapReduce (二)" href=http://nathan-tw.github.io/posts/mapreduce2/></a>
+<a class=entry-link aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href=http://nathan-tw.github.io/posts/mapreduce2/></a>
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
-<h2>[技術雜談] Worker Pool併發處理模型</h2>
+<h2>[技術] Worker Pool併發處理模型</h2>
 </header>
 <section class=entry-content>
 <p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
@@ -125,7 +125,7 @@ func (task *Task) Do() error { return task.f() Worker Pool是利用buffered chan
 func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &lt;- task } close(tasksChan) pool := &WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool....</p>
 </section>
 <footer class=entry-footer>April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] Worker Pool併發處理模型" href=http://nathan-tw.github.io/posts/worker-pool/></a>
+<a class=entry-link aria-label="post link to [技術] Worker Pool併發處理模型" href=http://nathan-tw.github.io/posts/worker-pool/></a>
 </article>
 </main>
 <footer class=footer>

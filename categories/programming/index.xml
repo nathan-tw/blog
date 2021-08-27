@@ -12,7 +12,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 07 Jul 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[技術雜談] 淺談 file descriptor 及 I/O Redirection</title>
+      <title>[技術] 淺談 file descriptor 及 I/O Redirection</title>
       <link>http://nathan-tw.github.io/posts/io-redirection/</link>
       <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
@@ -26,7 +26,7 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
     </item>
     
     <item>
-      <title>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</title>
+      <title>[技術] 你不能不知道的軟體架構--MapReduce (二)</title>
       <link>http://nathan-tw.github.io/posts/mapreduce2/</link>
       <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
       
@@ -43,7 +43,7 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
     </item>
     
     <item>
-      <title>[技術雜談] Worker Pool併發處理模型</title>
+      <title>[技術] Worker Pool併發處理模型</title>
       <link>http://nathan-tw.github.io/posts/worker-pool/</link>
       <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
       

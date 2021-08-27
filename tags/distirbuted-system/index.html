@@ -79,7 +79,7 @@
 <figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/distributed_network.jpg alt>
 </figure>
 <header class=entry-header>
-<h2>[技術雜談] 你不能不知道的軟體架構--MapReduce (二)</h2>
+<h2>[技術] 你不能不知道的軟體架構--MapReduce (二)</h2>
 </header>
 <section class=entry-content>
 <p>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構–MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
@@ -93,13 +93,13 @@ my mapReduce design
 // main/mrcoordinator.go func main() { if len(os.Args) &lt; 2 { fmt.Fprintf(os.Stderr, "Usage: mrcoordinator inputfiles...\n") os.Exit(1) } // 第一個參數是*.txt，代表切分後的文件 // 第二個參數則是worker數量(nReduce) m := mr....</p>
 </section>
 <footer class=entry-footer>June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] 你不能不知道的軟體架構--MapReduce (二)" href=http://nathan-tw.github.io/posts/mapreduce2/></a>
+<a class=entry-link aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href=http://nathan-tw.github.io/posts/mapreduce2/></a>
 </article>
 <article class="post-entry tag-entry">
 <figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/Spark-vs-Hadoop.jpeg alt>
 </figure>
 <header class=entry-header>
-<h2>[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</h2>
+<h2>[技術] 你不能不知道的軟體架構--MapReduce (一)</h2>
 </header>
 <section class=entry-content>
 <p>前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
@@ -115,7 +115,7 @@ mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
 map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：...</p>
 </section>
 <footer class=entry-footer>May 23, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-<a class=entry-link aria-label="post link to [技術雜談] 你不能不知道的軟體架構--MapReduce (一)" href=http://nathan-tw.github.io/posts/mapreduce/></a>
+<a class=entry-link aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (一)" href=http://nathan-tw.github.io/posts/mapreduce/></a>
 </article>
 </main>
 <footer class=footer>
