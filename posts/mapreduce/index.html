@@ -27,7 +27,7 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
 <link rel=mask-icon href=http://nathan-tw.github.io/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.0">
 <meta property="og:title" content="[技術] 你不能不知道的軟體架構--MapReduce (一)">
 <meta property="og:description" content="前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
 什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
@@ -163,7 +163,7 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
 </figcaption>
 </figure>
 <p>整個概念有點類似前陣子完成的<a href=http://nathan-tw.github.io/posts/worker-pool/><span style=color:#3d65a8>Worker Pool</span></a>，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：</p>
-<pre><code>map (k1, v1) → list(k2, v2)
+<pre tabindex=0><code>map (k1, v1) → list(k2, v2)
 reduce (k2, list(v2)) → list(v2)
 </code></pre><p>在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是<code>{filename, content}</code>，而(k2, v2)則代表詞與頻率，也就是<code>{hello: 1}</code>。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：</p>
 <figure>
