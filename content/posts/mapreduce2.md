@@ -5,7 +5,7 @@ draft: false
 tags: ["Distirbuted System"]
 categories: ["programming"]
 cover:
-    image: "/images/distributed_network.jpg"
+    image: "/images/mapreduce/distributed_network.jpg"
 ---
 
 ## 前言
@@ -17,7 +17,7 @@ cover:
 首先我們再回顧一下論文中的圖：
 
 
-{{< figure src="/images/mapreduce.png"  attr="mapReduce in paper">}}
+{{< figure src="/images/mapreduce/mapreduce.png"  attr="mapReduce in paper">}}
 
 我將[<span style="color:#3D65A8">Lab1</span>](https://pdos.csail.mit.edu/6.824/labs/lab-mr.html)中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
 
@@ -39,7 +39,7 @@ cover:
 
 設計上如下圖：
 
-{{< figure src="/images/6.824lab1.png"  width=500 attr="my mapReduce design">}}
+{{< figure src="/images/mapreduce/6.824lab1.png"  width=500 attr="my mapReduce design">}}
 
 基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從`Coordinator`和`Worker`的主程式開始看起：
 

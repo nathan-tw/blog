@@ -5,7 +5,7 @@ draft: false
 tags: ["Operating System"]
 categories: ["programming"]
 cover:
-    image: "/images/direction.jpg"
+    image: "/images/io-redirection/direction.jpg"
 ---
 
 ## 前言
@@ -36,7 +36,7 @@ fd = open("/tmp/temp", O_WRONLY|O_CREAT);
 
 從上面的例子中可以理解，一個 process 可以透過打開一個檔案、資料夾、裝置或是製造一個`pipe`獲取 fd。當然我們也可以複製 fd，透過 system call `dup`可以達到等等會說的兩個process交換訊息。到這裡你可能會好奇，fd 是如何對資源進行控制的呢？事實上是透過剛剛提到的`open file entry`去訪問系統層級的`open file table`，再去inode查找自己需要的資源，以下用一張圖說明兩者的關係：
 
-{{< figure src="/images/fd_table.png" attr="relationship between fd tables, open file table and inode table">}}
+{{< figure src="/images/io-redirection/fd_table.png" attr="relationship between fd tables, open file table and inode table">}}
 
 由此可知，所有的file都指向一個底層的inode。以 xv6 系統為例，在`kernel/stat.h`是這樣定義inode的資訊：
 
@@ -71,7 +71,7 @@ int fprintf(FILE *stream, const char *format, ...)
 ```
 有人可能會問不同process對同一個file做`open`會得到一樣的fd嗎？如同前面所說fd table是每個process各自擁有的，所以理論上會不同(或碰巧相同)，但有些情況卻不是碰巧，要了解原因必須先回答開頭的問題，`fprintf`中第一個參數`1`是什麼呢？相信很多人已經猜到，答案便是fd1，因為POSIX <unistd.h> 的定義是process在啟動時會先開啟三個stream: stdin, stdout, stderr，也就是我們剛剛說的fd 0, 1, 2，預設是分別連接到用戶的終端設備，通常就是鍵盤和螢幕啦，如同下圖表示：
 
-{{< figure src="/images/io_redirection.jpg" attr="stdin, stdout, stderr">}}
+{{< figure src="/images/io-redirection/io_redirection.jpg" attr="stdin, stdout, stderr">}}
 
 但也不是所有process都是這樣預設，因為如果經由一個parent process`fork`得到的child process，將會複製parent的fd table，這也是達成redirection的重點，process在安排fd時有一個原則：
 

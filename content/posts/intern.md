@@ -4,7 +4,7 @@ date: 2021-05-06T01:28:04-04:00
 draft: false
 tags: ["Career"]
 cover:
-    image: "/images/contribution.png"
+    image: "/images/intern/contribution.png"
 ---
 
 
@@ -15,7 +15,7 @@ cover:
 
 ## Dcard (backend intern)
 
-{{< figure src="/images/dcard.png" attr="dcard logo">}}
+{{< figure src="/images/intern/dcard.png" attr="dcard logo">}}
 
 從大二就注意到Dcard的實習了，第一印象是年輕有活力的公司讓我很嚮往，但那時我的web知識匱乏連題目都看不懂(題目google就有，每年都一樣)，只好花時間多充實自己。大三時看到一位[<span style="color:blue">厲害的學長</span>](https://oldmo860617.medium.com/)分享Dcard實習，覺得裡面的人對技術都相當有熱忱，也在gopher conf聽了Dcard backend精彩的演講，於是這次完成了[<span style="color:blue">作業</span>](https://github.com/nathan-tw/gin-rate-limiter)決定嘗試看看。
 
@@ -48,7 +48,7 @@ Dcard 每天午夜都有大量使用者湧入抽卡，請設計一個 middleware
 
 ## Amazon Ring (SWE)
 
-{{< figure src="/images/ring.jpg"  attr="amazon ring">}}
+{{< figure src="/images/intern/ring.jpg"  attr="amazon ring">}}
 
 
 官網投遞校園招募後一星期收到線上測驗。
@@ -70,7 +70,7 @@ reject
 
 ## Garmin (SRE intern)
 
-{{< figure src="/images/garmin.webp" attr="garmin logo">}}
+{{< figure src="/images/intern/garmin.webp" attr="garmin logo">}}
 
 在臉書社團看到的職位，實習期間為7-8月，算了一下和實習結束兵單應該差不多到，如果沒到可以去面更多不同的公司，看了許多關於garmin的薪資調查，以軟體來說應該算還不錯的，所以這個實習的目的除了接觸更多SRE實務經驗，有很大一部份是為了轉正而實習。1111投遞履歷後收到面試通知。
 

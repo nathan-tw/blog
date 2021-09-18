@@ -4,7 +4,7 @@ date: 2021-05-23T23:37:48+08:00
 draft: false
 tags: ["Distirbuted System"]
 cover:
-    image: "/images/Spark-vs-Hadoop.jpeg"
+    image: "/images/mapreduce/Spark-vs-Hadoop.jpeg"
 ---
 
 ## 前言
@@ -19,16 +19,16 @@ cover:
 
 接著將這些key-value pair 存成中介檔案後排序，Reduce function則根據key將所有value加總，如果以上流程在一台電腦上完成，會像下圖，前兩列中的A、B、C其實分別是Ａ:1、 B:1、C:1：
 
-{{< figure src="/images/mapreduce_sequence.jpeg" attr="mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052">}}
+{{< figure src="/images/mapreduce/mapreduce_sequence.jpeg" attr="mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052">}}
 
 上面提到的任務如果在一個分散式的世界呢？[<span style="color:#3D65A8">Google提出的論文</span>](https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf)中有張重要的圖是這樣描述的：
 
-{{< figure src="/images/mapreduce.png" attr="mapreduce in distributed systems">}}
+{{< figure src="/images/mapreduce/mapreduce.png" attr="mapreduce in distributed systems">}}
 
 MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式
 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
 
-{{< figure src="/images/mapreduce_distributed.jpeg" attr="mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052">}}
+{{< figure src="/images/mapreduce/mapreduce_distributed.jpeg" attr="mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052">}}
 
 整個概念有點類似前陣子完成的[<span style="color:#3D65A8">Worker Pool</span>]({{< ref "/posts/worker-pool.md" >}})，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
 ```
@@ -37,7 +37,7 @@ reduce (k2, list(v2)) → list(v2)
 ```
 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是`{filename, content}`，而(k2, v2)則代表詞與頻率，也就是`{hello: 1}`。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：
 
-{{< figure src="/images/mapandreduce.png" attr="map function works in detail">}}
+{{< figure src="/images/mapreduce/mapandreduce.png" attr="map function works in detail">}}
 
 可以清楚的看到切分後的小任務分別被機器執行，其實他們是在一個queue中等待分發，但這裡為了顯示不同檔案對應的流程才這樣畫，另一方面是想表示一個重要的概念，<span style="color:#FF5151">只有能夠切分的任務才能使用mapReduce</span>。
 

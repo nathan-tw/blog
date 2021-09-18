@@ -3,7 +3,7 @@ title: "[生活] 關於Star67"
 date: 2021-04-22T07:56:39-04:00
 draft: false
 cover:
-    image: "/images/star67.jpg"
+    image: "/images/star67/star67.jpg"
 ---
 
 ## Star67
