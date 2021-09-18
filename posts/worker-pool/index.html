@@ -125,7 +125,7 @@ func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan 
 </div>
 <div class=post-content><p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。</p>
 <h2 id=什麼是worker-pool>什麼是Worker Pool<a hidden class=anchor aria-hidden=true href=#什麼是worker-pool>#</a></h2>
-<p><img loading=lazy src=/images/worker-pool.png alt=worker-pool>
+<p><img loading=lazy src=/images/worker-pool/worker-pool.png alt=worker-pool>
 </p>
 <p>Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。</p>
 <h2 id=worker-pool-設計>Worker Pool 設計<a hidden class=anchor aria-hidden=true href=#worker-pool-設計>#</a></h2>
