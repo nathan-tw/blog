@@ -10,22 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Aug 2021 06:30:15 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[技術] Linked List的pointer思維</title>
-      <link>http://nathan-tw.github.io/posts/linked-list/</link>
-      <pubDate>Fri, 27 Aug 2021 06:30:15 -0400</pubDate>
-      
-      <guid>http://nathan-tw.github.io/posts/linked-list/</guid>
-      <description>前言 前陣子在找工作也花了蠻多時間寫leetcode，在leetcode有許多關於linked-list的題目，討論區可以看到不同思維的解法，其中有一種思維很有趣，近期在jserv老師的課你所不知道的C語言: linked list 和非連續記憶體操作看到非常詳細的解釋，於是想藉由刷過的題目紀錄一下這種思維，由於老師的筆記太過詳盡，所以我打算直接以題目的角度切入作為補充。
-linked-list Linked list作為一個基本的資料結構，對於學習程式的人並不陌生，但其實更深入探討會發現linked list可以玩味之處眾多。在leetcode的題目中，多數此類題目的資料結構為singly linked list，對應的程式碼如下：
-C:
-typedef struct ListNode { int val; struct ListNode* next; } node_t; Go:
-type ListNode struct { Val int Next *ListNode } 以三個節點：A, B, C 單向連結的list為例，每個節點都會指向一個節點的記憶體位址：   linked-list
-  leetcode 21. Merge Two Sorted Lists 題目描述：給定兩個已排序的linked list，回傳合併過後的linked list。
- Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.</description>
-    </item>
-    
+    <lastBuildDate>Wed, 18 Aug 2021 09:03:34 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[生活] 夏夜夢迴</title>
       <link>http://nathan-tw.github.io/posts/university/</link>
