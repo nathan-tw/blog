@@ -10,7 +10,22 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Aug 2021 09:03:34 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jan 2022 06:30:15 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[技術] 深入淺出 linked list</title>
+      <link>http://nathan-tw.github.io/posts/linked-list/</link>
+      <pubDate>Fri, 21 Jan 2022 06:30:15 -0400</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/linked-list/</guid>
+      <description>linked list 是什麼 假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？ 我們操作的虛擬記憶體就像是一格格的櫥窗，工程師在配置使用空間時有兩種常見的方式：
+ 配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list)  With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
+     因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
+Array vs. Linked list 兩者在記憶體的結構：
+  Data storage scheme of an array
+    Data storage scheme of a linked list
+    Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。</description>
+    </item>
+    
     <item>
       <title>[生活] 夏夜夢迴</title>
       <link>http://nathan-tw.github.io/posts/university/</link>
