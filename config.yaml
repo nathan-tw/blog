@@ -12,7 +12,7 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 # googleAnalytics: UA-123-45
-disqusShortname: 163sogood
+disqusShortname: star67
 
 
 minify:
@@ -83,11 +83,11 @@ params:
     homeInfoParams:
         Title: "Star67"
         Content: >
-            Welcome to my blog [**Star67**](/posts/star67/).
+            Welcome to my blog [**Star67**](/posts/star67/)
 
-            - I'm a MIS major graduated from Chengchi University.
+            - Software Engineer @[Ubiquiti](https://ui.com)
 
-            - Passionate about software engineering and DevOps.
+            - Life/Learn/Code
 
     socialIcons:
         - name: github
