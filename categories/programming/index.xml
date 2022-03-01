@@ -17,12 +17,11 @@
       <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
       <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
-      <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
+      <description>前言 1  fprintf(1, &amp;#34;hello world\n&amp;#34;);   你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
 什麼是 file  Everything is a file
  先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
-int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
-fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
- A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
+1  int open(char *file, int flags)   其中*file代表 path, flags代表 read/write，用法例如：
+1  fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT);   那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：</description>
     </item>
     
     <item>
@@ -39,7 +38,7 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
  用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
   my mapReduce design
   基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
- // main/mrcoordinator.go func main() { 	if len(os.Args) &amp;lt; 2 { 	fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles...\n&amp;#34;) 	os.Exit(1) 	}  	// 第一個參數是*.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17   // main/mrcoordinator.</description>
     </item>
     
     <item>
@@ -51,9 +50,7 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
       <description>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
-type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
-func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
-func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &amp;lt;- task 	} 	close(tasksChan) 	pool := &amp;amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13  type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task }   功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。</description>
     </item>
     
   </channel>
