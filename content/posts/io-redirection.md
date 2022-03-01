@@ -84,7 +84,7 @@ char *argv[2];
 argv[0] = "cat";
 argv[1] = 0;
 if (fork()==0) { // child process
-    close(0); // 把fd0關掉every
+    close(0); // 把fd0關掉
     // 把指向input.txt資源的fd放在fd table 0的位置 (因為剛才0被關掉，所以最小是0)
     open("input.txt", O_RDONLY); 
     exec("cat", argv);
