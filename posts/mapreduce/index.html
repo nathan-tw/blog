@@ -17,8 +17,8 @@ hello world -> {hello:1, world:1}
 map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：">
 <meta name=author content="Nathan">
 <link rel=canonical href=http://nathan-tw.github.io/posts/mapreduce/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as=style>
-<script defer crossorigin=anonymous src=/assets/js/highlight.min.4dcb3c4f38462f66c6b6137227726f5543cb934cca9788f041c087e374491df2.js integrity="sha256-Tcs8TzhGL2bGthNyJ3JvVUPLk0zKl4jwQcCH43RJHfI=" onload=hljs.initHighlightingOnLoad()></script>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css integrity="sha256-L86ckqH0xJbFgpWledyR++btlfLEjT32KOAPi0+p+I4=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.1e451595639e75b22c4c1bdeddf7d9828053f079b67db167bf9178601035727a.js integrity="sha256-HkUVlWOedbIsTBve3ffZgoBT8Hm2fbFnv5F4YBA1cno=" onload=hljs.initHighlightingOnLoad()></script>
 <link rel=icon href=http://nathan-tw.github.io/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=http://nathan-tw.github.io/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=http://nathan-tw.github.io/favicon-32x32.png>
@@ -138,7 +138,7 @@ reduce (k2, list(v2)) → list(v2)
 <br>
 <span>[生活] 關於Star67</span>
 </a>
-</nav></footer><div class="disqus markdown">
+</nav></footer><div class=disqus>
 <div id=disqus_thread></div><script>(function(){var e=document,t=e.createElement("script");t.src="https://star67.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)})()</script>
 <noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></main><footer class=footer>
 <span>&copy; 2022 <a href=http://nathan-tw.github.io/>林宣佑 | Nathan Lin</a></span>
