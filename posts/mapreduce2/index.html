@@ -24,7 +24,7 @@
 <link rel=mask-icon href=http://nathan-tw.github.io/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.93.0">
+<meta name=generator content="Hugo 0.93.2">
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/languages/vim.min.js integrity="sha512-R+0skJxe/D99VHABS3o+p5jRdY5dO/HAyjeKGUO4qaxPg8gHfDcOlvc5V67aMOJLqLVm0qDPDzcMkToT4o7Rlg==" crossorigin=anonymous referrerpolicy=no-referrer></script><meta property="og:title" content="[技術] 你不能不知道的軟體架構--MapReduce (二)">
 <meta property="og:description" content="前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
