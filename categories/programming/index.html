@@ -1,24 +1,271 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>programming | 林宣佑 | Nathan Lin</title><meta name=keywords content><meta name=description content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"><meta name=author content="Nathan"><link rel=canonical href=http://nathan-tw.github.io/categories/programming/><link crossorigin=anonymous href=/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css integrity="sha256-L86ckqH0xJbFgpWledyR++btlfLEjT32KOAPi0+p+I4=" rel="preload stylesheet" as=style><link rel=icon href=http://nathan-tw.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://nathan-tw.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=http://nathan-tw.github.io/favicon-32x32.png><link rel=apple-touch-icon href=http://nathan-tw.github.io/apple-touch-icon.png><link rel=mask-icon href=http://nathan-tw.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.94.0"><link rel=alternate type=application/rss+xml href=http://nathan-tw.github.io/categories/programming/index.xml><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/languages/vim.min.js integrity="sha512-R+0skJxe/D99VHABS3o+p5jRdY5dO/HAyjeKGUO4qaxPg8gHfDcOlvc5V67aMOJLqLVm0qDPDzcMkToT4o7Rlg==" crossorigin=anonymous referrerpolicy=no-referrer></script><meta property="og:title" content="programming"><meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"><meta property="og:type" content="website"><meta property="og:url" content="http://nathan-tw.github.io/categories/programming/"><meta property="og:image" content="http://nathan-tw.github.io/papermod-cover.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://nathan-tw.github.io/papermod-cover.png"><meta name=twitter:title content="programming"><meta name=twitter:description content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><noscript><style type=text/css>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><header class=header><nav class=nav><div class=logo><a href=http://nathan-tw.github.io/ accesskey=h title="林宣佑 | Nathan Lin (Alt + H)">林宣佑 | Nathan Lin</a>
-<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu><li><a href=http://nathan-tw.github.io/archives title=Archive><span>Archive</span></a></li><li><a href=http://nathan-tw.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://nathan-tw.github.io/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://nathan-tw.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=http://nathan-tw.github.io/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><header class=page-header><div class=breadcrumbs><a href=http://nathan-tw.github.io/>Home</a>&nbsp;»&nbsp;<a href=http://nathan-tw.github.io/categories/>Categories</a></div><h1>programming</h1></header><article class="post-entry tag-entry"><figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/io-redirection/direction.jpg alt></figure><header class=entry-header><h2>[技術] 淺談 file descriptor 及 I/O Redirection</h2></header><section class=entry-content><p>前言 fprintf(1, "hello world\n"); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
-什麼是 file Everything is a file
-先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>programming | 林宣佑 | Nathan Lin</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
+<meta name="author" content="Nathan">
+<link rel="canonical" href="http://nathan-tw.github.io/categories/programming/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://nathan-tw.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://nathan-tw.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://nathan-tw.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.94.0" />
+<link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/categories/programming/index.xml">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.1/languages/vim.min.js" integrity="sha512-R+0skJxe/D99VHABS3o+p5jRdY5dO/HAyjeKGUO4qaxPg8gHfDcOlvc5V67aMOJLqLVm0qDPDzcMkToT4o7Rlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><meta property="og:title" content="programming" />
+<meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://nathan-tw.github.io/categories/programming/" /><meta property="og:image" content="http://nathan-tw.github.io/papermod-cover.png"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://nathan-tw.github.io/papermod-cover.png"/>
+
+<meta name="twitter:title" content="programming"/>
+<meta name="twitter:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://nathan-tw.github.io/" accesskey="h" title="林宣佑 | Nathan Lin (Alt + H)">林宣佑 | Nathan Lin</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://nathan-tw.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://nathan-tw.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://nathan-tw.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://nathan-tw.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://nathan-tw.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://nathan-tw.github.io/">Home</a>&nbsp;»&nbsp;<a href="http://nathan-tw.github.io/categories/">Categories</a></div>
+  <h1>programming</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://nathan-tw.github.io/images/io-redirection/direction.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>[技術] 淺談 file descriptor 及 I/O Redirection</h2>
+  </header>
+  <section class="entry-content">
+    <p>前言 fprintf(1, &#34;hello world\n&#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
+什麼是 file  Everything is a file
+ 先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
 int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
-fd = open("/tmp/temp", O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
-A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to....</p></section><footer class=entry-footer>July 7, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Nathan</footer><a class=entry-link aria-label="post link to [技術] 淺談 file descriptor 及 I/O Redirection" href=http://nathan-tw.github.io/posts/io-redirection/></a></article><article class="post-entry tag-entry"><figure class=entry-cover><img loading=lazy src=http://nathan-tw.github.io/images/mapreduce/distributed_network.jpg alt></figure><header class=entry-header><h2>[技術] 你不能不知道的軟體架構--MapReduce (二)</h2></header><section class=entry-content><p>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構–MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
+fd = open(&#34;/tmp/temp&#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
+ A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to....</p>
+  </section>
+  <footer class="entry-footer">July 7, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Nathan</footer>
+  <a class="entry-link" aria-label="post link to [技術] 淺談 file descriptor 及 I/O Redirection" href="http://nathan-tw.github.io/posts/io-redirection/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://nathan-tw.github.io/images/mapreduce/distributed_network.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>[技術] 你不能不知道的軟體架構--MapReduce (二)</h2>
+  </header>
+  <section class="entry-content">
+    <p>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構–MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
-mapReduce in paper
-我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
-設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。 系統架構設計 根據以上幾點要求，我的想法是：
-用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態 設計上如下圖：
-my mapReduce design
-基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
-// main/mrcoordinator.go func main() { if len(os.Args) &lt; 2 { fmt.Fprintf(os.Stderr, "Usage: mrcoordinator inputfiles...\n") os.Exit(1) } // 第一個參數是*....</p></section><footer class=entry-footer>June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer><a class=entry-link aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href=http://nathan-tw.github.io/posts/mapreduce2/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>[技術] Worker Pool併發處理模型</h2></header><section class=entry-content><p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+  mapReduce in paper
+  我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
+ 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。  系統架構設計 根據以上幾點要求，我的想法是：
+ 用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
+  my mapReduce design
+  基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
+ // main/mrcoordinator.go func main() { 	if len(os.Args) &lt; 2 { 	fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) 	os.Exit(1) 	}  	// 第一個參數是*....</p>
+  </section>
+  <footer class="entry-footer">June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
+  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href="http://nathan-tw.github.io/posts/mapreduce2/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>[技術] Worker Pool併發處理模型</h2>
+  </header>
+  <section class="entry-content">
+    <p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
-type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
-func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
-func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &lt;- task } close(tasksChan) pool := &WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool....</p></section><footer class=entry-footer>April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer><a class=entry-link aria-label="post link to [技術] Worker Pool併發處理模型" href=http://nathan-tw.github.io/posts/worker-pool/></a></article></main><footer class=footer><span>&copy; 2022 <a href=http://nathan-tw.github.io/>林宣佑 | Nathan Lin</a></span>
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)"><button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></button></a>
-<script>let menu=document.getElementById("menu");menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(t){t.preventDefault();var e=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView({behavior:"smooth"}),e==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${e}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>
+type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
+func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
+func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &lt;- task 	} 	close(tasksChan) 	pool := &amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool....</p>
+  </section>
+  <footer class="entry-footer">April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
+  <a class="entry-link" aria-label="post link to [技術] Worker Pool併發處理模型" href="http://nathan-tw.github.io/posts/worker-pool/"></a>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2022 <a href="http://nathan-tw.github.io/">林宣佑 | Nathan Lin</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
