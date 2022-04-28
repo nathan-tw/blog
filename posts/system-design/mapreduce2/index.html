@@ -17,7 +17,7 @@
   基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
  // main/mrcoordinator.go func main() { 	if len(os.Args) &lt; 2 { 	fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) 	os.Exit(1) 	}  	// 第一個參數是*.">
 <meta name="author" content="Nathan">
-<link rel="canonical" href="http://nathan-tw.github.io/posts/mapreduce2/" />
+<link rel="canonical" href="http://nathan-tw.github.io/posts/system-design/mapreduce2/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.ee9db36630ad0db0cccd0c723121f2d4929e19c96296999ca136a933a7db6aac.js" integrity="sha256-7p2zZjCtDbDMzQxyMSHy1JKeGclilpmcoTapM6fbaqw="
     onload="hljs.highlightAll();"></script>
@@ -41,7 +41,7 @@
   基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
  // main/mrcoordinator.go func main() { 	if len(os.Args) &lt; 2 { 	fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) 	os.Exit(1) 	}  	// 第一個參數是*." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://nathan-tw.github.io/posts/mapreduce2/" />
+<meta property="og:url" content="http://nathan-tw.github.io/posts/system-design/mapreduce2/" />
 <meta property="og:image" content="http://nathan-tw.github.io/images/mapreduce/distributed_network.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-01T16:52:44&#43;08:00" />
 <meta property="article:modified_time" content="2021-06-01T16:52:44&#43;08:00" />
@@ -75,7 +75,7 @@
       "@type": "ListItem",
       "position":  2 ,
       "name": "[技術] 你不能不知道的軟體架構--MapReduce (二)",
-      "item": "http://nathan-tw.github.io/posts/mapreduce2/"
+      "item": "http://nathan-tw.github.io/posts/system-design/mapreduce2/"
     }
   ]
 }
@@ -101,7 +101,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://nathan-tw.github.io/posts/mapreduce2/"
+    "@id": "http://nathan-tw.github.io/posts/system-design/mapreduce2/"
   },
   "publisher": {
     "@type": "Organization",
@@ -256,7 +256,7 @@
 </div>
 
   <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
-<p>繼上一篇<a href="http://nathan-tw.github.io/posts/mapreduce/"><span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構&ndash;MapReduce (一)</span></a>提到的MapReduce概念，這篇講解的是如何完成<a href="https://pdos.csail.mit.edu/6.824/schedule.html"><span style="color:#3D65A8">MIT 6.824</span></a>的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。</p>
+<p>繼上一篇<a href="http://nathan-tw.github.io/posts/system-design/mapreduce/"><span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構&ndash;MapReduce (一)</span></a>提到的MapReduce概念，這篇講解的是如何完成<a href="https://pdos.csail.mit.edu/6.824/schedule.html"><span style="color:#3D65A8">MIT 6.824</span></a>的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。</p>
 <h2 id="題目要求">題目要求<a hidden class="anchor" aria-hidden="true" href="#題目要求">#</a></h2>
 <p>首先我們再回顧一下論文中的圖：</p>
 <figure>
@@ -367,12 +367,12 @@
       <li><a href="http://nathan-tw.github.io/tags/distirbuted-system/">Distirbuted System</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://nathan-tw.github.io/posts/io-redirection/">
+  <a class="prev" href="http://nathan-tw.github.io/posts/linux/io-redirection/">
     <span class="title">« Prev Page</span>
     <br>
     <span>[技術] 淺談 file descriptor 及 I/O Redirection</span>
   </a>
-  <a class="next" href="http://nathan-tw.github.io/posts/mapreduce/">
+  <a class="next" href="http://nathan-tw.github.io/posts/system-design/mapreduce/">
     <span class="title">Next Page »</span>
     <br>
     <span>[技術] 你不能不知道的軟體架構--MapReduce (一)</span>

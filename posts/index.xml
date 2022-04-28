@@ -13,10 +13,10 @@
     <lastBuildDate>Fri, 21 Jan 2022 06:30:15 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[技術] 深入淺出 linked list</title>
-      <link>http://nathan-tw.github.io/posts/linked-list/</link>
+      <link>http://nathan-tw.github.io/posts/programming/linked-list/</link>
       <pubDate>Fri, 21 Jan 2022 06:30:15 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/linked-list/</guid>
+      <guid>http://nathan-tw.github.io/posts/programming/linked-list/</guid>
       <description>linked list 是什麼 假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？ 我們操作的虛擬記憶體就像是一格格的櫥窗，工程師在配置使用空間時有兩種常見的方式：
  配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list)  With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
      因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
@@ -28,10 +28,10 @@ Array vs. Linked list 兩者在記憶體的結構：
     
     <item>
       <title>[生活] 夏夜夢迴</title>
-      <link>http://nathan-tw.github.io/posts/university/</link>
+      <link>http://nathan-tw.github.io/posts/life/university/</link>
       <pubDate>Wed, 18 Aug 2021 09:03:34 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/university/</guid>
+      <guid>http://nathan-tw.github.io/posts/life/university/</guid>
       <description>更悲觀更要體貼悲觀，別輕易離席  更要對一切不為你所愛更動秩序  更悲觀更要早睡早起，細細感覺自己  戒掉一直說對不起 
  每次讀最喜歡的詩集&amp;lt;更悲觀更要&amp;gt;心都會舒坦不少，悲觀面對慌張卻累積了悲觀，畢業後、當兵前像立於吊橋正中，整整四年沒有收拾好的心情最容易在夏夜散落，趁著實習即將結束趕緊把一葉葉的回憶收好。
 升大學環島 東部 趁著升大學前還能自稱青春高中生時環了一次島，二馬、肥肥、西打和我四種迥然的個性，像是四季。先從宜蘭向東，雖然好幾個颱風即將接連來到，但我們依舊不聽長輩勸阻在花蓮停下，反正住宿費用肯定是他們出(?)，在離開花蓮前西打的手機壞了，颱風也差不多登陸，這是巧合嗎？我不這認為。一路還算從容的帶走幾片風景，飛速來到高雄。
@@ -54,10 +54,10 @@ Array vs. Linked list 兩者在記憶體的結構：
     
     <item>
       <title>[技術] 淺談 file descriptor 及 I/O Redirection</title>
-      <link>http://nathan-tw.github.io/posts/io-redirection/</link>
+      <link>http://nathan-tw.github.io/posts/linux/io-redirection/</link>
       <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/io-redirection/</guid>
+      <guid>http://nathan-tw.github.io/posts/linux/io-redirection/</guid>
       <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
 什麼是 file  Everything is a file
  先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
@@ -68,10 +68,10 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
     
     <item>
       <title>[技術] 你不能不知道的軟體架構--MapReduce (二)</title>
-      <link>http://nathan-tw.github.io/posts/mapreduce2/</link>
+      <link>http://nathan-tw.github.io/posts/system-design/mapreduce2/</link>
       <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/mapreduce2/</guid>
+      <guid>http://nathan-tw.github.io/posts/system-design/mapreduce2/</guid>
       <description>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
   mapReduce in paper
@@ -85,10 +85,10 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
     
     <item>
       <title>[技術] 你不能不知道的軟體架構--MapReduce (一)</title>
-      <link>http://nathan-tw.github.io/posts/mapreduce/</link>
+      <link>http://nathan-tw.github.io/posts/system-design/mapreduce/</link>
       <pubDate>Sun, 23 May 2021 23:37:48 +0800</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/mapreduce/</guid>
+      <guid>http://nathan-tw.github.io/posts/system-design/mapreduce/</guid>
       <description>前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
 什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
 hello world -&amp;gt; {hello:1, world:1}
@@ -104,10 +104,10 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
     
     <item>
       <title>[生活] 關於Star67</title>
-      <link>http://nathan-tw.github.io/posts/star67/</link>
+      <link>http://nathan-tw.github.io/posts/life/star67/</link>
       <pubDate>Thu, 22 Apr 2021 07:56:39 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/star67/</guid>
+      <guid>http://nathan-tw.github.io/posts/life/star67/</guid>
       <description>Star67 其實部落格的命名和星星完全沒有關係，大學時在新光路67號住了最久，也最喜歡在那生活的日子，所以部落格本想以此為名，不過如果取為New67或是Light67聽起來蠻蠢的，所以乾脆想成Star67aka星光路67號，而且在這的日子常常熬夜，五成是和朋友打傳說通霄，另外五成則是寫程式和書法到半夜停不下來所致，這些事的樂趣是日光還在時體會不到的，畢竟深夜才是適合苦惱的時候，而苦惱正是這些事精華之處。即使每天早上都不省人事，卻很享受這種報復性的作息，享受這種女友睡了，鄰居關燈了，剩下星光亮著的時光。
 重蹈覆轍  愛是讓你不重蹈覆轍，讓你生而為人 &amp;ndash; 羅于婷 &amp;lt;喜歡的話可以試穿&amp;gt;
  其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首神曲走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子。
@@ -116,10 +116,10 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
     
     <item>
       <title>[技術] Worker Pool併發處理模型</title>
-      <link>http://nathan-tw.github.io/posts/worker-pool/</link>
+      <link>http://nathan-tw.github.io/posts/programming/worker-pool/</link>
       <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/worker-pool/</guid>
+      <guid>http://nathan-tw.github.io/posts/programming/worker-pool/</guid>
       <description>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。

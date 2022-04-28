@@ -162,7 +162,7 @@
  // main/mrcoordinator.go func main() { 	if len(os.Args) &lt; 2 { 	fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) 	os.Exit(1) 	}  	// 第一個參數是*....</p>
   </section>
   <footer class="entry-footer">June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href="http://nathan-tw.github.io/posts/mapreduce2/"></a>
+  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href="http://nathan-tw.github.io/posts/system-design/mapreduce2/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -185,7 +185,7 @@ hello world -&gt; {hello:1, world:1}
 map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：...</p>
   </section>
   <footer class="entry-footer">May 23, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (一)" href="http://nathan-tw.github.io/posts/mapreduce/"></a>
+  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (一)" href="http://nathan-tw.github.io/posts/system-design/mapreduce/"></a>
 </article>
     </main>
     <footer class="footer">

@@ -168,7 +168,7 @@
   </p>
   </section>
   <footer class="entry-footer">April 22, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-  <a class="entry-link" aria-label="post link to [生活] 關於Star67" href="http://nathan-tw.github.io/posts/star67/"></a>
+  <a class="entry-link" aria-label="post link to [生活] 關於Star67" href="http://nathan-tw.github.io/posts/life/star67/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -184,7 +184,7 @@ func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered cha
 func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &lt;- task 	} 	close(tasksChan) 	pool := &amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool....</p>
   </section>
   <footer class="entry-footer">April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
-  <a class="entry-link" aria-label="post link to [技術] Worker Pool併發處理模型" href="http://nathan-tw.github.io/posts/worker-pool/"></a>
+  <a class="entry-link" aria-label="post link to [技術] Worker Pool併發處理模型" href="http://nathan-tw.github.io/posts/programming/worker-pool/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
