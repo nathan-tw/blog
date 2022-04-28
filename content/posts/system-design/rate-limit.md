@@ -2,7 +2,8 @@
 title: "[技術] 各類Rate limit設計"
 date: 2022-04-20T16:52:44+08:00
 draft: true
-categories: ["programming"]
+tag: ["Rate Limit"]
+categories: ["System Design"]
 ---
 
 ## 來自實習的反省

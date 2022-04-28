@@ -3,6 +3,7 @@ title: "[技術] 你不能不知道的軟體架構--MapReduce (一)"
 date: 2021-05-23T23:37:48+08:00
 draft: false
 tags: ["Distirbuted System"]
+categories: ["System Design"]
 cover:
     image: "/images/mapreduce/Spark-vs-Hadoop.jpeg"
 ---
@@ -30,7 +31,7 @@ MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Ma
 
 {{< figure src="/images/mapreduce/mapreduce_distributed.jpeg" attr="mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052">}}
 
-整個概念有點類似前陣子完成的[<span style="color:#3D65A8">Worker Pool</span>]({{< ref "/posts/worker-pool.md" >}})，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
+整個概念有點類似前陣子完成的[<span style="color:#3D65A8">Worker Pool</span>]({{< ref "worker-pool.md" >}})，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
 ```
 map (k1, v1) → list(k2, v2)
 reduce (k2, list(v2)) → list(v2)

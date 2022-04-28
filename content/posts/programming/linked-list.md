@@ -2,6 +2,8 @@
 title: "[技術] 深入淺出 linked list"
 date: 2022-01-21T06:30:15-04:00
 draft: false
+tag: ["Linked List", "Array"]
+categories: ["Programming"]
 cover:
     image: "/images/linked-list/linked.jpg"
 ---
