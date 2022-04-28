@@ -21,7 +21,7 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/posts/mapreduce/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.1e451595639e75b22c4c1bdeddf7d9828053f079b67db167bf9178601035727a.js" integrity="sha256-HkUVlWOedbIsTBve3ffZgoBT8Hm2fbFnv5F4YBA1cno="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.ee9db36630ad0db0cccd0c723121f2d4929e19c96296999ca136a933a7db6aac.js" integrity="sha256-7p2zZjCtDbDMzQxyMSHy1JKeGclilpmcoTapM6fbaqw="
     onload="hljs.highlightAll();"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
@@ -31,7 +31,7 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.98.0" />
 <meta property="og:title" content="[技術] 你不能不知道的軟體架構--MapReduce (一)" />
 <meta property="og:description" content="前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
 什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：

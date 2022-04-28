@@ -16,7 +16,7 @@ func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/posts/worker-pool/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.1e451595639e75b22c4c1bdeddf7d9828053f079b67db167bf9178601035727a.js" integrity="sha256-HkUVlWOedbIsTBve3ffZgoBT8Hm2fbFnv5F4YBA1cno="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.ee9db36630ad0db0cccd0c723121f2d4929e19c96296999ca136a933a7db6aac.js" integrity="sha256-7p2zZjCtDbDMzQxyMSHy1JKeGclilpmcoTapM6fbaqw="
     onload="hljs.highlightAll();"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
@@ -26,7 +26,7 @@ func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.98.0" />
 <meta property="og:title" content="[技術] Worker Pool併發處理模型" />
 <meta property="og:description" content="前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。

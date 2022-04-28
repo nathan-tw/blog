@@ -19,7 +19,7 @@
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/posts/mapreduce2/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.1e451595639e75b22c4c1bdeddf7d9828053f079b67db167bf9178601035727a.js" integrity="sha256-HkUVlWOedbIsTBve3ffZgoBT8Hm2fbFnv5F4YBA1cno="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.ee9db36630ad0db0cccd0c723121f2d4929e19c96296999ca136a933a7db6aac.js" integrity="sha256-7p2zZjCtDbDMzQxyMSHy1JKeGclilpmcoTapM6fbaqw="
     onload="hljs.highlightAll();"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
@@ -29,7 +29,7 @@
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.95.0" />
+<meta name="generator" content="Hugo 0.98.0" />
 <meta property="og:title" content="[技術] 你不能不知道的軟體架構--MapReduce (二)" />
 <meta property="og:description" content="前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
