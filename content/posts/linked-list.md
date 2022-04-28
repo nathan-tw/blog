@@ -223,14 +223,20 @@ struct student *Jerry = container_of(Jerry_list, struct student, list);
 
 一切便大功告成！這樣的方式使許多非連續記憶體的操作更廣泛使用，例如[network address table](https://github.com/torvalds/linux/blob/master/net/netlabel/netlabel_addrlist.h)及檔案系統的[namespace](https://github.com/torvalds/linux/blob/master/fs/mount.h)等等。
 
-## 總結
+## 小結與後記
 
-Linked list 使用時機：
+* Linked list 使用時機：
+    * 無法預期資料數量或頻繁變動資料數量時。
+    * 需要頻繁地新增/刪除資料時。
+    * 不需要快速查詢資料。
 
-* 無法預期資料數量或頻繁變動資料數量時。
-* 需要頻繁地新增/刪除資料時。
-* 不需要快速查詢資料。
+* 程式可以用不同角度思考
 
+>人們對「品味」的概念各有見解，談到程式碼是否有品味，開發者又是如何執行判斷？Linux之父 Linus Torvalds曾提到一個案例來說明，他認為，重點並不在於邊界情況（Edge case），而是能以不同的角度看問題、直覺地選擇出正確的方法
+
+在[良葛格](https://www.ithome.com.tw/voice/139264)的部落格中也談到了，品味並非完全主觀的，其中涉及文化及時空，他以品酒為例，品酒的禮儀、使用的杯器、產地、品牌、文化等等，這些都能是品味的客觀因素。
+
+>粗製濫造的程式碼固然是可以解決問題，然而，這可能也代表了一件事：手邊可以解決問題的方式，少得可憐。
 
 ## Reference
 
@@ -238,3 +244,4 @@ Linked list 使用時機：
 -   linked list vs. array: https://www.geeksforgeeks.org/linked-list-vs-array/
 -   array and linked List: https://pjchender.dev/dsa/dsa-array-linked-list/
 -   list_head 結構: http://adrianhuang.blogspot.com/2007/10/linux-kernel-listhead.html
+-   良葛格blog: https://www.ithome.com.tw/voice/139264
