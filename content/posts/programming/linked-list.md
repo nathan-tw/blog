@@ -4,15 +4,13 @@ date: 2022-01-21T06:30:15-04:00
 draft: false
 tag: ["Linked List", "Array"]
 categories: ["Programming"]
-cover:
-    image: "/images/linked-list/linked.jpg"
+thumbnailImagePosition: left
+thumbnailImage: /images/linked-list/linked.jpg
 ---
-
-## linked list 是什麼
-
 
 假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？
 我們操作的虛擬記憶體就像是一格格的櫥窗，工程師在配置使用空間時有兩種常見的方式：
+<!--more-->
 
 1. 配置一段連續的格子 (Array)
 2. 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list)

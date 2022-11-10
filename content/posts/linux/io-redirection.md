@@ -4,18 +4,16 @@ date: 2021-07-07T01:55:05-04:00
 draft: false
 tags: ["Operating System"]
 categories: ["Linux"]
-cover:
-    image: "/images/io-redirection/direction.jpg"
+thumbnailImagePosition: left
+thumbnailImage: /images/io-redirection/direction.jpg
 ---
-
-## 前言
 
 ```c
 fprintf(1, "hello world\n");
 ```
 
 你可能好奇過 C 語言`fprintf`函數中，第一個參數`1`代表什麼，你也許聽過在 Unix 家族中**Everything is a file**，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是`file`，以及作業系統如何達到`i/o redirection`。
-
+<!--more-->
 ## 什麼是 file
 
 > _Everything is a file_

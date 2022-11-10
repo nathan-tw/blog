@@ -4,13 +4,14 @@ date: 2021-06-01T16:52:44+08:00
 draft: false
 tags: ["Distirbuted System"]
 categories: ["System Design"]
-cover:
-    image: "/images/mapreduce/distributed_network.jpg"
+thumbnailImagePosition: left
+thumbnailImage: /images/mapreduce/distributed_network.jpg
 ---
 
-## 前言
+繼上一篇[<span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</span>]({{< ref "mapreduce.md" >}})提到的MapReduce概念，這篇講解的是如何完成[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)的Lab1，自幹一個MapReduce核心。
+<!--more-->
 
-繼上一篇[<span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</span>]({{< ref "mapreduce.md" >}})提到的MapReduce概念，這篇講解的是如何完成[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
+雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 
 ## 題目要求
 

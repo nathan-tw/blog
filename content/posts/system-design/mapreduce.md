@@ -4,13 +4,14 @@ date: 2021-05-23T23:37:48+08:00
 draft: false
 tags: ["Distirbuted System"]
 categories: ["System Design"]
-cover:
-    image: "/images/mapreduce/Spark-vs-Hadoop.jpeg"
+thumbnailImagePosition: left
+thumbnailImage: /images/mapreduce/Spark-vs-Hadoop.jpeg
 ---
 
-## 前言
+你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？
 
-你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)，對Google的AI大神[<span style="color:#3D65A8">Jeff Dean</span>](https://en.wikipedia.org/wiki/Jeff_Dean)提出的`MapReduce`又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂`MapReduce`，下一篇則是以Go語言自幹一個`MapReduce`核心 ，有興趣可以先去我的[<span style="color:#3D65A8">github repo</span>](https://github.com/nathan-tw/6.824)看。
+<!--more-->
+有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)，對Google的AI大神[<span style="color:#3D65A8">Jeff Dean</span>](https://en.wikipedia.org/wiki/Jeff_Dean)提出的`MapReduce`又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，一起來看看知名的`MapReduce`吧。
 
 ## 什麼是MapReduce
 

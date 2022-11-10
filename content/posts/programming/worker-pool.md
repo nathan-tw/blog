@@ -6,13 +6,11 @@ tags: ["Go"]
 categories: ["Programming"]
 ---
 
-前陣子在準備實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 
-## 什麼是Worker Pool
-
-![worker-pool](/images/worker-pool/worker-pool.png)
 
 Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
+<!--more-->
+![worker-pool](/images/worker-pool/worker-pool.png)
 
 ## Worker Pool 設計
  

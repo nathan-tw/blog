@@ -3,15 +3,15 @@ title: "[生活] 夏夜夢迴"
 date: 2021-08-18T09:03:34-04:00
 draft: false
 categories: ["Life"]
-cover:
-    image: "/images/university/graduate.jpg"
+thumbnailImagePosition: left
+thumbnailImage: /images/university/graduate.jpg
 ---
 
 > 更悲觀更要體貼悲觀，別輕易離席 </br>
 > 更要對一切不為你所愛更動秩序 </br>
 > 更悲觀更要早睡早起，細細感覺自己 </br>
 > 戒掉一直說對不起 </br>
-
+<!--more-->
 每次讀最喜歡的詩集<更悲觀更要>心都會舒坦不少，悲觀面對慌張卻累積了悲觀，畢業後、當兵前像立於吊橋正中，整整四年沒有收拾好的心情最容易在夏夜散落，趁著實習即將結束趕緊把一葉葉的回憶收好。
 
 ## 升大學環島
