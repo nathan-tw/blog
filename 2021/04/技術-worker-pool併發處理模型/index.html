@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[技術] Worker Pool併發處理模型",
+  
+  "datePublished": "2021-04-19T05:03:58-04:00",
+  "dateModified": "2021-04-19T05:03:58-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "nathan",
+    
+    "image": "https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/nathan-tw.github.io\/2021\/04\/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "star67",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c"
+    }
+    
+  },
+  "description": "Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.105.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="nathan">
+<meta name="keywords" content="">
+<meta name="description" content="Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。">
+
+
+<meta property="og:description" content="Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技術] Worker Pool併發處理模型">
+<meta name="twitter:title" content="[技術] Worker Pool併發處理模型">
+<meta property="og:url" content="https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/">
+<meta property="twitter:url" content="https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/">
+<meta property="og:site_name" content="star67">
+<meta property="og:description" content="Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。">
+<meta name="twitter:description" content="Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2021-04-19T05:03:58">
+  
+  
+    <meta property="article:modified_time" content="2021-04-19T05:03:58">
+  
+  
+  
+    
+      <meta property="article:section" content="Programming">
+    
+  
+  
+    
+      <meta property="article:tag" content="Go">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=640">
+
+
+
+
+
+
+    <title>[技術] Worker Pool併發處理模型</title>
+
+    <link rel="icon" href="https://nathan-tw.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://nathan-tw.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://nathan-tw.github.io/" aria-label="Go to homepage">star67</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://nathan-tw.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://nathan-tw.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">nathan</h4>
+        
+          <h5 class="sidebar-profile-bio">Fake it until make it</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/nathan-tw" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      [技術] Worker Pool併發處理模型
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-04-19T05:03:58-04:00">
+        
+  April 19, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://nathan-tw.github.io/categories/programming">Programming</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。</p>
+<p><img src="https://nathan-tw.github.io/images/worker-pool/worker-pool.png" alt="worker-pool"></p>
+<h2 id="worker-pool-設計">Worker Pool 設計</h2>
+<h3 id="type-定義">Type 定義</h3>
+<p>Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Task</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Id</span>  <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Err</span> <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">f</span>   <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">WorkerPool</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">PoolSize</span>    <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tasksSize</span>   <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tasksChan</span>    <span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Task</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resultsChan</span> <span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Task</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Results</span>     <span style="color:#66d9ef">func</span>() []<span style="color:#a6e22e">Task</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="功能實做">功能實做</h3>
+<p>每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">task</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Task</span>) <span style="color:#a6e22e">Do</span>() <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">f</span>()
+</span></span></code></pre></div><p>Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewWorkerPool</span>(<span style="color:#a6e22e">tasks</span> []<span style="color:#a6e22e">Task</span>, <span style="color:#a6e22e">size</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">WorkerPool</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tasksChan</span>, <span style="color:#a6e22e">resultsChan</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Task</span>, len(<span style="color:#a6e22e">tasks</span>)), make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Task</span>, len(<span style="color:#a6e22e">tasks</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">task</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">tasks</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">tasksChan</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">task</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	close(<span style="color:#a6e22e">tasksChan</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">pool</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">WorkerPool</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">PoolSize</span>: <span style="color:#a6e22e">size</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">tasksSize</span>: len(<span style="color:#a6e22e">tasks</span>),
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">tasksChan</span>: <span style="color:#a6e22e">tasksChan</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">resultsChan</span>: <span style="color:#a6e22e">resultsChan</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">Results</span> = <span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">results</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">pool</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">pool</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">WorkerPool</span>) <span style="color:#a6e22e">Start</span>() {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">PoolSize</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">worker</span>()  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">pool</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">WorkerPool</span>) <span style="color:#a6e22e">worker</span>() {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">task</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">tasksChan</span> {  
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">Err</span> = <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">Do</span>()  
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pool</span>.<span style="color:#a6e22e">resultsChan</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">task</span>  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">wp</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">WorkerPool</span>) <span style="color:#a6e22e">results</span>() []<span style="color:#a6e22e">Task</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tasks</span> <span style="color:#f92672">:=</span> make([]<span style="color:#a6e22e">Task</span>, <span style="color:#a6e22e">wp</span>.<span style="color:#a6e22e">tasksSize</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">wp</span>.<span style="color:#a6e22e">tasksSize</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">tasks</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">wp</span>.<span style="color:#a6e22e">resultsChan</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">tasks</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/nathan-tw/workerpool">https://github.com/nathan-tw/workerpool</a></li>
+<li><a href="https://github.com/gammazero/workerpool">https://github.com/gammazero/workerpool</a></li>
+<li><a href="https://github.com/xxjwxc/gowp">https://github.com/xxjwxc/gowp</a></li>
+</ul>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://nathan-tw.github.io/tags/go/">Go</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2021/04/%E7%94%9F%E6%B4%BB-%E9%97%9C%E6%96%BCstar67/" data-tooltip="[生活] 關於Star67" aria-label="NEXT: [生活] 關於Star67">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/nathan-tw.github.io\/2021\/04\/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B\/';
+        
+          this.page.identifier = '\/2021\/04\/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'star67';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 nathan. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2021/04/%E7%94%9F%E6%B4%BB-%E9%97%9C%E6%96%BCstar67/" data-tooltip="[生活] 關於Star67" aria-label="NEXT: [生活] 關於Star67">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnathan-tw.github.io%2F2021%2F04%2F%25E6%258A%2580%25E8%25A1%2593-worker-pool%25E4%25BD%25B5%25E7%2599%25BC%25E8%2599%2595%25E7%2590%2586%25E6%25A8%25A1%25E5%259E%258B%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fnathan-tw.github.io%2F2021%2F04%2F%25E6%258A%2580%25E8%25A1%2593-worker-pool%25E4%25BD%25B5%25E7%2599%25BC%25E8%2599%2595%25E7%2590%2586%25E6%25A8%25A1%25E5%259E%258B%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fnathan-tw.github.io%2F2021%2F04%2F%25E6%258A%2580%25E8%25A1%2593-worker-pool%25E4%25BD%25B5%25E7%2599%25BC%25E8%2599%2595%25E7%2590%2586%25E6%25A8%25A1%25E5%259E%258B%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">nathan</h4>
+    
+      <div id="about-card-bio">Fake it until make it</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://nathan-tw.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://nathan-tw.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

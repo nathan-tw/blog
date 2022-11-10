@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[Leetcode] 2407. Longest Increasing Subsequence II",
+  
+  "datePublished": "2022-11-10T07:50:14+08:00",
+  "dateModified": "2022-11-10T07:50:14+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "nathan",
+    
+    "image": "https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/nathan-tw.github.io\/2022\/11\/leetcode-2407.-longest-increasing-subsequence-ii\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "star67",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c"
+    }
+    
+  },
+  "description": "LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.105.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="nathan">
+<meta name="keywords" content="">
+<meta name="description" content="LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。">
+
+
+<meta property="og:description" content="LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Leetcode] 2407. Longest Increasing Subsequence II">
+<meta name="twitter:title" content="[Leetcode] 2407. Longest Increasing Subsequence II">
+<meta property="og:url" content="https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/">
+<meta property="twitter:url" content="https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/">
+<meta property="og:site_name" content="star67">
+<meta property="og:description" content="LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。">
+<meta name="twitter:description" content="LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2022-11-10T07:50:14">
+  
+  
+    <meta property="article:modified_time" content="2022-11-10T07:50:14">
+  
+  
+  
+    
+      <meta property="article:section" content="Leetcode">
+    
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=640">
+
+
+
+
+
+
+    <title>[Leetcode] 2407. Longest Increasing Subsequence II</title>
+
+    <link rel="icon" href="https://nathan-tw.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://nathan-tw.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://nathan-tw.github.io/" aria-label="Go to homepage">star67</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://nathan-tw.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://nathan-tw.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">nathan</h4>
+        
+          <h5 class="sidebar-profile-bio">Fake it until make it</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://nathan-tw.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/nathan-tw" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      [Leetcode] 2407. Longest Increasing Subsequence II
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-11-10T07:50:14&#43;08:00">
+        
+  November 10, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://nathan-tw.github.io/categories/leetcode">Leetcode</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 <a href="https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/">這題</a>，本題是基於 LIS 的變化，新增了序列中兩個元素的差 <code>k</code>。</p>
+<h2 id="題目描述">題目描述</h2>
+<p>You are given an integer array <code>nums</code> and an integer <code>k</code>.</p>
+<p>Find the longest subsequence of nums that meets the following requirements:</p>
+<ul>
+<li><strong>The subsequence is strictly increasing and</strong></li>
+<li><strong>The difference between adjacent elements in the subsequence is at most k.</strong></li>
+</ul>
+<p>Return the length of the longest subsequence that meets the requirements.</p>
+<h2 id="解法一dp">解法一：DP</h2>
+<p>建立一個dp array，<code>dp[i]</code>代表的是以<code>nums[i]</code>做為結尾的seq的最大長度，做法是搜尋 <code>dp[0]</code> ~ <code>dp[i-1]</code>，找到最大的sub-LIS，將其+1更新<code>dp[i]</code>。但為了滿足相鄰的元素相減必須比<code>k</code>小，需要加入<code>nums[i]-nums[j] &lt;=k</code>判斷。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> dp[numsSize];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> numsSize; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    dp[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        dp[i] <span style="color:#f92672">=</span> (nums[i]<span style="color:#f92672">&gt;</span>nums[j] <span style="color:#f92672">&amp;&amp;</span> nums[i]<span style="color:#f92672">-</span>nums[j] <span style="color:#f92672">&lt;=</span>k <span style="color:#f92672">&amp;&amp;</span> dp[i] <span style="color:#f92672">&lt;=</span> dp[j]) <span style="color:#f92672">?</span> dp[j]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> dp[i];
+</span></span><span style="display:flex;"><span>    max <span style="color:#f92672">=</span> dp[i] <span style="color:#f92672">&gt;</span> max <span style="color:#f92672">?</span> dp[i] <span style="color:#f92672">:</span> max;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> max;
+</span></span></code></pre></div><p><code>TC: n^2</code></p>
+<h2 id="解法二dpsegment-tree">解法二：DP+Segment Tree</h2>
+<p>解法一的效能瓶頸是每次的查詢都是<code>n^2</code>，為了降低區間查詢的複雜度，可以使用線段樹來降低查詢複雜度，但為了維護樹的結構，單點修改的複雜度也提升了。</p>
+<p>
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>LIS2</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">cpp</li>
+      
+        <li class="tab ">go</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-cpp cpp" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-cpp cpp"><code class="cpp">class SegTree {
+public:
+    int n;
+    vector&lt;int&gt; tree;
+    SegTree(int n_): n(n_) {
+        tree = vector&lt;int&gt;(n*4);
+    }
+    int query(int i, int L, int R, int l, int r) {
+        if(l == L &amp;&amp; r == R) 
+            return tree[i];
+        int M = (L&#43;R)&gt;&gt;1;
+        if(M &gt;= r)
+            return query(i*2&#43;1, L, M, l, r);
+        else if(M &lt; l)
+            return query(i*2&#43;2, M&#43;1, R, l, r);
+        return max(query(i*2&#43;1, L, M, l, M), query(i*2&#43;2, M&#43;1, R, M&#43;1, r));
+    }
+    void modify(int i, int L, int R, int P, int v) {
+        if(L==R) {
+            tree[i] = max(v, tree[i]);
+            return;
+        }
+        int M = (L&#43;R) &gt;&gt; 1;
+        if(M &gt;= P)
+            modify(i*2&#43;1, L, M, P, v);
+        else modify(i*2&#43;2, M&#43;1, R, P, v);
+        tree[i] = max(tree[i*2&#43;1], tree[i*2&#43;2]);
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLIS(vector&lt;int&gt;&amp; nums, int k) {
+        int n = *max_element(nums.begin(), nums.end());
+        auto segTree = SegTree(n);
+        for(auto&amp; num: nums) {
+            int lower = max(0, num-k);
+            int v = segTree.query(0, 0, segTree.n, lower, num-1);
+            segTree.modify(0, 0, segTree.n, num, v&#43;1);
+        }
+        return segTree.tree[0];
+    }
+};</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-go go" style="display: none;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-go go"><code class="go">type SegTree []int
+func NewSegTree(n int) SegTree {
+    return make(SegTree, n)
+}
+
+func (s SegTree) Query(l, r, L, R, i int) int {
+    if L==l &amp;&amp; R==r {
+        return s[i]
+    }
+    M := (L&#43;R)&gt;&gt;1
+    if M &gt;= r {
+        return s.Query(l, r, L, M, i*2&#43;1)
+    } else if M &lt; l {
+        return s.Query(l, r, M&#43;1, R, i*2&#43;2)
+    }
+    return max(s.Query(l, M, L, M, i*2&#43;1), s.Query(M&#43;1, r, M&#43;1, R, i*2&#43;2))
+}
+
+func (s SegTree) Update(L, R, P, i, v int)  {
+    if L == R {
+        s[i] = max(s[i], v)
+        return
+    }
+    M := (L&#43;R)&gt;&gt;1
+    if P &lt;= M {
+        s.Update(L, M, P, i*2&#43;1, v) 
+    } else { 
+        s.Update(M&#43;1, R, P, i*2&#43;2, v) 
+    }
+    s[i] = max(s[i*2&#43;1], s[i*2&#43;2])
+}
+
+
+func lengthOfLIS(nums []int, k int) int {
+    m := 0
+    for _, num := range nums {
+        m = max(m, num)
+    }
+    tree := NewSegTree(m*4)
+    for _, num := range nums {
+        lower := max(0, num - k);
+        val := tree.Query(lower, num-1, 0, m, 0)
+        tree.Update(0, m, num, 0, val&#43;1)
+    }
+    return tree[0]
+}
+
+
+func max(a, b int) int {
+    if a &gt; b {
+        return a
+    }
+    return b
+}</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<code>TC: nlogn</code></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/" data-tooltip="[Leetcode] 300. Longest Increasing Subsequence" aria-label="PREVIOUS: [Leetcode] 300. Longest Increasing Subsequence">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/nathan-tw.github.io\/2022\/11\/leetcode-2407.-longest-increasing-subsequence-ii\/';
+        
+          this.page.identifier = '\/2022\/11\/leetcode-2407.-longest-increasing-subsequence-ii\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'star67';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2022 nathan. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/" data-tooltip="[Leetcode] 300. Longest Increasing Subsequence" aria-label="PREVIOUS: [Leetcode] 300. Longest Increasing Subsequence">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-2407.-longest-increasing-subsequence-ii%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-2407.-longest-increasing-subsequence-ii%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-2407.-longest-increasing-subsequence-ii%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/cbc7742df63d8fa7a57343453dc6446c?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">nathan</h4>
+    
+      <div id="about-card-bio">Fake it until make it</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://nathan-tw.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://nathan-tw.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

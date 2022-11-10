@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Leetcode on 林宣佑 | Nathan Lin</title>
-    <link>http://nathan-tw.github.io/categories/leetcode/</link>
-    <description>Recent content in Leetcode on 林宣佑 | Nathan Lin</description>
-    <image>
-      <url>http://nathan-tw.github.io/papermod-cover.png</url>
-      <link>http://nathan-tw.github.io/papermod-cover.png</link>
-    </image>
+    <title>Leetcode on star67</title>
+    <link>https://nathan-tw.github.io/categories/leetcode/</link>
+    <description>Recent content in Leetcode on star67</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Nov 2022 07:50:14 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Nov 2022 07:50:14 +0800</lastBuildDate><atom:link href="https://nathan-tw.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Leetcode] 300. Longest Increasing Subsequence</title>
-      <link>http://nathan-tw.github.io/posts/leetcode/medium/300/</link>
+      <title>[Leetcode] 2407. Longest Increasing Subsequence II</title>
+      <link>https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/</link>
       <pubDate>Thu, 10 Nov 2022 07:50:14 +0800</pubDate>
       
-      <guid>http://nathan-tw.github.io/posts/leetcode/medium/300/</guid>
-      <description>300 題目描述 Given an integer array nums, return the length of the longest strictly increasing subsequence.
-A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
-解法一：DP 建立一個dp array，dp[i]代表的是以nums[i]做為結尾的seq的最大長度，做法是搜尋 dp[0] ~ dp[i-1]，找到最大的sub-LIS，將其+1更新dp[i]。
-// dp[i]=max(dp[j] for j in 0~i-1) int lengthOfLIS(int* nums, int numsSize){ int dp[numsSize]; int max = 1; for(int i = 0; i &amp;lt; numsSize; i++) { dp[i] = 1; for(int j = 0; j &amp;lt; i; j++) dp[i] = (nums[i]&amp;gt;nums[j] &amp;amp;&amp;amp; dp[i] &amp;lt;= dp[j]) ?</description>
+      <guid>https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/</guid>
+      <description>&lt;p&gt;LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 &lt;a href=&#34;https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/&#34;&gt;這題&lt;/a&gt;，本題是基於 LIS 的變化，新增了序列中兩個元素的差 &lt;code&gt;k&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode] 300. Longest Increasing Subsequence</title>
+      <link>https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/</link>
+      <pubDate>Thu, 10 Nov 2022 07:50:14 +0800</pubDate>
+      
+      <guid>https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/</guid>
+      <description>&lt;p&gt;Given an integer array &lt;code&gt;nums&lt;/code&gt;, return the length of the &lt;strong&gt;longest strictly increasing subsequence&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].&lt;/p&gt;</description>
     </item>
     
   </channel>

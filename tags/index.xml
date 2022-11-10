@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 林宣佑 | Nathan Lin</title>
-    <link>http://nathan-tw.github.io/tags/</link>
-    <description>Recent content in Tags on 林宣佑 | Nathan Lin</description>
-    <image>
-      <url>http://nathan-tw.github.io/papermod-cover.png</url>
-      <link>http://nathan-tw.github.io/papermod-cover.png</link>
-    </image>
+    <title>Tags on star67</title>
+    <link>https://nathan-tw.github.io/tags/</link>
+    <description>Recent content in Tags on star67</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Jul 2021 01:55:05 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jul 2021 01:55:05 -0400</lastBuildDate><atom:link href="https://nathan-tw.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Operating System</title>
-      <link>http://nathan-tw.github.io/tags/operating-system/</link>
+      <link>https://nathan-tw.github.io/tags/operating-system/</link>
       <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/tags/operating-system/</guid>
+      <guid>https://nathan-tw.github.io/tags/operating-system/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Distirbuted System</title>
-      <link>http://nathan-tw.github.io/tags/distirbuted-system/</link>
+      <link>https://nathan-tw.github.io/tags/distirbuted-system/</link>
       <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
       
-      <guid>http://nathan-tw.github.io/tags/distirbuted-system/</guid>
+      <guid>https://nathan-tw.github.io/tags/distirbuted-system/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>http://nathan-tw.github.io/tags/go/</link>
+      <link>https://nathan-tw.github.io/tags/go/</link>
       <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
       
-      <guid>http://nathan-tw.github.io/tags/go/</guid>
+      <guid>https://nathan-tw.github.io/tags/go/</guid>
       <description></description>
     </item>
     

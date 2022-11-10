@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: http://nathan-tw.github.io/sitemap.xml
