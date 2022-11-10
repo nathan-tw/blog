@@ -10,8 +10,7 @@
 <meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/categories/programming/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.cc6f18c9f63a0ac6908c37d16b6be47b40037bb373787a9d5018290537edd960.css" integrity="sha256-zG8YyfY6CsaQjDfRa2vke0ADe7NzeHqdUBgpBTft2WA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://nathan-tw.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://nathan-tw.github.io/favicon-32x32.png">
@@ -19,7 +18,7 @@
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.99.1" />
+<meta name="generator" content="Hugo 0.105.0">
 <link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/categories/programming/index.xml">
 <meta property="og:title" content="Programming" />
 <meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
@@ -152,12 +151,15 @@
   </header>
   <section class="entry-content">
     <p>linked list 是什麼 假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？ 我們操作的虛擬記憶體就像是一格格的櫥窗，工程師在配置使用空間時有兩種常見的方式：
- 配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list)  With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
-     因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
+配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list) With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
+因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
 Array vs. Linked list 兩者在記憶體的結構：
-  Data storage scheme of an array
-    Data storage scheme of a linked list
-    Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。...</p>
+Data storage scheme of an array
+Data storage scheme of a linked list
+Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。
+Linked list：無法利用連續記憶體的隨機存取特性，造訪第i個元素時必須先造訪1至i-1，因此時間複雜度為O(n)，且因為必須以額外的指標做相連，使得存入相同的資料時較Array耗費空間。好處是空間配置較為彈性，刪除第i個節點時時間複雜度為O(1)，並且不需要在配置空間時固定長度。
+比較兩者使用的空間及特性：
+Linked List Array 空間 較複雜(需要額外pointer) 較節省 查詢第i個元素 O(n) O(1) 刪除第i個元素 O(1) O(n) 優點 大小可不固定 隨機存取 Dynamic Array 如果array大小固定，python中的list與go中的slice是如何實現？為何不須在一開始給定Array大小，也沒有剛剛提到的固定長度限制？ 其實他們都是維護一個Dynamic Array，簡單來說就是一個包含Array的類別或結構體，空間不夠時再抽換Array。以go為例，slice的結構如下：...</p>
   </section>
   <footer class="entry-footer">January 21, 2022&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [技術] 深入淺出 linked list" href="http://nathan-tw.github.io/posts/programming/linked-list/"></a>
@@ -168,12 +170,12 @@ Array vs. Linked list 兩者在記憶體的結構：
     <h2>[技術] Worker Pool併發處理模型</h2>
   </header>
   <section class="entry-content">
-    <p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+    <p>前陣子在準備實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
-type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
-func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
-func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &lt;- task 	} 	close(tasksChan) 	pool := &amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool....</p>
+type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
+func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
+func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &lt;- task } close(tasksChan) pool := &amp;WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool....</p>
   </section>
   <footer class="entry-footer">April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [技術] Worker Pool併發處理模型" href="http://nathan-tw.github.io/posts/programming/worker-pool/"></a>

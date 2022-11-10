@@ -10,8 +10,7 @@
 <meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/tags/distirbuted-system/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.cc6f18c9f63a0ac6908c37d16b6be47b40037bb373787a9d5018290537edd960.css" integrity="sha256-zG8YyfY6CsaQjDfRa2vke0ADe7NzeHqdUBgpBTft2WA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://nathan-tw.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://nathan-tw.github.io/favicon-32x32.png">
@@ -19,7 +18,7 @@
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.99.1" />
+<meta name="generator" content="Hugo 0.105.0">
 <link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/tags/distirbuted-system/index.xml">
 <meta property="og:title" content="Distirbuted System" />
 <meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
@@ -153,13 +152,13 @@
   <section class="entry-content">
     <p>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構–MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
-  mapReduce in paper
-  我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
- 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。  系統架構設計 根據以上幾點要求，我的想法是：
- 用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
-  my mapReduce design
-  基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
- // main/mrcoordinator.go func main() { 	if len(os.Args) &lt; 2 { 	fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) 	os.Exit(1) 	}  	// 第一個參數是*....</p>
+mapReduce in paper
+我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
+設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。 系統架構設計 根據以上幾點要求，我的想法是：
+用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態 設計上如下圖：
+my mapReduce design
+基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
+// main/mrcoordinator.go func main() { if len(os.Args) &lt; 2 { fmt.Fprintf(os.Stderr, &#34;Usage: mrcoordinator inputfiles...\n&#34;) os.Exit(1) } // 第一個參數是*.txt，代表切分後的文件 // 第二個參數則是worker數量(nReduce) m := mr.MakeCoordinator(os.Args[1:], 10) for m.Done() == false { time.Sleep(time.Second) } time.Sleep(time.Second) } // main/mrworker....</p>
   </section>
   <footer class="entry-footer">June 1, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (二)" href="http://nathan-tw.github.io/posts/system-design/mapreduce2/"></a>
@@ -176,13 +175,17 @@
 什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
 hello world -&gt; {hello:1, world:1}
 接著將這些key-value pair 存成中介檔案後排序，Reduce function則根據key將所有value加總，如果以上流程在一台電腦上完成，會像下圖，前兩列中的A、B、C其實分別是Ａ:1、 B:1、C:1：
-  mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
-  上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
-  mapreduce in distributed systems
-  MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
-  mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
-  整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
-map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：...</p>
+mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
+上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
+mapreduce in distributed systems
+MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
+mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
+整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
+map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：
+map function works in detail
+可以清楚的看到切分後的小任務分別被機器執行，其實他們是在一個queue中等待分發，但這裡為了顯示不同檔案對應的流程才這樣畫，另一方面是想表示一個重要的概念，只有能夠切分的任務才能使用mapReduce。
+結論 以下整理幾個重點：
+在分散式的世界中，效率是一致性的敵人(這裡的一致性指的是各個機器間的狀態)。 master負責分配任務，而任務分成map及reduce兩類。 mapReduce核心負責歸類和排序，使用者則定義map和reduce確切要做的事。 只有能夠切分的任務才能使用mapReduce。 心得 疫情肆虐，在家的各位好嗎？也許很多人的生涯規劃被打亂，期待許久的聚餐也迫於無奈取消，旅遊或生活都淪為遺憾。但在家依然有許多事可以做的，最近在看的課程MIT6....</p>
   </section>
   <footer class="entry-footer">May 23, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (一)" href="http://nathan-tw.github.io/posts/system-design/mapreduce/"></a>

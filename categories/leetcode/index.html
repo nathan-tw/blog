@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Tags | 林宣佑 | Nathan Lin</title>
+<title>Leetcode | 林宣佑 | Nathan Lin</title>
 <meta name="keywords" content="" />
 <meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
 <meta name="author" content="Nathan">
-<link rel="canonical" href="http://nathan-tw.github.io/tags/" />
+<link rel="canonical" href="http://nathan-tw.github.io/categories/leetcode/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.cc6f18c9f63a0ac6908c37d16b6be47b40037bb373787a9d5018290537edd960.css" integrity="sha256-zG8YyfY6CsaQjDfRa2vke0ADe7NzeHqdUBgpBTft2WA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://nathan-tw.github.io/favicon-16x16.png">
@@ -19,16 +19,16 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.105.0">
-<link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/tags/index.xml">
-<meta property="og:title" content="Tags" />
+<link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/categories/leetcode/index.xml">
+<meta property="og:title" content="Leetcode" />
 <meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://nathan-tw.github.io/tags/" /><meta property="og:image" content="http://nathan-tw.github.io/papermod-cover.png"/>
+<meta property="og:url" content="http://nathan-tw.github.io/categories/leetcode/" /><meta property="og:image" content="http://nathan-tw.github.io/papermod-cover.png"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://nathan-tw.github.io/papermod-cover.png"/>
 
-<meta name="twitter:title" content="Tags"/>
+<meta name="twitter:title" content="Leetcode"/>
 <meta name="twitter:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"/>
 
 </head>
@@ -117,7 +117,7 @@
             </li>
             <li>
                 <a href="http://nathan-tw.github.io/tags/" title="Tags">
-                    <span class="active">Tags</span>
+                    <span>Tags</span>
                 </a>
             </li>
             <li>
@@ -138,22 +138,24 @@
         </ul>
     </nav>
 </header>
-<main class="main">
-<header class="page-header">
-    <h1>Tags</h1>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://nathan-tw.github.io/">Home</a>&nbsp;»&nbsp;<a href="http://nathan-tw.github.io/categories/">Categories</a></div>
+  <h1>Leetcode</h1>
 </header>
 
-<ul class="terms-tags">
-    <li>
-        <a href="http://nathan-tw.github.io/tags/distirbuted-system/">Distirbuted System <sup><strong><sup>2</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="http://nathan-tw.github.io/tags/go/">Go <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="http://nathan-tw.github.io/tags/operating-system/">Operating System <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-</ul>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>[Leetcode] 300. Longest Increasing Subsequence</h2>
+  </header>
+  <section class="entry-content">
+    <p>300 題目描述 Given an integer array nums, return the length of the longest strictly increasing subsequence.
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
+解法一：DP 建立一個dp array，dp[i]代表的是以nums[i]做為結尾的seq的最大長度，做法是搜尋 dp[0] ~ dp[i-1]，找到最大的sub-LIS，將其&#43;1更新dp[i]。
+// dp[i]=max(dp[j] for j in 0~i-1) int lengthOfLIS(int* nums, int numsSize){ int dp[numsSize]; int max = 1; for(int i = 0; i &lt; numsSize; i&#43;&#43;) { dp[i] = 1; for(int j = 0; j &lt; i; j&#43;&#43;) dp[i] = (nums[i]&gt;nums[j] &amp;&amp; dp[i] &lt;= dp[j]) ?...</p>
+  </section>
+  <footer class="entry-footer">November 10, 2022&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
+  <a class="entry-link" aria-label="post link to [Leetcode] 300. Longest Increasing Subsequence" href="http://nathan-tw.github.io/posts/leetcode/medium/300/"></a>
+</article>
     </main>
     <footer class="footer">
     <span>&copy; 2022 <a href="http://nathan-tw.github.io/">林宣佑 | Nathan Lin</a></span>

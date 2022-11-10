@@ -10,7 +10,19 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Jan 2022 06:30:15 -0400</lastBuildDate><atom:link href="http://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Nov 2022 07:50:14 +0800</lastBuildDate><atom:link href="http://nathan-tw.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Leetcode] 300. Longest Increasing Subsequence</title>
+      <link>http://nathan-tw.github.io/posts/leetcode/medium/300/</link>
+      <pubDate>Thu, 10 Nov 2022 07:50:14 +0800</pubDate>
+      
+      <guid>http://nathan-tw.github.io/posts/leetcode/medium/300/</guid>
+      <description>300 題目描述 Given an integer array nums, return the length of the longest strictly increasing subsequence.
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
+解法一：DP 建立一個dp array，dp[i]代表的是以nums[i]做為結尾的seq的最大長度，做法是搜尋 dp[0] ~ dp[i-1]，找到最大的sub-LIS，將其+1更新dp[i]。
+// dp[i]=max(dp[j] for j in 0~i-1) int lengthOfLIS(int* nums, int numsSize){ int dp[numsSize]; int max = 1; for(int i = 0; i &amp;lt; numsSize; i++) { dp[i] = 1; for(int j = 0; j &amp;lt; i; j++) dp[i] = (nums[i]&amp;gt;nums[j] &amp;amp;&amp;amp; dp[i] &amp;lt;= dp[j]) ?</description>
+    </item>
+    
     <item>
       <title>[技術] 深入淺出 linked list</title>
       <link>http://nathan-tw.github.io/posts/programming/linked-list/</link>
@@ -18,12 +30,15 @@
       
       <guid>http://nathan-tw.github.io/posts/programming/linked-list/</guid>
       <description>linked list 是什麼 假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？ 我們操作的虛擬記憶體就像是一格格的櫥窗，工程師在配置使用空間時有兩種常見的方式：
- 配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list)  With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
-     因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
+配置一段連續的格子 (Array) 配置不連續的格子，並以額外的格子紀錄順序性 (Linked list) With a linked list, we can store a list of values that can easily be grown by storing values in different parts of memory
+因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。
 Array vs. Linked list 兩者在記憶體的結構：
-  Data storage scheme of an array
-    Data storage scheme of a linked list
-    Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。</description>
+Data storage scheme of an array
+Data storage scheme of a linked list
+Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。
+Linked list：無法利用連續記憶體的隨機存取特性，造訪第i個元素時必須先造訪1至i-1，因此時間複雜度為O(n)，且因為必須以額外的指標做相連，使得存入相同的資料時較Array耗費空間。好處是空間配置較為彈性，刪除第i個節點時時間複雜度為O(1)，並且不需要在配置空間時固定長度。
+比較兩者使用的空間及特性：
+Linked List Array 空間 較複雜(需要額外pointer) 較節省 查詢第i個元素 O(n) O(1) 刪除第i個元素 O(1) O(n) 優點 大小可不固定 隨機存取 Dynamic Array 如果array大小固定，python中的list與go中的slice是如何實現？為何不須在一開始給定Array大小，也沒有剛剛提到的固定長度限制？ 其實他們都是維護一個Dynamic Array，簡單來說就是一個包含Array的類別或結構體，空間不夠時再抽換Array。以go為例，slice的結構如下：</description>
     </item>
     
     <item>
@@ -32,24 +47,39 @@ Array vs. Linked list 兩者在記憶體的結構：
       <pubDate>Wed, 18 Aug 2021 09:03:34 -0400</pubDate>
       
       <guid>http://nathan-tw.github.io/posts/life/university/</guid>
-      <description>更悲觀更要體貼悲觀，別輕易離席  更要對一切不為你所愛更動秩序  更悲觀更要早睡早起，細細感覺自己  戒掉一直說對不起 
- 每次讀最喜歡的詩集&amp;lt;更悲觀更要&amp;gt;心都會舒坦不少，悲觀面對慌張卻累積了悲觀，畢業後、當兵前像立於吊橋正中，整整四年沒有收拾好的心情最容易在夏夜散落，趁著實習即將結束趕緊把一葉葉的回憶收好。
+      <description>更悲觀更要體貼悲觀，別輕易離席 更要對一切不為你所愛更動秩序 更悲觀更要早睡早起，細細感覺自己 戒掉一直說對不起 每次讀最喜歡的詩集&amp;lt;更悲觀更要&amp;gt;心都會舒坦不少，悲觀面對慌張卻累積了悲觀，畢業後、當兵前像立於吊橋正中，整整四年沒有收拾好的心情最容易在夏夜散落，趁著實習即將結束趕緊把一葉葉的回憶收好。
 升大學環島 東部 趁著升大學前還能自稱青春高中生時環了一次島，二馬、肥肥、西打和我四種迥然的個性，像是四季。先從宜蘭向東，雖然好幾個颱風即將接連來到，但我們依舊不聽長輩勸阻在花蓮停下，反正住宿費用肯定是他們出(?)，在離開花蓮前西打的手機壞了，颱風也差不多登陸，這是巧合嗎？我不這認為。一路還算從容的帶走幾片風景，飛速來到高雄。
-  升大學環島時在粉鳥林
-  南部 第一個到的點是高雄，也是最經典的一個城市因為我們待了 4 還 5 天，不是高雄多好玩只是颱風我們哪也不能去，就四個人在城市商旅整天打傳說講幹話，完全不知道做了什麼反正超級快樂跟嗑藥沒兩樣。颱風走後去了鋼筆店，見了一堆筆友，還打了撞球算是圓滿。接著到台南四個男生肯定是兩台機車橫衝直撞起來，從市區騎到七股真的很鬼，沒想到同樣的戲碼台中再次上演。
-  成功人到哪裡都要成功褲
-  中部 台中一直是我很喜歡的城市，因為哪裡都會下雨只有台中不會，但如果要我再從市區騎車到高美真的會哭出來，雖然也不是我騎的但屁股痛到不行。在台中基本上由甲哥當導遊，不得不說他的品味真的很好，相處起來真的感覺是非常有氣質的人，帶我們去了很多私密的景點，這可能是後來我一直去台中的原因之一。
-  黑到不行的我
-  相較於同個暑假去日本我反而更喜歡這種旅行，雖然日本很美很多新鮮的體驗，但與人的相處是取代不了的。
+升大學環島時在粉鳥林
+南部 第一個到的點是高雄，也是最經典的一個城市因為我們待了 4 還 5 天，不是高雄多好玩只是颱風我們哪也不能去，就四個人在城市商旅整天打傳說講幹話，完全不知道做了什麼反正超級快樂跟嗑藥沒兩樣。颱風走後去了鋼筆店，見了一堆筆友，還打了撞球算是圓滿。接著到台南四個男生肯定是兩台機車橫衝直撞起來，從市區騎到七股真的很鬼，沒想到同樣的戲碼台中再次上演。
+成功人到哪裡都要成功褲
+中部 台中一直是我很喜歡的城市，因為哪裡都會下雨只有台中不會，但如果要我再從市區騎車到高美真的會哭出來，雖然也不是我騎的但屁股痛到不行。在台中基本上由甲哥當導遊，不得不說他的品味真的很好，相處起來真的感覺是非常有氣質的人，帶我們去了很多私密的景點，這可能是後來我一直去台中的原因之一。
+黑到不行的我
+相較於同個暑假去日本我反而更喜歡這種旅行，雖然日本很美很多新鮮的體驗，但與人的相處是取代不了的。
 大一住宿 大一時住在山上，室友各自作息不一，理組的兩個室友花了許多時間在讀書但我對未來毫無想法，與其說資管系本質如此，不如說高中選組時的我就是這樣，沒有特別愛好什麼也不曾擅長什麼，就是男校中很平凡的縮影。後來應數的室友轉學了，我和另外兩位室友感情還算不錯，尤其資科系的和我一樣宅而且有一樣的方向，到現在久久會約一次吃飯。可惜疫情爆發沒能找他們拍張畢業照好好道別。除去室友外，還有大一必去的宿舍餐廳安九 (老王樂隊也是政大校友，下面這首歌就是以此為名)，最常和系上同學在這討論報告或慶生聊天，也會遇到很多通識課的同學，印象最深是聽著幾個有才的朋友唱歌談吉他，音癡的我負責享受順便錄音，在整個大學煩惱和能力都還沒有萌芽的大一生活裡，我最想念的是和室友半夜趴在地上玩毛筆以及安九的各項回憶。
-  三更半 ya 從大一到大三漸淡的感情，謎樣的情感和模糊的記憶，人從多到少然後各自有了自己的棲息地，也沒辦法歸類誰屬於這裡，大一時一起夜唱過，大二辦過活動也頻繁出遊。雖然有過很多特別的事像是我要在山上辦系運佔場地所以前一天找了一堆人去過夜，以及半夜上山找螢火蟲，和其中一些人確實相處了很長一段時間卻也沒能真的形成聚落，可以和每個人說上話，但一方面沒人願意和剛上大學一樣袒露自己而且發生了太多的事，另一方面路已分岔人們各自離席，是大學想起來最遺憾的一些事，明明花了最多時間卻沒有更多的話可以描述。
-  記憶中某次快樂出遊
-  和這位的緣份更是奇妙，上大學第一個認識的人而且還是前期系桌的，因為是新竹人常常被我拿來消遣，但其實對人很好，甚至還是顏值擔當(有看過他西裝就知道)，不過也因為走不同的路後來並沒有太多交集，只知道好像要去美國讀書了希望他順利。
-  我再次聲明，新竹就是美食沙漠
-  系桌 大一大二 大一加入了系桌，迎新人很多但最後同屆只剩我的系桌，剛進來時一個說自己學過一點的人坐我旁邊，結果一開始打直接把我打成智障後來才知道他超強還加入校隊，大一結束基本上就沒有人要來打球了，只有隊長願意和我練習。下一屆學弟妹進來開心了一下但馬上就剩下一個學妹，幸好校外比賽還是可以把幾個厲害的人抓來幫忙。大二時資結助教也加入了系桌，她那時還不到很強，也不知道後來受了什麼刺激決定練好桌球，在我大三那年開始去找教練，後來在系桌我就沒有一個打得贏的人了，因為學妹也是校隊的超強。
-  永遠看戰神們秀
-  大三大四 不過雖然一直輸我還是很喜歡打桌球，輸的感覺不好可是至少有人願意和我玩(?)，而且我不知道是不是受他們影響開始喜歡寫程式，至少那時他們聊程式我完全聽不懂 (現在聽不懂的人剩學妹一個了嘻嘻)，大概也是他們迫使我進步吧直至疫情還沒結束的最近我們還是會聊程式和打球。另外要提一下有位學姐也幫我很多，和我同一個專案指導老師而且一直拿卷的學霸，雖然出現在系桌的時間不是特別多但因為系桌能認識她還獲得幫助真是太好了。
-  湊人數還贏了</description>
+三更半 ya 從大一到大三漸淡的感情，謎樣的情感和模糊的記憶，人從多到少然後各自有了自己的棲息地，也沒辦法歸類誰屬於這裡，大一時一起夜唱過，大二辦過活動也頻繁出遊。雖然有過很多特別的事像是我要在山上辦系運佔場地所以前一天找了一堆人去過夜，以及半夜上山找螢火蟲，和其中一些人確實相處了很長一段時間卻也沒能真的形成聚落，可以和每個人說上話，但一方面沒人願意和剛上大學一樣袒露自己而且發生了太多的事，另一方面路已分岔人們各自離席，是大學想起來最遺憾的一些事，明明花了最多時間卻沒有更多的話可以描述。
+記憶中某次快樂出遊
+和這位的緣份更是奇妙，上大學第一個認識的人而且還是前期系桌的，因為是新竹人常常被我拿來消遣，但其實對人很好，甚至還是顏值擔當(有看過他西裝就知道)，不過也因為走不同的路後來並沒有太多交集，只知道好像要去美國讀書了希望他順利。
+我再次聲明，新竹就是美食沙漠
+系桌 大一大二 大一加入了系桌，迎新人很多但最後同屆只剩我的系桌，剛進來時一個說自己學過一點的人坐我旁邊，結果一開始打直接把我打成智障後來才知道他超強還加入校隊，大一結束基本上就沒有人要來打球了，只有隊長願意和我練習。下一屆學弟妹進來開心了一下但馬上就剩下一個學妹，幸好校外比賽還是可以把幾個厲害的人抓來幫忙。大二時資結助教也加入了系桌，她那時還不到很強，也不知道後來受了什麼刺激決定練好桌球，在我大三那年開始去找教練，後來在系桌我就沒有一個打得贏的人了，因為學妹也是校隊的超強。
+永遠看戰神們秀
+大三大四 不過雖然一直輸我還是很喜歡打桌球，輸的感覺不好可是至少有人願意和我玩(?)，而且我不知道是不是受他們影響開始喜歡寫程式，至少那時他們聊程式我完全聽不懂 (現在聽不懂的人剩學妹一個了嘻嘻)，大概也是他們迫使我進步吧直至疫情還沒結束的最近我們還是會聊程式和打球。另外要提一下有位學姐也幫我很多，和我同一個專案指導老師而且一直拿卷的學霸，雖然出現在系桌的時間不是特別多但因為系桌能認識她還獲得幫助真是太好了。
+湊人數還贏了
+宿營 和一個厲害的人一起辦活動，明明告誡自己沒天分不要再接這種東西吃力不討好，但還是答應了==也因為這個活動接觸了一群很特別的人，在系上很活潑閃耀的系核，其實辦一個活動真的沒有很容易，從高中以來就一直逃避做這類的事。在眾人面前做自己真的太難了，從這個活動到大四實習我都還沒找到一個舒適的姿態與人交流，很羨慕像他們一樣可以好好表現自己。辦這個活動時我大二，聚集了所有重要不能辜負的感情和期待，結果是我一個也沒處理好，幸好我只是副召天塌下來還有超凱瑞的總召頂著。
+宿營晚會
+雖然重點是辦活動，但也因此和總召比較熟所以歸在這一環，後來那個桌球爆打我的聰明男生、總召和我三人報名了一個 CTF 賽，也多了一些時間聚在一起，但他們後來都上了台大只有我對未來迷惘到不行，沒有好的成績也不想花大錢補習，甚至不確定要不要讀碩(都大三下了)，看見所有人都有自己的路我覺得面前依舊一團迷霧。
+與神同行
+書法社 大一 在書法社我認識了一個學長是當時的社長，不知道為什麼是有質感的人，明明常常說一些低能的話卻很容易親近，大一時只去星期三的篆刻課，和同學們一起在社課結束後吃燒烤是段極其短暫卻一直記得的美好。前社長有時也會出現在社課，社團能那麼富有大概也歸功於她。社師人很好是個長相凶狠但很溫柔的人，尤其對努力及有天分的學生疼愛有佳，是龍門國中的國文老師，很感謝他帶我們寫字刻石頭。
+刻石頭是件很療癒的事
+大二 大二時我當了社長，一開始想了很多活動，很喜歡寫書法如果能辦這樣的活動應該蠻有趣的。可惜實在沒有更多心力，北區聯展社團聯展社團評鑑作品表匡場地租借海報製作幾乎是一人包辦，一來是自己在管理方面沒有天分，二來是幹部都太忙了即使我開口也大部份是我蹺課處理。那時整個人像被四處拉扯一樣，我明明是想寫字刻石頭才加入書法社的阿，怎麼每個禮拜出席社課都在處理很多雜事。始終記得自己搭 uber 搬超重的裱框作品回宿舍，上樓時搬不動又沒熟人幫忙很想哭，幸好有熱心的路人幫忙。所幸一切還算圓滿的達成了雖然有點委屈但也是自己選的，福禍總是相依我是這麼相信的。
+大三大四 像是趨光，也像是一起發亮的螢火，卸了重擔後抓了交替，下個社長能力很好但我幫她挑選的幹部似乎把她雷的不成人形，像是看到以前的自己覺得蠻虧欠的，幸好她是個堅強的人。再下一屆社長和幹部合作就比我們兩個好上許多，尤其聖誕市集靠著他們的努力賣出了不少，不過大四實習四天加上李常常住我這(或我住她那)，基本上已經和學校脫鉤不少，只有偶爾下班還不算太累可以去社課晃晃。和幾個幹部感情也還不錯，最常做的事是約喝酒，明明知道我們彼此都不會因此寫出狂草，但喝酒依舊是大家很喜歡聚在一起做的事，大家的路都不相同，聚在一起像是趨光，也像是一點點獨特的閃耀螢火。
+畢業前與社師和幹部合照
+3213 大學生活中最平凡美好的日常，大二時住在 3213 和三個低能兒一起，我大概是整房最清醒的一位，至少我不會在房間打棒球。不過雖說是 3213，但代表的不只是我們四人，還有常常來我們房玩的幾人，確切來說是通訊錄一夥吧，一坨在一起可以玩的超嗨的男生，除了宿舍以外還會一起去旅遊，尤其高雄之旅實在難忘&amp;hellip;那個射飛鏢的夜晚大家都ㄎ一ㄤ掉了。年初時大家一起去過小畢旅，等疫情結束一定要再玩一趟。和三個室友還有潘的感情最好，室友們雖然很低能但很好笑，有人會用 google map 環遊世界還有人會偷偷轉系，嚴重懷疑即將偷偷出國讀書。
+拍畢業照時悲傷難免，但記得要笑
+在海邊物色看起來厲害的攝影師
+至少我能抓住夕陽
+到現在說到高雄除了暖就是射飛鏢
+潘的話就更奇妙，大二修一堂山上的體育課，運動完爬樓梯時感覺世界正在崩壞，幸好我們彼此鼓勵(?)才撐過漫漫長梯。和他們在一起是大學生活裡最沒負擔的快樂。
+兩個彼此支撐對方的人，但他也去台大了ㄏㄏ</description>
     </item>
     
     <item>
@@ -59,11 +89,11 @@ Array vs. Linked list 兩者在記憶體的結構：
       
       <guid>http://nathan-tw.github.io/posts/linux/io-redirection/</guid>
       <description>前言 fprintf(1, &amp;#34;hello world\n&amp;#34;); 你可能好奇過 C 語言fprintf函數中，第一個參數1代表什麼，你也許聽過在 Unix 家族中Everything is a file，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是file，以及作業系統如何達到i/o redirection。
-什麼是 file  Everything is a file
- 先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
+什麼是 file Everything is a file
+先從這句話開始講起，在類 Unix 的設計中，對所有 I/O 資源的近用都是透過資料流的方式，也就是透過 file system 定義的檔案描述檔(file descriptor)來傳輸，當開啟這些資源時就會回傳一個 file descriptor，代表的就是對這個 file 的控制，例如大家熟悉的 System call open:
 int open(char *file, int flags) 其中*file代表 path, flags代表 read/write，用法例如：
 fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳一個 int 呢？其實那個 int 就是 file descriptor，因為每個 process 都有一個 fd (file descriptor) table，其中包含了fd flag以及open file entry，根據xv6 book對其的描述是：
- A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
+A file descriptor is a small integer representing a kernel-managed object that a process may read from or write to.</description>
     </item>
     
     <item>
@@ -74,13 +104,13 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
       <guid>http://nathan-tw.github.io/posts/system-design/mapreduce2/</guid>
       <description>前言 繼上一篇[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)提到的MapReduce概念，這篇講解的是如何完成MIT 6.824的Lab1，自幹一個MapReduce核心。雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 題目要求 首先我們再回顧一下論文中的圖：
-  mapReduce in paper
-  我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
- 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。  系統架構設計 根據以上幾點要求，我的想法是：
- 用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態  設計上如下圖：
-  my mapReduce design
-  基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
- // main/mrcoordinator.go func main() { 	if len(os.Args) &amp;lt; 2 { 	fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles...\n&amp;#34;) 	os.Exit(1) 	}  	// 第一個參數是*.</description>
+mapReduce in paper
+我將Lab1中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
+設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。 系統架構中只有一個Coordinator，一或多個Worker平行運行。 兩者之間的溝通透過RPC (Remote Procedure Call)。 Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。 第X組的Reduce任務輸出命名為mr-out-X。 中介檔案 (Map的產物)命名為mr-X-Y。 主程序會隔三差五的呼叫Done確認任務是否全數完成。 系統架構設計 根據以上幾點要求，我的想法是：
+用一個會block的queue (channel in golang)作為任務佇列。 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次Done被呼叫時更新狀態為Reduce階段。 Worker不停向Master (Coordinator)要求任務，並更新自身狀態 設計上如下圖：
+my mapReduce design
+基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從Coordinator和Worker的主程式開始看起：
+// main/mrcoordinator.go func main() { if len(os.Args) &amp;lt; 2 { fmt.Fprintf(os.Stderr, &amp;#34;Usage: mrcoordinator inputfiles...\n&amp;#34;) os.Exit(1) } // 第一個參數是*.txt，代表切分後的文件 // 第二個參數則是worker數量(nReduce) m := mr.MakeCoordinator(os.Args[1:], 10) for m.Done() == false { time.Sleep(time.Second) } time.Sleep(time.Second) } // main/mrworker.</description>
     </item>
     
     <item>
@@ -93,13 +123,17 @@ fd = open(&amp;#34;/tmp/temp&amp;#34;, O_WRONLY|O_CREAT); 那為什麼是回傳�
 什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
 hello world -&amp;gt; {hello:1, world:1}
 接著將這些key-value pair 存成中介檔案後排序，Reduce function則根據key將所有value加總，如果以上流程在一台電腦上完成，會像下圖，前兩列中的A、B、C其實分別是Ａ:1、 B:1、C:1：
-  mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
-  上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
-  mapreduce in distributed systems
-  MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
-  mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
-  整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
-map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：</description>
+mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
+上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
+mapreduce in distributed systems
+MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
+mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
+整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
+map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：
+map function works in detail
+可以清楚的看到切分後的小任務分別被機器執行，其實他們是在一個queue中等待分發，但這裡為了顯示不同檔案對應的流程才這樣畫，另一方面是想表示一個重要的概念，只有能夠切分的任務才能使用mapReduce。
+結論 以下整理幾個重點：
+在分散式的世界中，效率是一致性的敵人(這裡的一致性指的是各個機器間的狀態)。 master負責分配任務，而任務分成map及reduce兩類。 mapReduce核心負責歸類和排序，使用者則定義map和reduce確切要做的事。 只有能夠切分的任務才能使用mapReduce。 心得 疫情肆虐，在家的各位好嗎？也許很多人的生涯規劃被打亂，期待許久的聚餐也迫於無奈取消，旅遊或生活都淪為遺憾。但在家依然有許多事可以做的，最近在看的課程MIT6.</description>
     </item>
     
     <item>
@@ -109,9 +143,8 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
       
       <guid>http://nathan-tw.github.io/posts/life/star67/</guid>
       <description>Star67 其實部落格的命名和星星完全沒有關係，大學時在新光路67號住了最久，也最喜歡在那生活的日子，所以部落格本想以此為名，不過如果取為New67或是Light67聽起來蠻蠢的，所以乾脆想成Star67aka星光路67號，而且在這的日子常常熬夜，五成是和朋友打傳說通霄，另外五成則是寫程式和書法到半夜停不下來所致，這些事的樂趣是日光還在時體會不到的，畢竟深夜才是適合苦惱的時候，而苦惱正是這些事精華之處。即使每天早上都不省人事，卻很享受這種報復性的作息，享受這種女友睡了，鄰居關燈了，剩下星光亮著的時光。
-重蹈覆轍  愛是讓你不重蹈覆轍，讓你生而為人 &amp;ndash; 羅于婷 &amp;lt;喜歡的話可以試穿&amp;gt;
- 其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首神曲走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子。
-  </description>
+重蹈覆轍 愛是讓你不重蹈覆轍，讓你生而為人 &amp;ndash; 羅于婷 &amp;lt;喜歡的話可以試穿&amp;gt;
+其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首歌走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子。</description>
     </item>
     
     <item>
@@ -120,12 +153,12 @@ map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過
       <pubDate>Mon, 19 Apr 2021 05:03:58 -0400</pubDate>
       
       <guid>http://nathan-tw.github.io/posts/programming/worker-pool/</guid>
-      <description>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+      <description>前陣子在準備實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
-type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
-func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
-func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &amp;lt;- task 	} 	close(tasksChan) 	pool := &amp;amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool.</description>
+type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
+func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
+func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &amp;lt;- task } close(tasksChan) pool := &amp;amp;WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool.</description>
     </item>
     
     

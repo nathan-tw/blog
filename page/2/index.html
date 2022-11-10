@@ -10,8 +10,7 @@
 <meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
 <meta name="author" content="Nathan">
 <link rel="canonical" href="http://nathan-tw.github.io/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2fce9c92a1f4c496c58295a579dc91fbe6ed95f2c48d3df628e00f8b4fa9f88e.css" integrity="sha256-L86ckqH0xJbFgpWledyR&#43;&#43;btlfLEjT32KOAPi0&#43;p&#43;I4=" rel="preload stylesheet" as="style">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.cc6f18c9f63a0ac6908c37d16b6be47b40037bb373787a9d5018290537edd960.css" integrity="sha256-zG8YyfY6CsaQjDfRa2vke0ADe7NzeHqdUBgpBTft2WA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://nathan-tw.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://nathan-tw.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://nathan-tw.github.io/favicon-32x32.png">
@@ -19,7 +18,7 @@
 <link rel="mask-icon" href="http://nathan-tw.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.99.1" />
+<meta name="generator" content="Hugo 0.105.0">
 <link rel="alternate" type="application/rss+xml" href="http://nathan-tw.github.io/index.xml">
 <link rel="alternate" type="application/json" href="http://nathan-tw.github.io/index.json">
 <meta property="og:title" content="林宣佑 | Nathan Lin" />
@@ -156,6 +155,33 @@
 <main class="main"> 
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://nathan-tw.github.io/images/mapreduce/Spark-vs-Hadoop.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>[技術] 你不能不知道的軟體架構--MapReduce (一)</h2>
+  </header>
+  <section class="entry-content">
+    <p>前言 你肯定聽過大數據，甚至學會許多處理資料的方式，但在資訊爆炸的時代，企業要處理如此大量的資料通常不是依靠我們手上的小小筆電，那假如我們有了很多台機器然後呢？有什麼辦法是集結眾多機器的力量加速任務處理的呢？最近疫情嚴重在家讀MIT 6.824，對Google的AI大神Jeff Dean提出的MapReduce又認識了許多，之後許多知名的分散運算叢集都是基於這個概念，例如大家耳熟能詳的Hadoop和Spark，本篇文章將帶你深入淺出何謂MapReduce，下一篇則是以Go語言自幹一個MapReduce核心 ，有興趣可以先去我的github repo看。
+什麼是MapReduce 我們先想像有一個任務是要算出一篇很長的文章中字詞出現頻率，如果在同一台電腦我們會怎麼做呢？我們也許會遍歷整篇文章，並將字詞做紀錄，但若資料太大時這樣的方式並不可行，為了加速我們將檔案切分，並且產為經由Map function 產生 key-value pair如下：
+hello world -&gt; {hello:1, world:1}
+接著將這些key-value pair 存成中介檔案後排序，Reduce function則根據key將所有value加總，如果以上流程在一台電腦上完成，會像下圖，前兩列中的A、B、C其實分別是Ａ:1、 B:1、C:1：
+mapreduce in sequence, src: https://zhuanlan.zhihu.com/p/260752052
+上面提到的任務如果在一個分散式的世界呢？Google提出的論文中有張重要的圖是這樣描述的：
+mapreduce in distributed systems
+MapReduce是一種軟體架構，由許多台機器組成，其中一台擔任Master，負責分派任務和處理來自Worker的RPC請求，其他則擔任Worker，負責處理使用者定義的Map和Reduce函式 也就是說只有可切分的大型任務才能應用MapReduce。而上面提到的例子如果以分散式系統實現，就會如下圖：
+mapreduce in distributed systems, src: https://zhuanlan.zhihu.com/p/260752052
+整個概念有點類似前陣子完成的Worker Pool，但是將thread改成分散於各個系統的Process。機器越多，系統擴展越困難，而MapReduce優雅的解決了這個問題，為了套用於許多不同的任務型態，mapreduce核心必須定義一致性的接口，這裏我們可以看到論文2.2提到的：
+map (k1, v1) → list(k2, v2) reduce (k2, list(v2)) → list(v2) 在任務經過切分後，每個任務會交由一個mapper處理，而分配的機制則是誰有空誰就去處理(queue)。在word count的例子中，(k1, v1)代表切分後檔案名稱及內容，就是{filename, content}，而(k2, v2)則代表詞與頻率，也就是{hello: 1}。至於k2還有另一個用處，就是決定他要由哪個reducer處理，在產出中介檔案時就會依照mr-x-y命名，其中x代表map函數的index，y代表k2經過hash的值，這個值也同時是reducer的index。好的我知道許多人到這裡可能完全混亂，以下我用一張圖說明：
+map function works in detail
+可以清楚的看到切分後的小任務分別被機器執行，其實他們是在一個queue中等待分發，但這裡為了顯示不同檔案對應的流程才這樣畫，另一方面是想表示一個重要的概念，只有能夠切分的任務才能使用mapReduce。
+結論 以下整理幾個重點：
+在分散式的世界中，效率是一致性的敵人(這裡的一致性指的是各個機器間的狀態)。 master負責分配任務，而任務分成map及reduce兩類。 mapReduce核心負責歸類和排序，使用者則定義map和reduce確切要做的事。 只有能夠切分的任務才能使用mapReduce。 心得 疫情肆虐，在家的各位好嗎？也許很多人的生涯規劃被打亂，期待許久的聚餐也迫於無奈取消，旅遊或生活都淪為遺憾。但在家依然有許多事可以做的，最近在看的課程MIT6....</p>
+  </section>
+  <footer class="entry-footer">May 23, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
+  <a class="entry-link" aria-label="post link to [技術] 你不能不知道的軟體架構--MapReduce (一)" href="http://nathan-tw.github.io/posts/system-design/mapreduce/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="http://nathan-tw.github.io/images/star67/star67.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -163,9 +189,8 @@
   </header>
   <section class="entry-content">
     <p>Star67 其實部落格的命名和星星完全沒有關係，大學時在新光路67號住了最久，也最喜歡在那生活的日子，所以部落格本想以此為名，不過如果取為New67或是Light67聽起來蠻蠢的，所以乾脆想成Star67aka星光路67號，而且在這的日子常常熬夜，五成是和朋友打傳說通霄，另外五成則是寫程式和書法到半夜停不下來所致，這些事的樂趣是日光還在時體會不到的，畢竟深夜才是適合苦惱的時候，而苦惱正是這些事精華之處。即使每天早上都不省人事，卻很享受這種報復性的作息，享受這種女友睡了，鄰居關燈了，剩下星光亮著的時光。
-重蹈覆轍  愛是讓你不重蹈覆轍，讓你生而為人 – 羅于婷 &lt;喜歡的話可以試穿&gt;
- 其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首神曲走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子。
-  </p>
+重蹈覆轍 愛是讓你不重蹈覆轍，讓你生而為人 – 羅于婷 &lt;喜歡的話可以試穿&gt;
+其實大二大三時試著寫過medium，但一方面覺得自己的文章沒有質感，另一方面自己在技術上沒什麼可以分享或紀錄的，懷疑過現在的自己是否重蹈覆轍。直到最近聽到一首歌走建國路回家但後座少ㄌ泥，我認為不管有沒有人看，寫的多爛，甚至什麼都沒學到，就去寫吧，寫的過程也許就是意義，一如那些星光陪伴的日子。</p>
   </section>
   <footer class="entry-footer">April 22, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [生活] 關於Star67" href="http://nathan-tw.github.io/posts/life/star67/"></a>
@@ -176,12 +201,12 @@
     <h2>[技術] Worker Pool併發處理模型</h2>
   </header>
   <section class="entry-content">
-    <p>前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+    <p>前陣子在準備實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 什麼是Worker Pool Worker Pool是一個以multithread組成的任務處理模型，producer產生許多任務，並交由workers並行處理這些任務，最後將任務結果蒐集起來，這樣的作法可以有效的運用電腦資源，並快速處理重複性高且獨立的作業。
 Worker Pool 設計 Type 定義 Worker Pool可以有一定數量的Workers(PoolSize)，並且可以指定一次處理的任務數量(tasksSize)，交由tasksChan送給worker，處理後再經由resultsChan存起來，待Results被呼叫時一一取出。而Task則是定義了id, error 和如何process的function。
-type Task struct { 	Id int 	Err error 	f func() error }  type WorkerPool struct { 	PoolSize int 	tasksSize int 	tasksChan chan Task 	resultsChan chan Task 	Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
-func (task *Task) Do() error { 	return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
-func NewWorkerPool(tasks []Task, size int) *WorkerPool { 	tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) 	for _, task := range tasks { 	tasksChan &lt;- task 	} 	close(tasksChan) 	pool := &amp;WorkerPool{ 	PoolSize: size, 	tasksSize: len(tasks), 	tasksChan: tasksChan, 	resultsChan: resultsChan, 	} 	pool....</p>
+type Task struct { Id int Err error f func() error } type WorkerPool struct { PoolSize int tasksSize int tasksChan chan Task resultsChan chan Task Results func() []Task } 功能實做 每一個任務處理完都會回傳error，如順利完成則回傳nil，至於任務如何執行則是依據新增任務時給定。
+func (task *Task) Do() error { return task.f() Worker Pool是利用buffered channel做任務的通道，所以可以經由Start將worker一一執行起來後，讓worker利用range的特性不斷監聽是否有任務可以做。
+func NewWorkerPool(tasks []Task, size int) *WorkerPool { tasksChan, resultsChan := make(chan Task, len(tasks)), make(chan Task, len(tasks)) for _, task := range tasks { tasksChan &lt;- task } close(tasksChan) pool := &amp;WorkerPool{ PoolSize: size, tasksSize: len(tasks), tasksChan: tasksChan, resultsChan: resultsChan, } pool....</p>
   </section>
   <footer class="entry-footer">April 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Nathan</footer>
   <a class="entry-link" aria-label="post link to [技術] Worker Pool併發處理模型" href="http://nathan-tw.github.io/posts/programming/worker-pool/"></a>
