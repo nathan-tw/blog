@@ -6,7 +6,7 @@ tags: ["Go"]
 categories: ["Programming"]
 ---
 
-前陣子在準備Dcard實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
+前陣子在準備實習的面試，看到別人的心得被問到如何以Golang實做一個Worker Pool，於是自己嘗試寫了一個。
 
 ## 什麼是Worker Pool
 
@@ -85,10 +85,6 @@ func (wp *WorkerPool) results() []Task {
 	return tasks
 }
 ```
-
-## 小結
-
-由於是第一次寫blog很多想法還沒結構化，寫文章也非常沒有系統性，如果有任何意見可以email (linnom987321@gmail.com)我。Worker Pool的作法其實有很多變化，我看過有人用Sync.Waitgroup做，也有人用mutex及unbuffered channel，我的實做及相關的連結在reference提供給大家。
 
 ## Reference
 
