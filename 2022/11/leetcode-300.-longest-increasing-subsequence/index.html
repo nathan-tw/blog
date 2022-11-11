@@ -268,6 +268,7 @@ A subsequence is a sequence that can be derived from an array by deleting some o
             <div class="main-content-wrap">
               <p>Given an integer array <code>nums</code>, return the length of the <strong>longest strictly increasing subsequence</strong>.</p>
 <p>A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].</p>
+<p><a href="https://leetcode.com/problems/longest-increasing-subsequence/">題目連結</a></p>
 <h2 id="解法一dp">解法一：DP</h2>
 <p>建立一個dp array，<code>dp[i]</code>代表的是以<code>nums[i]</code>做為結尾的seq的最大長度，做法是搜尋 <code>dp[0]</code> ~ <code>dp[i-1]</code>，找到最大的sub-LIS，將其+1更新<code>dp[i]</code>。</p>
 
