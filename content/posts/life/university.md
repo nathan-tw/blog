@@ -5,13 +5,18 @@ draft: false
 categories: ["Life"]
 thumbnailImagePosition: left
 thumbnailImage: /images/university/graduate.jpg
+coverImage: /images/university/graduate.jpg
+metaAlignment: center
+coverMeta: out
 ---
 
 > 更悲觀更要體貼悲觀，別輕易離席 </br>
 > 更要對一切不為你所愛更動秩序 </br>
 > 更悲觀更要早睡早起，細細感覺自己 </br>
 > 戒掉一直說對不起 </br>
+
 <!--more-->
+
 每次讀最喜歡的詩集<更悲觀更要>心都會舒坦不少，悲觀面對慌張卻累積了悲觀，畢業後、當兵前像立於吊橋正中，整整四年沒有收拾好的心情最容易在夏夜散落，趁著實習即將結束趕緊把一葉葉的回憶收好。
 
 ## 升大學環島
@@ -20,19 +25,19 @@ thumbnailImage: /images/university/graduate.jpg
 
 趁著升大學前還能自稱青春高中生時環了一次島，二馬、肥肥、西打和我四種迥然的個性，像是四季。先從宜蘭向東，雖然好幾個颱風即將接連來到，但我們依舊不聽長輩勸阻在花蓮停下，反正住宿費用肯定是他們出(?)，在離開花蓮前西打的手機壞了，颱風也差不多登陸，這是巧合嗎？我不這認為。一路還算從容的帶走幾片風景，飛速來到高雄。
 
-{{< figure src="/images/university/round.jpg"  width=500 attr="升大學環島時在粉鳥林">}}
+{{< image src="/images/university/round.jpg"  width=500 title="升大學環島時在粉鳥林">}}
 
 ### 南部
 
 第一個到的點是高雄，也是最經典的一個城市因為我們待了 4 還 5 天，不是高雄多好玩只是颱風我們哪也不能去，就四個人在城市商旅整天打傳說講幹話，完全不知道做了什麼反正超級快樂跟嗑藥沒兩樣。颱風走後去了鋼筆店，見了一堆筆友，還打了撞球算是圓滿。接著到台南四個男生肯定是兩台機車橫衝直撞起來，從市區騎到七股真的很鬼，沒想到同樣的戲碼台中再次上演。
 
-{{< figure src="/images/university/tainan.jpg"  width=500 attr="成功人到哪裡都要成功褲">}}
+{{< image src="/images/university/tainan.jpg"  width=500 title="成功人到哪裡都要成功褲">}}
 
 ### 中部
 
 台中一直是我很喜歡的城市，因為哪裡都會下雨只有台中不會，但如果要我再從市區騎車到高美真的會哭出來，雖然也不是我騎的但屁股痛到不行。在台中基本上由甲哥當導遊，不得不說他的品味真的很好，相處起來真的感覺是非常有氣質的人，帶我們去了很多私密的景點，這可能是後來我一直去台中的原因之一。
 
-{{< figure src="/images/university/taichang.jpg"  width=500 attr="黑到不行的我">}}
+{{< image src="/images/university/taichang.jpg"  width=500 title="黑到不行的我">}}
 
 相較於同個暑假去日本我反而更喜歡這種旅行，雖然日本很美很多新鮮的體驗，但與人的相處是取代不了的。
 
@@ -46,11 +51,11 @@ thumbnailImage: /images/university/graduate.jpg
 
 從大一到大三漸淡的感情，謎樣的情感和模糊的記憶，人從多到少然後各自有了自己的棲息地，也沒辦法歸類誰屬於這裡，大一時一起夜唱過，大二辦過活動也頻繁出遊。雖然有過很多特別的事像是我要在山上辦系運佔場地所以前一天找了一堆人去過夜，以及半夜上山找螢火蟲，和其中一些人確實相處了很長一段時間卻也沒能真的形成聚落，可以和每個人說上話，但一方面沒人願意和剛上大學一樣袒露自己而且發生了太多的事，另一方面路已分岔人們各自離席，是大學想起來最遺憾的一些事，明明花了最多時間卻沒有更多的話可以描述。
 
-{{< figure src="/images/university/night.jpg"  width=500 attr="記憶中某次快樂出遊">}}
+{{< image src="/images/university/night.jpg"  width=500 title="記憶中某次快樂出遊">}}
 
 和這位的緣份更是奇妙，上大學第一個認識的人而且還是前期系桌的，因為是新竹人常常被我拿來消遣，但其實對人很好，甚至還是顏值擔當(有看過他西裝就知道)，不過也因為走不同的路後來並沒有太多交集，只知道好像要去美國讀書了希望他順利。
 
-{{< figure src="/images/university/hsieh.jpg"  width=500 attr="我再次聲明，新竹就是美食沙漠">}}
+{{< image src="/images/university/hsieh.jpg"  width=500 title="我再次聲明，新竹就是美食沙漠">}}
 
 ## 系桌
 
@@ -58,23 +63,23 @@ thumbnailImage: /images/university/graduate.jpg
 
 大一加入了系桌，迎新人很多但最後同屆只剩我的系桌，剛進來時一個說自己學過一點的人坐我旁邊，結果一開始打直接把我打成智障後來才知道他超強還加入校隊，大一結束基本上就沒有人要來打球了，只有隊長願意和我練習。下一屆學弟妹進來開心了一下但馬上就剩下一個學妹，幸好校外比賽還是可以把幾個厲害的人抓來幫忙。大二時資結助教也加入了系桌，她那時還不到很強，也不知道後來受了什麼刺激決定練好桌球，在我大三那年開始去找教練，後來在系桌我就沒有一個打得贏的人了，因為學妹也是校隊的超強。
 
-{{< figure src="/images/university/tabletennis3.jpg"  width=500 attr="永遠看戰神們秀">}}
+{{< image src="/images/university/tabletennis3.jpg"  width=500 title="永遠看戰神們秀">}}
 
 ### 大三大四
 
 不過雖然一直輸我還是很喜歡打桌球，輸的感覺不好可是至少有人願意和我玩(?)，而且我不知道是不是受他們影響開始喜歡寫程式，至少那時他們聊程式我完全聽不懂 (現在聽不懂的人剩學妹一個了嘻嘻)，大概也是他們迫使我進步吧直至疫情還沒結束的最近我們還是會聊程式和打球。另外要提一下有位學姐也幫我很多，和我同一個專案指導老師而且一直拿卷的學霸，雖然出現在系桌的時間不是特別多但因為系桌能認識她還獲得幫助真是太好了。
 
-{{< figure src="/images/university/tabletennis.jpg"  width=500 attr="湊人數還贏了">}}
+{{< image src="/images/university/tabletennis.jpg"  width=500 title="湊人數還贏了">}}
 
 ## 宿營
 
 和一個厲害的人一起辦活動，明明告誡自己沒天分不要再接這種東西吃力不討好，但還是答應了==也因為這個活動接觸了一群很特別的人，在系上很活潑閃耀的系核，其實辦一個活動真的沒有很容易，從高中以來就一直逃避做這類的事。在眾人面前做自己真的太難了，從這個活動到大四實習我都還沒找到一個舒適的姿態與人交流，很羨慕像他們一樣可以好好表現自己。辦這個活動時我大二，聚集了所有重要不能辜負的感情和期待，結果是我一個也沒處理好，幸好我只是副召天塌下來還有超凱瑞的總召頂著。
 
-{{< figure src="/images/university/camping.jpg"  width=500 attr="宿營晚會">}}
+{{< image src="/images/university/camping.jpg"  width=500 title="宿營晚會">}}
 
 雖然重點是辦活動，但也因此和總召比較熟所以歸在這一環，後來那個桌球爆打我的聰明男生、總召和我三人報名了一個 CTF 賽，也多了一些時間聚在一起，但他們後來都上了台大只有我對未來迷惘到不行，沒有好的成績也不想花大錢補習，甚至不確定要不要讀碩(都大三下了)，看見所有人都有自己的路我覺得面前依舊一團迷霧。
 
-{{< figure src="/images/university/camping2.jpg"  width=500 attr="與神同行">}}
+{{< image src="/images/university/camping2.jpg"  width=500 title="與神同行">}}
 
 ## 書法社
 
@@ -82,7 +87,7 @@ thumbnailImage: /images/university/graduate.jpg
 
 在書法社我認識了一個學長是當時的社長，不知道為什麼是有質感的人，明明常常說一些低能的話卻很容易親近，大一時只去星期三的篆刻課，和同學們一起在社課結束後吃燒烤是段極其短暫卻一直記得的美好。前社長有時也會出現在社課，社團能那麼富有大概也歸功於她。社師人很好是個長相凶狠但很溫柔的人，尤其對努力及有天分的學生疼愛有佳，是龍門國中的國文老師，很感謝他帶我們寫字刻石頭。
 
-{{< figure src="/images/university/curving.jpg"  width=500 attr="刻石頭是件很療癒的事">}}
+{{< image src="/images/university/curving.jpg"  width=500 title="刻石頭是件很療癒的事">}}
 
 ### 大二
 
@@ -92,91 +97,90 @@ thumbnailImage: /images/university/graduate.jpg
 
 像是趨光，也像是一起發亮的螢火，卸了重擔後抓了交替，下個社長能力很好但我幫她挑選的幹部似乎把她雷的不成人形，像是看到以前的自己覺得蠻虧欠的，幸好她是個堅強的人。再下一屆社長和幹部合作就比我們兩個好上許多，尤其聖誕市集靠著他們的努力賣出了不少，不過大四實習四天加上李常常住我這(或我住她那)，基本上已經和學校脫鉤不少，只有偶爾下班還不算太累可以去社課晃晃。和幾個幹部感情也還不錯，最常做的事是約喝酒，明明知道我們彼此都不會因此寫出狂草，但喝酒依舊是大家很喜歡聚在一起做的事，大家的路都不相同，聚在一起像是趨光，也像是一點點獨特的閃耀螢火。
 
-{{< figure src="/images/university/club.jpg"  width=500 attr="畢業前與社師和幹部合照">}}
+{{< image src="/images/university/club.jpg"  width=500 title="畢業前與社師和幹部合照">}}
 
 ## 3213
 
 大學生活中最平凡美好的日常，大二時住在 3213 和三個低能兒一起，我大概是整房最清醒的一位，至少我不會在房間打棒球。不過雖說是 3213，但代表的不只是我們四人，還有常常來我們房玩的幾人，確切來說是通訊錄一夥吧，一坨在一起可以玩的超嗨的男生，除了宿舍以外還會一起去旅遊，尤其高雄之旅實在難忘...那個射飛鏢的夜晚大家都ㄎ一ㄤ掉了。年初時大家一起去過小畢旅，等疫情結束一定要再玩一趟。和三個室友還有潘的感情最好，室友們雖然很低能但很好笑，有人會用 google map 環遊世界還有人會偷偷轉系，嚴重懷疑即將偷偷出國讀書。
 
-{{< figure src="/images/university/3213.jpg"  width=500 attr="拍畢業照時悲傷難免，但記得要笑">}}
-{{< figure src="/images/university/3213-1.jpg"  width=500 attr="在海邊物色看起來厲害的攝影師">}}
-{{< figure src="/images/university/3213-2.jpg"  width=500 attr="至少我能抓住夕陽">}}
-{{< figure src="/images/university/3213-3.jpg"  width=500 attr="到現在說到高雄除了暖就是射飛鏢">}}
+{{< image src="/images/university/3213.jpg"  width=500 title="拍畢業照時悲傷難免，但記得要笑">}}
+{{< image src="/images/university/3213-1.jpg"  width=500 title="在海邊物色看起來厲害的攝影師">}}
+{{< image src="/images/university/3213-2.jpg"  width=500 title="至少我能抓住夕陽">}}
+{{< image src="/images/university/3213-3.jpg"  width=500 title="到現在說到高雄除了暖就是射飛鏢">}}
 
 潘的話就更奇妙，大二修一堂山上的體育課，運動完爬樓梯時感覺世界正在崩壞，幸好我們彼此鼓勵(?)才撐過漫漫長梯。和他們在一起是大學生活裡最沒負擔的快樂。
 
-{{< figure src="/images/university/pan.jpg"  width=500 attr="兩個彼此支撐對方的人，但他也去台大了ㄏㄏ">}}
+{{< image src="/images/university/pan.jpg"  width=500 title="兩個彼此支撐對方的人，但他也去台大了ㄏㄏ">}}
 
 ## 桂花落
 
 一家門前有著桂花樹的店，在交流版徵會寫書法的人忘了誰 tag 我，就抱著賺外快的心去了，沒想到驚為天人吃出早餐的新高度，老闆對老舊事務的品味獨特，尤其喜歡三眼怪，店內空間不大卻能營造出舒適自在的寬敞感覺，店內所有木工幾乎都是老闆一人完成，早餐更是別出心裁的精緻與細膩，一份簡單的薯餅蛋餅乾淨俐落，很多次我會中午跑去吃。雖然環境不錯東西好吃，但老闆有時罵老闆娘會讓人受不了，撇除這點是完美的一間店。
-{{< figure src="/images/university/breakfast.jpg"  width=500 attr="最經典的早餐搭配，鮮奶茶加蛋餅">}}
+{{< image src="/images/university/breakfast.jpg"  width=500 title="最經典的早餐搭配，鮮奶茶加蛋餅">}}
 
 老闆後來不做早餐改做甜點，但坦白說較早餐遜色不少，換了兩個地方卻不能成為最初的桂花落，畢業前沒能再吃到一次早餐想起來真的很惆悵。
 
-{{< figure src="/images/university/breakfast2.jpg"  width=500 attr="第一次題字">}}
+{{< image src="/images/university/breakfast2.jpg"  width=500 title="第一次題字">}}
 
 ## 專案
 
 大二發生了太多的事，宿營、系學會、書法社、家教打工、23 學分、李終於上來台北，我幾乎沒有一樣完美落幕，23 學分明顯是完成度最低的，幾堂重要的刻和我比較好的朋友都被我雷了一遍，所以大三不願和我同組專案了。很感謝這些組員接納我，即使過程許多不完美，四人中只有我沒有準備研究所，初期研究時還好但後期三人都要上大碩的課，可以討論專案的時間不多，而我們也很有默契的達成共識把專案混過去就對了。不過很感謝他們在比賽發表時各種凱瑞，資管的比賽需要的果然是優秀口才，我們還是拿下優秀的名次了，舜文對不起我們研究做的不好，但我們盡力了。
 
-{{< figure src="/images/university/project.jpg"  width=500 attr="innoserve">}}
+{{< image src="/images/university/project.jpg"  width=500 title="innoserve">}}
 
 ## 中研院
 
 找到第一份實習，靠著舜文的名字招搖撞騙，原本期待在中研院學到更多資料分析在資安領域的應用，但其實工作內偏無趣基本上就是讀相關的文章實驗看看而已，相較於工作內容學到的事，更開心能在這裡認識苡瑄, Elvy, Amanda 三位姐 (年齡不一定比我大但實力肯定比我好)，每天就是四個人待在會議室聽歌(elvy 姐對不起但我必須說韓國歌好難聽哈哈哈)看 NBA，聊了許多未來的方向，開闊了視野也讓我之後的找工作之路相當順遂，雖然沒學到什麼硬技能但我還是很喜歡這份實習。另外還遇到了高中同學 KJ，國外名校回來果然什麼都不一樣了...天母人的血統加高學歷一甩以往拉 K 形象，以後內推 google 先找他。
 
-{{< figure src="/images/university/academia.jpg"  width=500 attr="以後別忘了我">}}
+{{< image src="/images/university/academia.jpg"  width=500 title="以後別忘了我">}}
 
 ## KKStream
 
 技能術發展逐漸健全的一個實習，進來才真的會用 git，許多專案開發模式以及軟體都是第一次接觸，一開始同事請我開一個 branch 用好發 MR 我都不會，到後來 AWS 和各種工具都用的還算上手。我待的 team 是 EP (engineering productivity)，主要負責內部開發及營運流程的改善，帶我的主管 paul 哥是教會我最多的人，連 gdb 都第一次用的我在這裡學了很多 DevOps 相關的知識。不過我的社交問題在這份實習很快被我發覺，要戒掉對不起以及怕犯錯的心態實在很難，像一起實習的學妹 jess 卻做的相當完美，也許我相對會 coding 但在這裡我發現遠比 coding 更重要的事，職場的應對技巧與舒適的距離，至少在下份實習覺得蠻受用的。
 
-{{< figure src="/images/university/kkstream.jpg"  width=500 attr="我最喜歡的顏色">}}
-{{< figure src="/images/university/kkstream3.jpg"  width=500 attr="尾牙和專案的人一起吃，前面是溫柔的petz姐中間是paul哥">}}
+{{< image src="/images/university/kkstream.jpg"  width=500 title="我最喜歡的顏色">}}
+{{< image src="/images/university/kkstream3.jpg"  width=500 title="尾牙和專案的人一起吃，前面是溫柔的petz姐中間是paul哥">}}
 
 ## 貓
 
 李外宿處樓下的一隻貓，載李回家時最暖的存在，很喜歡窩在我的拖鞋而且沒抓過我，他永遠認得我和李不知道是不是因為我們都會餵它。即使很晚了從士林回到政大通常都凌晨 1~2 點，但我還是會停下來摸摸他告訴他等我畢業找到做就養他，可惜等不到那天了。知道他被撞的事李哭得撕心裂肺，明明說好跟我們走的撞他的人太過分了，可是生命就是如此。之後遇見的貓也許可愛溫馴，但都沒能成為他。
 
-{{< figure src="/images/university/cat.jpg"  width=500 attr="有時我的車也會被臨幸">}}
-{{< figure src="/images/university/cat2.jpg"  width=500 attr="最愛我的拖鞋">}}
+{{< image src="/images/university/cat.jpg"  width=500 title="有時我的車也會被臨幸">}}
+{{< image src="/images/university/cat2.jpg"  width=500 title="最愛我的拖鞋">}}
 
 ## 很燙的台中
 
 燙是高中社團的朋友，號稱台灣各大學巡迴專家，待過的學校比我吃過得米還多。陪他考了很多次考試，後來還發生一些不好的事，幸好現在已經是中國醫奧恰 aka 我的麻將手下敗將。和李在我大三下時很常去台中找他玩，都不會下雨的城市真好。
 
-{{< figure src="/images/university/tang.jpg"  width=500 attr="好吃但我忘記店名了">}}
+{{< image src="/images/university/tang.jpg"  width=500 title="好吃但我忘記店名了">}}
 
-{{< figure src="/images/university/tang2.jpg"  width=500 attr="我是銀色衝浪手，他是淫色衝浪手">}}
+{{< image src="/images/university/tang2.jpg"  width=500 title="我是銀色衝浪手，他是淫色衝浪手">}}
 
 ## 六張犁
 
 幾個朋友在六張犁租了一個家庭式的房子，由於自由度很高加上大家都很愛玩，常常有一些玩樂的新花樣，不過也僅限於玩樂。相處的時間長了越發現自己的價值觀無法融入，而且發生太多事加上相處模式日漸粗魯，就很少再去拜訪了。
 
-{{< figure src="/images/university/six.jpg"  width=500 attr="台中遊">}}
-{{< figure src="/images/university/six2.jpg"  width=500 attr="宜蘭遊">}}
+{{< image src="/images/university/six.jpg"  width=500 title="台中遊">}}
+{{< image src="/images/university/six2.jpg"  width=500 title="宜蘭遊">}}
 
 ## 快樂小群
 
 阿晴和二馬是大學生活裡的花見小路，每每在山窮水盡時乍現。已經忘了為什麼好在一起，大一二時互相分別到了彼此的學校探望對方，那個大到吃不完的豬排現在可能還吃不下...與六張犁不同的是，和他們的相處更貼近心靈，真實且溫柔。
 
-{{< figure src="/images/university/happy.jpg"  width=500 attr="二馬和我都喜歡寫字，也是因為這樣認識阿晴">}}
+{{< image src="/images/university/happy.jpg"  width=500 title="二馬和我都喜歡寫字，也是因為這樣認識阿晴">}}
 
 三年一日，我們都各自忙碌加上生活圈並不近，阿晴去了中國讀書而我則受困於繁雜事務，二馬換了女友也重新尋找未來方向，大四的我們在疫情爆發之前終於能夠見上一面，知道彼此都曾堅強的度過那些日子才感受到成長的感動。
 
-{{< figure src="/images/university/happy3.jpg"  width=500 attr="阿晴">}}
-{{< figure src="/images/university/happy4.jpg"  width=500 attr="二馬">}}
-{{< figure src="/images/university/happy2.jpg"  width=500 attr="長大的我們">}}
+{{< image src="/images/university/happy3.jpg"  width=500 title="阿晴">}}
+{{< image src="/images/university/happy4.jpg"  width=500 title="二馬">}}
+{{< image src="/images/university/happy2.jpg"  width=500 title="長大的我們">}}
 
 ## Garmin
 
 最後一份實習本來想找正職，但學士畢業加還沒當兵實在是硬傷，撈到一個實習也還過得去，地點在離家很近的華亞科。工程相關的實習生有四個，溫妮姐、錫大大、成哥和我。因為工作相對輕鬆加上座位安排，我和溫妮姐最好，並且發生了一些故事 (事故)使得我們和成哥不算融洽，錫大大則是專注在工作的模範生。在這裡做的事不多但學到的很多，因為還在轉型的關係，可以看到老牌和新穎的工具並存，架構設計上也有許多巧思，尤其帶我的 Wayne 哥雖然職等不高但能力確實很強。
 
-整棟建築並不通風加上部門同事個性也較內斂，從 KK 過來諸多不適應，本來以為兩個月會讓我慢慢融入，但不知道是我本來就靜不下來還是溫妮姐太活潑，受到她的感染我一直覺得這裡有種說不出的沉悶與違和。後來因為太常一起當薪水小偷，變成了感情不錯的朋友，鑑於她太常抱怨自己沒人追歡迎私訊我或在留言區報名。在實習的尾聲本來以為會拿到 return offer結果沒有，但幸好也四處投了許多履歷，雖然實力真的很差但很感謝強者朋友們都願意幫我內推。溫妮姐和主管都勸我讀個碩士，大家說的我都懂，也懷疑很多次自己，但我已經等不及了，想做的事想過的生活感覺從遙遠的未來收斂，很慶幸借了太多人的幫助能稍微證明這也是一條路，尤其謝謝幫我改Behavior question的樂浩和Elvy，伴隨著矛盾的叛逆與不自信找到了工作。在這的實習除了認識他們很幸運之外，也找到了自己工作上追求比物質更重要的事。
+整棟建築並不通風加上部門同事個性也較內斂，從 KK 過來諸多不適應，本來以為兩個月會讓我慢慢融入，但不知道是我本來就靜不下來還是溫妮姐太活潑，受到她的感染我一直覺得這裡有種說不出的沉悶與違和。後來因為太常一起當薪水小偷，變成了感情不錯的朋友，鑑於她太常抱怨自己沒人追歡迎私訊我或在留言區報名。在實習的尾聲本來以為會拿到 return offer 結果沒有，但幸好也四處投了許多履歷，雖然實力真的很差但很感謝強者朋友們都願意幫我內推。溫妮姐和主管都勸我讀個碩士，大家說的我都懂，也懷疑很多次自己，但我已經等不及了，想做的事想過的生活感覺從遙遠的未來收斂，很慶幸借了太多人的幫助能稍微證明這也是一條路，尤其謝謝幫我改 Behavior question 的樂浩和 Elvy，伴隨著矛盾的叛逆與不自信找到了工作。在這的實習除了認識他們很幸運之外，也找到了自己工作上追求比物質更重要的事。
 
-{{< figure src="/images/university/garmin.jpg"  width=500 attr="說好不提">}}
-
+{{< image src="/images/university/garmin.jpg"  width=500 title="說好不提">}}
 
 ## 李
 
@@ -192,7 +196,7 @@ thumbnailImage: /images/university/graduate.jpg
 
 大四基本上各方面都很協調，情感工作課業都是。前幾天和李提到，我覺得自己在成長的每個階段都有些很執著的追求，當下都沒能力實現但一直記在心裡，可是努力追尋的過程中卻慢慢失去了熱愛，消磨至我真的有能力的那天卻早已對其興致全無，已經全身心投入下一個目標而沒有體會達成成就的美好，和漫畫或小說描述的勵志是完全相反的心境。大四對於各方面的追求都算順利，只是迷惘不減，這樣是對的嗎？有沒有更好的選擇，會不會和小時候喜歡的遊戲一樣，現在看都索然無味了。一邊迷惘一邊衝刺，大概是現在狀況。很開心她一直都在，即使連我都不相信自己時他總是相信我，又怪又可愛的存在。
 
-{{< figure src="/images/university/lee.jpg"  width=500 attr="怪咖啡，少數安靜到我可以專心的咖啡廳">}}
+{{< image src="/images/university/lee.jpg"  width=500 title="怪咖啡，少數安靜到我可以專心的咖啡廳">}}
 
 ## 更悲觀更要
 

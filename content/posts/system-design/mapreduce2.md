@@ -8,39 +8,39 @@ thumbnailImagePosition: left
 thumbnailImage: /images/mapreduce/distributed_network.jpg
 ---
 
-繼上一篇[<span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</span>]({{< ref "mapreduce.md" >}})提到的MapReduce概念，這篇講解的是如何完成[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)的Lab1，自幹一個MapReduce核心。
+繼上一篇[<span style="color:#3D65A8">[技術雜談] 你不能不知道的軟體架構--MapReduce (一)</span>]({{< ref "mapreduce.md" >}})提到的 MapReduce 概念，這篇講解的是如何完成[<span style="color:#3D65A8">MIT 6.824</span>](https://pdos.csail.mit.edu/6.824/schedule.html)的 Lab1，自幹一個 MapReduce 核心。
+
 <!--more-->
 
-雖然網路上許多人說這個 Lab不難，但其實我花了不少的時間(汗)，而且因為是由golang完成的，對goroutine與channel又必須有一些了解，所以我認為沒學過go的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
+雖然網路上許多人說這個 Lab 不難，但其實我花了不少的時間，而且因為是由 golang 完成的，對 goroutine 與 channel 又必須有一些了解，所以我認為沒學過 go 的人要完成是蠻有挑戰的，也因為這樣，以下的軟體結構我盡量以圖來說明，程式碼的部分瀏覽即可。
 
 ## 題目要求
 
 首先我們再回顧一下論文中的圖：
 
+{{< image src="/images/mapreduce/mapreduce.png"  title="mapReduce in paper">}}
 
-{{< figure src="/images/mapreduce/mapreduce.png"  attr="mapReduce in paper">}}
+我將[<span style="color:#3D65A8">Lab1</span>](https://pdos.csail.mit.edu/6.824/labs/lab-mr.html)中的幾個重點列出，由於並非全部要求，若想完成 Lab 還是需要看原網址的描述。
 
-我將[<span style="color:#3D65A8">Lab1</span>](https://pdos.csail.mit.edu/6.824/labs/lab-mr.html)中的幾個重點列出，由於並非全部要求，若想完成Lab還是需要看原網址的描述。
-
-* 設計一個分散式的MapReduce系統，其中包含兩個程式：Coordinator和Worker。
-* 系統架構中只有一個Coordinator，一或多個Worker平行運行。
-* 兩者之間的溝通透過RPC (Remote Procedure Call)。
-* Map階段將中介的key (前篇提到的k2)利用hash分成nReduce組。
-* 第X組的Reduce任務輸出命名為`mr-out-X`。
-* 中介檔案 (Map的產物)命名為`mr-X-Y`。
-* 主程序會隔三差五的呼叫`Done`確認任務是否全數完成。
+-   設計一個分散式的 MapReduce 系統，其中包含兩個程式：Coordinator 和 Worker。
+-   系統架構中只有一個 Coordinator，一或多個 Worker 平行運行。
+-   兩者之間的溝通透過 RPC (Remote Procedure Call)。
+-   Map 階段將中介的 key (前篇提到的 k2)利用 hash 分成 nReduce 組。
+-   第 X 組的 Reduce 任務輸出命名為`mr-out-X`。
+-   中介檔案 (Map 的產物)命名為`mr-X-Y`。
+-   主程序會隔三差五的呼叫`Done`確認任務是否全數完成。
 
 ## 系統架構設計
 
 根據以上幾點要求，我的想法是：
 
-* 用一個會block的queue (channel in golang)作為任務佇列。
-* 將任務分為兩階段：Map和Reduce，當所有任務的Map階段完成後，在最新一次`Done`被呼叫時更新狀態為Reduce階段。
-* Worker不停向Master (Coordinator)要求任務，並更新自身狀態
+-   用一個會 block 的 queue (channel in golang)作為任務佇列。
+-   將任務分為兩階段：Map 和 Reduce，當所有任務的 Map 階段完成後，在最新一次`Done`被呼叫時更新狀態為 Reduce 階段。
+-   Worker 不停向 Master (Coordinator)要求任務，並更新自身狀態
 
 設計上如下圖：
 
-{{< figure src="/images/mapreduce/6.824lab1.png"  width=500 attr="my mapReduce design">}}
+{{< image src="/images/mapreduce/6.824lab1.png"  width=500 title="my mapReduce design">}}
 
 基本上如果只是要理解設計的話到這就結束了，接下來會談在程式碼上如何實作。我們先從`Coordinator`和`Worker`的主程式開始看起：
 
@@ -80,7 +80,7 @@ func main() {
 
 ```
 
-可以從上面的程式看到`Coordinator`啟動後會每過一秒確認一次任務完成了嗎，而這個Lab還有一個要求是測試的程式`mian/test-mr.sh`要在10s內完成。而下方的`Worker`很簡單，就是單純的把`mapf`和`reducef`傳入即可。接者我們看看`Coordinator`本身的設計：
+可以從上面的程式看到`Coordinator`啟動後會每過一秒確認一次任務完成了嗎，而這個 Lab 還有一個要求是測試的程式`mian/test-mr.sh`要在 10s 內完成。下方的`Worker`很簡單，就是單純的把`mapf`和`reducef`傳入即可。接者我們看看`Coordinator`本身的設計：
 
 ```go
 
@@ -117,19 +117,16 @@ func Worker(mapf func(string, string) []KeyValue, reducef func(string, []string)
 }
 
 ```
-從主程序收到mapf及reducef後，worker就知道自己確切要做什麼了，因此流程很簡單：
+
+從主程序收到 mapf 及 reducef 後，worker 就知道自己確切要做什麼了，因此流程很簡單：
 
 1. 請求任務。
-2. 執行任務 (do()中會處理任務型態為map或reduce)。
+2. 執行任務 (do()中會處理任務型態為 map 或 reduce)。
 3. 根據成功或失敗回報任務。
-4. 重複1~3直到任務都被完成。
+4. 重複 1~3 直到任務都被完成。
 
-如此一來每個worker都充分利用到，且可以處理執行錯誤的任務。
+如此一來每個 worker 都充分利用到，且可以處理執行錯誤的任務。
 
 ## 結論
 
-這裡會發現，許多concurrency的架構都採用類似 fan-in/fan-out的模型，意思就是由一個master處理分派工作和蒐集，對於Cloud Native越趨熱門的時代，了解這些架構及演算法對建構雲生態相當有幫助。
-
-## 心得
-
-與其說是講解，不如說是在疫情期間為自己紀錄學習歷程，最近對分散式系統越發著迷，標題寫著`你不能不知道...`，但其實潛台詞是在責怪我自己，明明想成為SRE，知道blockchain、用過nosql、學過data science，卻不知道他們每一個都和分散式系統密不可分，尤其blockchain本身就是一個分散式系統 (在6.824後段課程會講解)，想想還是應把基礎慢慢補足，現階段得趕快知道我必須讀什麼，當兵才不會太無聊。之後想寫一些關於github action如何部署hugo的網頁 (也就是此部落格的方式)。
+這裡會發現，許多 concurrency 的架構都採用類似 fan-in/fan-out 的模型，意思就是由一個 master 處理分派工作和蒐集，對於 Cloud Native 越趨熱門的時代，了解這些架構及演算法對建構雲生態相當有幫助。
