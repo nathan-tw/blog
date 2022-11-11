@@ -281,44 +281,65 @@
 </blockquote>
 </li>
 </ol>
-<figure><img src="https://nathan-tw.github.io/images/linked-list/memory.png" width="700"/>
-</figure>
+
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/linked-list/memory.png" >
+  
+  
+</div>
 
 <p>因為連續的記憶體是可以隨機存取(random access)的，導致兩種配置方式在資料操作上(e.g., 新增、刪除)的時間及空間成本各有不同。</p>
 <h3 id="array-vs-linked-list">Array vs. Linked list</h3>
 <p>兩者在記憶體的結構：</p>
-<figure><img src="https://nathan-tw.github.io/images/linked-list/array_data_schema.png" width="700"/><figcaption>
-            <p>Data storage scheme of an array</p>
-        </figcaption>
-</figure>
 
-<figure><img src="https://nathan-tw.github.io/images/linked-list/linkedlist_data_schema.png" width="700"/><figcaption>
-            <p>Data storage scheme of a linked list</p>
-        </figcaption>
-</figure>
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/linked-list/array_data_schema.png"  alt="Data storage scheme of an array">
+  
+   
+    <span class="caption">Data storage scheme of an array</span>
+  
+</div>
+
+
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/linked-list/linkedlist_data_schema.png"  alt="Data storage scheme of a linked list">
+  
+   
+    <span class="caption">Data storage scheme of a linked list</span>
+  
+</div>
 
 <ul>
 <li>
-<p>Array：造訪第i個元素時因為是隨機存取所以時間複雜度是O(1)，但因為Array內的元素必須是連續的，移除第i個元素時必須將其後的元素通通往前移，因此為O(n)。</p>
+<p>Array：造訪第 i 個元素時因為是隨機存取所以時間複雜度是 O(1)，但因為 Array 內的元素必須是連續的，移除第 i 個元素時必須將其後的元素通通往前移，因此為 O(n)。</p>
 </li>
 <li>
-<p>Linked list：無法利用連續記憶體的隨機存取特性，造訪第i個元素時必須先造訪1至i-1，因此時間複雜度為O(n)，且因為必須以額外的指標做相連，使得存入相同的資料時較Array耗費空間。好處是空間配置較為彈性，刪除第i個節點時時間複雜度為O(1)，並且不需要在配置空間時固定長度。</p>
+<p>Linked list：無法利用連續記憶體的隨機存取特性，造訪第 i 個元素時必須先造訪 1 至 i-1，因此時間複雜度為 O(n)，且因為必須以額外的指標做相連，使得存入相同的資料時較 Array 耗費空間。好處是空間配置較為彈性，刪除第 i 個節點時時間複雜度為 O(1)，並且不需要在配置空間時固定長度。</p>
 </li>
 </ul>
 <p>比較兩者使用的空間及特性：</p>
 <!-- raw HTML omitted -->
 <h3 id="dynamic-array">Dynamic Array</h3>
-<p>如果array大小固定，python中的list與go中的slice是如何實現？為何不須在一開始給定Array大小，也沒有剛剛提到的固定長度限制？
-其實他們都是維護一個<a href="https://en.wikipedia.org/wiki/Dynamic_array">Dynamic Array</a>，簡單來說就是一個包含Array的類別或結構體，空間不夠時再抽換Array。以go為例，slice的結構如下：</p>
+<p>如果 array 大小固定，python 中的 list 與 go 中的 slice 是如何實現？為何不須在一開始給定 Array 大小，也沒有剛剛提到的固定長度限制？
+其實他們都是維護一個<a href="https://en.wikipedia.org/wiki/Dynamic_array">Dynamic Array</a>，簡單來說就是一個包含 Array 的類別或結構體，空間不夠時再抽換 Array。以 go 為例，slice 的結構如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">slice</span> <span style="color:#66d9ef">struct</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">array</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">len</span> <span style="color:#66d9ef">int</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cap</span> <span style="color:#66d9ef">int</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><code>array</code>是一個指向底層Array的指標，如果執行<code>append</code>時發現<code>cap</code>等於<code>len</code>則會擴容，也就是更換pointer。</p>
+</span></span></code></pre></div><p><code>array</code>是一個指向底層 Array 的指標，如果執行<code>append</code>時發現<code>cap</code>等於<code>len</code>則會擴容，也就是更換 pointer。</p>
 <!-- raw HTML omitted -->
 <h2 id="linked-list-與-pointer">Linked list 與 pointer</h2>
-<p>Linux開發者<strong>Linus Torvalds</strong>在<a href="https://www.youtube.com/watch?v=o8NPllzkFhE">2016的TED演講</a>中提到了Linux的哲學，其中他舉了一個刪除Linked List節點的例子：</p>
+<p>Linux 開發者<strong>Linus Torvalds</strong>在<a href="https://www.youtube.com/watch?v=o8NPllzkFhE">2016 的 TED 演講</a>中提到了 Linux 的哲學，其中他舉了一個刪除 Linked List 節點的例子：</p>
 <p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/o8NPllzkFhE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
@@ -342,7 +363,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>        prev<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> target<span style="color:#f92672">-&gt;</span>next;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Linus認為有品味的作法是維護一個指向要更新的位址的indirect pointer，以「檢查某個位址是否需要被更新」的想法，程式碼將大大減少為4行：</p>
+</span></span></code></pre></div><p>Linus 認為有品味的作法是維護一個指向要更新的位址的 indirect pointer，以「檢查某個位址是否需要被更新」的想法，程式碼將大大減少為 4 行：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove_list_node</span>(List <span style="color:#f92672">*</span>list, Node <span style="color:#f92672">*</span>target)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    Node <span style="color:#f92672">**</span>indirect <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>list<span style="color:#f92672">-&gt;</span>head;
@@ -350,12 +371,12 @@
 </span></span><span style="display:flex;"><span>        indirect <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>(<span style="color:#f92672">*</span>indirect)<span style="color:#f92672">-&gt;</span>next;
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>indirect <span style="color:#f92672">=</span> target<span style="color:#f92672">-&gt;</span>next;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>假設有<code>A</code>, <code>B</code>, <code>C</code> 三個節點相連，需要維護目前指標及上一個節點的指標，檢查目前指標是否為Target，如果是則更改上一個指標指向的值：
+</span></span></code></pre></div><p>假設有<code>A</code>, <code>B</code>, <code>C</code> 三個節點相連，需要維護目前指標及上一個節點的指標，檢查目前指標是否為 Target，如果是則更改上一個指標指向的值：
 <!-- raw HTML omitted --></p>
 <p>後者的想法則是以一個指標的指標順著指標走，尋找「需要被更新」的位址：
 <!-- raw HTML omitted --></p>
 <h2 id="linux-kernel-中的-linked-list">Linux kernel 中的 linked list</h2>
-<p>我們常見的Linked list結構是將資料存放於結構體內，但Linux kernel的<code>list_head</code>卻不是這麼做：</p>
+<p>我們常見的 Linked list 結構是將資料存放於結構體內，但 Linux kernel 的<code>list_head</code>卻不是這麼做：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// usually
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> list_node {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> data;
@@ -373,12 +394,12 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list_head list;
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><p>如果資料不在Linked list的結構體內，不就只能一直循環取不到資料了嗎？假設Tom的下個節點是Jerry，該如何取得Jerry的id？</p>
+</span></span></code></pre></div><p>如果資料不在 Linked list 的結構體內，不就只能一直循環取不到資料了嗎？假設 Tom 的下個節點是 Jerry，該如何取得 Jerry 的 id？</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> list_node <span style="color:#f92672">*</span>Jerry_list <span style="color:#f92672">=</span> (Tom<span style="color:#f92672">-&gt;</span>list).next;
 </span></span></code></pre></div><p>結構體連接示意圖：</p>
 <!-- raw HTML omitted -->
-<p>Linux kernel提供了一個很巧妙的macro <code>container_of</code>，只要知道結構體型別，就能以member的位置回推出他所在的container位置。
-因此剛剛上面的例子可以用這種方式取得Jerry：</p>
+<p>Linux kernel 提供了一個很巧妙的 macro <code>container_of</code>，只要知道結構體型別，就能以 member 的位置回推出他所在的 container 位置。
+因此剛剛上面的例子可以用這種方式取得 Jerry：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">16</span>];
@@ -388,28 +409,28 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> list_node <span style="color:#f92672">*</span>Jerry_list <span style="color:#f92672">=</span> (Tom<span style="color:#f92672">-&gt;</span>list).next;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> container_of(jerry_list, <span style="color:#66d9ef">struct</span> student, list);
-</span></span></code></pre></div><p>那<code>container_of</code>是如何實做的呢？我們先從另一個macro <code>offsetof</code>開始理解。</p>
+</span></span></code></pre></div><p>那<code>container_of</code>是如何實做的呢？我們先從另一個 macro <code>offsetof</code>開始理解。</p>
 <h3 id="offsetof">offsetof</h3>
-<p>給定一個結構體student，要如何算出結構體與其成員的偏移呢？</p>
+<p>給定一個結構體 student，要如何算出結構體與其成員的偏移呢？</p>
 <!-- raw HTML omitted -->
 <p>C89/C99 提供 offsetof 巨集，傳統上<code>offsetof</code>是這樣實做的：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define offsetof(TYPE, MEMBER) ((size_t) &amp;((TYPE *)0)-&gt;MEMBER)
-</span></span></span></code></pre></div><p>將數值 0 強制轉型成TYPE指標型別，0 會被當作該TYPE的起始地址，因為起始位址等於 0
-，所以MEMBER的位址也就等於MEMBER與起始位址  0 的偏移(offset)。</p>
+</span></span></span></code></pre></div><p>將數值 0 強制轉型成 TYPE 指標型別，0 會被當作該 TYPE 的起始地址，因為起始位址等於 0
+，所以 MEMBER 的位址也就等於 MEMBER 與起始位址 0 的偏移(offset)。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>offsetof(<span style="color:#66d9ef">struct</span> student, id)); <span style="color:#75715e">//16
 </span></span></span></code></pre></div><h3 id="container_of">container_of</h3>
-<p>container_of的定義較為複雜：</p>
+<p>container_of 的定義較為複雜：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define container_of(ptr, type, member) ({\
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">        const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);\
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">              (type *)( (char *)__mptr - offsetof(type,member));})
 </span></span></span></code></pre></div><p>可以拆解為兩部份，第一部份為：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">typeof</span>( ((type <span style="color:#f92672">*</span>)<span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>member ) <span style="color:#f92672">*</span>__mptr <span style="color:#f92672">=</span> (ptr);
-</span></span></code></pre></div><p>利用ptr得到該member型態同值的__mptr，
-以member是list為例就是x+20，
-(但目前不知道offset為20)。</p>
-<p>既然有了__mptr就輕鬆了，第二部份可以利用<code>offsetof</code>計算所在的結構體位置：</p>
+</span></span></code></pre></div><p>利用 ptr 得到該 member 型態同值的__mptr，
+以 member 是 list 為例就是 x+20，
+(但目前不知道 offset 為 20)。</p>
+<p>既然有了__mptr 就輕鬆了，第二部份可以利用<code>offsetof</code>計算所在的結構體位置：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>(type <span style="color:#f92672">*</span>)( (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)__mptr <span style="color:#f92672">-</span> offsetof(type,member));
-</span></span></code></pre></div><p>回頭看看Tom如何取得Jerry，利用<code>struct student</code>中的成員 <code>list</code>以<code>offsetof</code>取得Jerry的指標。</p>
+</span></span></code></pre></div><p>回頭看看 Tom 如何取得 Jerry，利用<code>struct student</code>中的成員 <code>list</code>以<code>offsetof</code>取得 Jerry 的指標。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> container_of(Jerry_list, <span style="color:#66d9ef">struct</span> student, list);
 </span></span></code></pre></div><p>一切便大功告成！這樣的方式使許多非連續記憶體的操作更廣泛使用，例如<a href="https://github.com/torvalds/linux/blob/master/net/netlabel/netlabel_addrlist.h">network address table</a>及檔案系統的<a href="https://github.com/torvalds/linux/blob/master/fs/mount.h">namespace</a>等等。</p>
 <h2 id="小結與後記">小結與後記</h2>
@@ -427,7 +448,7 @@
 </li>
 </ul>
 <blockquote>
-<p>人們對「品味」的概念各有見解，談到程式碼是否有品味，開發者又是如何執行判斷？Linux之父 Linus Torvalds曾提到一個案例來說明，他認為，重點並不在於邊界情況（Edge case），而是能以不同的角度看問題、直覺地選擇出正確的方法</p>
+<p>人們對「品味」的概念各有見解，談到程式碼是否有品味，開發者又是如何執行判斷？Linux 之父 Linus Torvalds 曾提到一個案例來說明，他認為，重點並不在於邊界情況（Edge case），而是能以不同的角度看問題、直覺地選擇出正確的方法</p>
 </blockquote>
 <p>在<a href="https://www.ithome.com.tw/voice/139264">良葛格</a>的部落格中也談到了，品味並非完全主觀的，其中涉及文化及時空，他以品酒為例，品酒的禮儀、使用的杯器、產地、品牌、文化等等，這些都能是品味的客觀因素。</p>
 <blockquote>
@@ -439,7 +460,7 @@
 <li>linked list vs. array: <a href="https://www.geeksforgeeks.org/linked-list-vs-array/">https://www.geeksforgeeks.org/linked-list-vs-array/</a></li>
 <li>array and linked List: <a href="https://pjchender.dev/dsa/dsa-array-linked-list/">https://pjchender.dev/dsa/dsa-array-linked-list/</a></li>
 <li>list_head 結構: <a href="http://adrianhuang.blogspot.com/2007/10/linux-kernel-listhead.html">http://adrianhuang.blogspot.com/2007/10/linux-kernel-listhead.html</a></li>
-<li>良葛格blog: <a href="https://www.ithome.com.tw/voice/139264">https://www.ithome.com.tw/voice/139264</a></li>
+<li>良葛格 blog: <a href="https://www.ithome.com.tw/voice/139264">https://www.ithome.com.tw/voice/139264</a></li>
 </ul>
               
 
@@ -760,6 +781,15 @@ $(document).ready(function() {
 });
 </script>
 
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      CommonHTML: { linebreaks: { automatic: true } },
+      tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+      messageStyle: 'none'
+    });
+  </script>
 
 
 

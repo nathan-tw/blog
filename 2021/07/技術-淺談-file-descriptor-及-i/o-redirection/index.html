@@ -289,13 +289,20 @@
 <blockquote>
 <p><em>A <strong>file descriptor</strong> is a small integer representing a kernel-managed object that a process may read from or write to.</em></p>
 </blockquote>
-<p>從上面的例子中可以理解，一個 process 可以透過打開一個檔案、資料夾、裝置或是製造一個<code>pipe</code>獲取 fd。當然我們也可以複製 fd，透過 system call <code>dup</code>可以達到等等會說的兩個process交換訊息。到這裡你可能會好奇，fd 是如何對資源進行控制的呢？事實上是透過剛剛提到的<code>open file entry</code>去訪問系統層級的<code>open file table</code>，再去inode查找自己需要的資源，以下用一張圖說明兩者的關係：</p>
-<figure><img src="https://nathan-tw.github.io/images/io-redirection/fd_table.png"/><figcaption>
-            <p>relationship between fd tables, open file table and inode table</p>
-        </figcaption>
-</figure>
+<p>從上面的例子中可以理解，一個 process 可以透過打開一個檔案、資料夾、裝置或是製造一個<code>pipe</code>獲取 fd。當然我們也可以複製 fd，透過 system call <code>dup</code>可以達到等等會說的兩個 process 交換訊息。到這裡你可能會好奇，fd 是如何對資源進行控制的呢？事實上是透過剛剛提到的<code>open file entry</code>去訪問系統層級的<code>open file table</code>，再去 inode 查找自己需要的資源，以下用一張圖說明兩者的關係：</p>
 
-<p>由此可知，所有的file都指向一個底層的inode。以 xv6 系統為例，在<code>kernel/stat.h</code>是這樣定義inode的資訊：</p>
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/io-redirection/fd_table.png"  alt="relationship between fd tables, open file table and inode table">
+  
+   
+    <span class="caption">relationship between fd tables, open file table and inode table</span>
+  
+</div>
+
+<p>由此可知，所有的 file 都指向一個底層的 inode。以 xv6 系統為例，在<code>kernel/stat.h</code>是這樣定義 inode 的資訊：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define T_DIR     1   </span><span style="color:#75715e">// Directory
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define T_FILE    2   </span><span style="color:#75715e">// File
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define T_DEVICE  3   </span><span style="color:#75715e">// Device
@@ -307,33 +314,40 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#66d9ef">short</span> nlink; <span style="color:#75715e">// Number of links to file
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   uint64 size; <span style="color:#75715e">// Size of file in bytes
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> };
-</span></span></code></pre></div><p>如果要獲取某個fd或是某個file所指向的inode資訊，我們可以使用以下兩個system call：</p>
+</span></span></code></pre></div><p>如果要獲取某個 fd 或是某個 file 所指向的 inode 資訊，我們可以使用以下兩個 system call：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> fstat(<span style="color:#66d9ef">int</span> fd, <span style="color:#66d9ef">struct</span> stat <span style="color:#f92672">*</span>st)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> stat(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>file, <span style="color:#66d9ef">struct</span> stat <span style="color:#f92672">*</span>st)
-</span></span></code></pre></div><p><code>fstat</code>是用fd獲取inode資訊，<code>stat</code>則是獲取某個path的inode資訊，而stat資訊則會被放入*st中，根據執行後的st.type，我們可以知道目前使用的資源是file, directory或是device。到這裡可能會開始困惑，為什麼要那麼麻煩呢？這樣的設計有什麼好處？下一篇我們會談到檔案系統的設計。</p>
+</span></span></code></pre></div><p><code>fstat</code>是用 fd 獲取 inode 資訊，<code>stat</code>則是獲取某個 path 的 inode 資訊，而 stat 資訊則會被放入*st 中，根據執行後的 st.type，我們可以知道目前使用的資源是 file, directory 或是 device。到這裡可能會開始困惑，為什麼要那麼麻煩呢？這樣的設計有什麼好處？下一篇我們會談到檔案系統的設計。</p>
 <h2 id="io-redirection-和-stdin-stdout-stderr">I/O redirection 和 stdin, stdout, stderr</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> fprintf(FILE <span style="color:#f92672">*</span>stream, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...)
-</span></span></code></pre></div><p>有人可能會問不同process對同一個file做<code>open</code>會得到一樣的fd嗎？如同前面所說fd table是每個process各自擁有的，所以理論上會不同(或碰巧相同)，但有些情況卻不是碰巧，要了解原因必須先回答開頭的問題，<code>fprintf</code>中第一個參數<code>1</code>是什麼呢？相信很多人已經猜到，答案便是fd1，因為POSIX &lt;unistd.h&gt; 的定義是process在啟動時會先開啟三個stream: stdin, stdout, stderr，也就是我們剛剛說的fd 0, 1, 2，預設是分別連接到用戶的終端設備，通常就是鍵盤和螢幕啦，如同下圖表示：</p>
-<figure><img src="https://nathan-tw.github.io/images/io-redirection/io_redirection.jpg"/><figcaption>
-            <p>stdin, stdout, stderr</p>
-        </figcaption>
-</figure>
+</span></span></code></pre></div><p>有人可能會問不同 process 對同一個 file 做<code>open</code>會得到一樣的 fd 嗎？如同前面所說 fd table 是每個 process 各自擁有的，所以理論上會不同(或碰巧相同)，但有些情況卻不是碰巧，要了解原因必須先回答開頭的問題，<code>fprintf</code>中第一個參數<code>1</code>是什麼呢？相信很多人已經猜到，答案便是 fd1，因為 POSIX &lt;unistd.h&gt; 的定義是 process 在啟動時會先開啟三個 stream: stdin, stdout, stderr，也就是我們剛剛說的 fd 0, 1, 2，預設是分別連接到用戶的終端設備，通常就是鍵盤和螢幕啦，如同下圖表示：</p>
 
-<p>但也不是所有process都是這樣預設，因為如果經由一個parent process<code>fork</code>得到的child process，將會複製parent的fd table，這也是達成redirection的重點，process在安排fd時有一個原則：</p>
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/io-redirection/io_redirection.jpg"  alt="stdin, stdout, stderr">
+  
+   
+    <span class="caption">stdin, stdout, stderr</span>
+  
+</div>
+
+<p>但也不是所有 process 都是這樣預設，因為如果經由一個 parent process<code>fork</code>得到的 child process，將會複製 parent 的 fd table，這也是達成 redirection 的重點，process 在安排 fd 時有一個原則：</p>
 <blockquote>
-<p>以尚未被使用的最小int作為新的fd</p>
+<p>以尚未被使用的最小 int 作為新的 fd</p>
 </blockquote>
-<p>所以我們可以透過抽換fd 0, 1, 2的值去完成redirection，舉我們常使用的<code>cat &lt; input.txt</code>command來說，簡單的code其實是：</p>
+<p>所以我們可以透過抽換 fd 0, 1, 2 的值去完成 redirection，舉我們常使用的<code>cat &lt; input.txt</code>command 來說，簡單的 code 其實是：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[<span style="color:#ae81ff">2</span>];
 </span></span><span style="display:flex;"><span>argv[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cat&#34;</span>;
 </span></span><span style="display:flex;"><span>argv[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (fork()<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) { <span style="color:#75715e">// child process
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    close(<span style="color:#ae81ff">0</span>); <span style="color:#75715e">// 把fd0關掉
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 把指向input.txt資源的fd放在fd table 0的位置 (因為剛才0被關掉，所以最小是0)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    open(<span style="color:#e6db74">&#34;input.txt&#34;</span>, O_RDONLY); 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    open(<span style="color:#e6db74">&#34;input.txt&#34;</span>, O_RDONLY);
 </span></span><span style="display:flex;"><span>    exec(<span style="color:#e6db74">&#34;cat&#34;</span>, argv);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>上面的例子是在shell執行<code>cat &lt; input.txt</code>的簡單範例，因為shell本身也是一個process，所以透過<code>fork</code>去執行其他process時才有機會抽換fd 0, 1, 2，當<code>fork</code>回傳0代表示child process，這也是為什麼<code>fork</code>和<code>exec</code>要分成兩個system call，如果沒辦法抽換stdin, stdout和stderr，i/o就沒有彈性，也就是cat只能吃到shell的輸入，無法吃一個file作為輸入。既然child會複製parent，而我們又可以抽換他，因此偉大的<code>pipe</code>程式(<code>|</code>)也被人發明出來，以簡單的指令<code>echo &quot;hello world&quot; | wc</code>為例：</p>
+</span></span></code></pre></div><p>上面的例子是在 shell 執行<code>cat &lt; input.txt</code>的簡單範例，因為 shell 本身也是一個 process，所以透過<code>fork</code>去執行其他 process 時才有機會抽換 fd 0, 1, 2，當<code>fork</code>回傳 0 代表示 child process，這也是為什麼<code>fork</code>和<code>exec</code>要分成兩個 system call，如果沒辦法抽換 stdin, stdout 和 stderr，i/o 就沒有彈性，也就是 cat 只能吃到 shell 的輸入，無法吃一個 file 作為輸入。既然 child 會複製 parent，而我們又可以抽換他，因此偉大的<code>pipe</code>程式(<code>|</code>)也被人發明出來，以簡單的指令<code>echo &quot;hello world&quot; | wc</code>為例：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> p[<span style="color:#ae81ff">2</span>];
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[<span style="color:#ae81ff">2</span>];
 </span></span><span style="display:flex;"><span>
@@ -352,9 +366,9 @@
 </span></span><span style="display:flex;"><span>    write(p[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">12</span>); <span style="color:#75715e">// 把&#34;hello world&#34;寫進write pipe
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    close(p[<span style="color:#ae81ff">1</span>]);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>經由<code>pipe</code>串接不同的process，原本用法單調的程式就可以有許多組合技！下一篇寫file system對不同層的設計，讓我們如此方便的使用<strong>Everything is a file</strong>的概念。</p>
+</span></span></code></pre></div><p>經由<code>pipe</code>串接不同的 process，原本用法單調的程式就可以有許多組合技！下一篇寫 file system 對不同層的設計，讓我們如此方便的使用<strong>Everything is a file</strong>的概念。</p>
 <h2 id="心得">心得</h2>
-<p>因為很常使用linux，但對linux卻一直是一知半解，所以才決定寫這篇。但寫的時候很怕出錯，許多細節都更深入的查資料，還是有許多地方自己也看不懂的，如果有任何錯誤也歡迎在底下留言～</p>
+<p>因為很常使用 linux，但對 linux 卻一直是一知半解，所以才決定寫這篇。但寫的時候很怕出錯，許多細節都更深入的查資料，還是有許多地方自己也看不懂的，如果有任何錯誤也歡迎在底下留言～</p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li>宅色夫老師筆記: <a href="https://hackmd.io/@sysprog/c-stream-io?type=view">https://hackmd.io/@sysprog/c-stream-io?type=view</a></li>
@@ -690,6 +704,15 @@ $(document).ready(function() {
 });
 </script>
 
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      CommonHTML: { linebreaks: { automatic: true } },
+      tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+      messageStyle: 'none'
+    });
+  </script>
 
 
 

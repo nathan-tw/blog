@@ -282,9 +282,227 @@
 </span></span><span style="display:flex;"><span>    max <span style="color:#f92672">=</span> dp[i] <span style="color:#f92672">&gt;</span> max <span style="color:#f92672">?</span> dp[i] <span style="color:#f92672">:</span> max;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> max;
-</span></span></code></pre></div><p><code>TC: n^2</code></p>
+</span></span></code></pre></div><p>TC: $O(n^2)$</p>
+<p>這個解法會因為超時而 TLE ，因為查詢的複雜度過高，要簡化可以使用線段樹優化區間查詢。</p>
 <h2 id="解法二dpsegment-tree">解法二：DP+Segment Tree</h2>
-<p>解法一的效能瓶頸是每次的查詢都是<code>n^2</code>，為了降低區間查詢的複雜度，可以使用線段樹來降低查詢複雜度，但為了維護樹的結構，單點修改的複雜度也提升了。</p>
+<p>解法一的效能瓶頸是每次的查詢都是$n^2$，為了降低區間查詢的複雜度，可以使用線段樹來降低查詢複雜度，但為了維護樹的結構，單點修改的複雜度也提升了。</p>
+<h3 id="線段樹-segment-tree">線段樹 (Segment Tree)</h3>
+<p>線段樹是一種高等資料結構，大部分語言的標準函式庫沒有提供類似實作或介面。線段樹的每個節點代表的是聯集左右子樹區間查詢的結果，以此題來說更新 <code>dp[i]</code> 時，只要查詢代表著<code>dp[i-k]~dp[i-1]</code> 的節點就可以了，不必造訪每個葉節點取值。</p>
+
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/leetcode/2407/segment-tree.png"  alt="src: https://www.geeksforgeeks.org/segment-tree-data-structure/">
+  
+   
+    <span class="caption">src: https://www.geeksforgeeks.org/segment-tree-data-structure/</span>
+  
+</div>
+
+<p>線段樹主要有三個操作</p>
+<ul>
+<li>區間查詢</li>
+<li>單點修改</li>
+<li>區間修改</li>
+</ul>
+<p>但本題只需要用到前兩個，並且因為所有數字結尾的 LIS 嘗度預設都是 0 ，不用初始化線段樹所以只要實現前兩個功能就好了。</p>
+<h4 id="儲存">儲存</h4>
+<p>線段樹的儲存可以用陣列或串列，因為是二元樹的關係用陣列一樣可以利用 index 推算出左右子節點的位置。每個節點代表的區間在實作上我習慣已封閉區間 [start, end] 表示，根節點的 index 從 0 或 1 開始都可以，我以下程式從 0 開始。</p>
+<p>假設一個長度為$n$ 的陣列，</p>
+<ul>
+<li>Best Case: $n$ 為2的次方，其對應的線段樹是一個滿二元素(full tree)，總節點數為 $2^n-1$。</li>
+<li>Worst Case: $n$ 不是2的次方，每層的節點數是前幾層加起來後 +1，總節點數是$4n-1$。</li>
+</ul>
+<p>因此 $4n$ 的空間是最小足夠的，上面的推論是我抄來的，我數學很爛ㄏㄏ，另外在 <a href="https://codeforces.com/blog/entry/18051">codeforce</a> 有人提出迭代取代遞迴方式的線段數，只需要 $2n$的空間就可以實現。</p>
+<h4 id="區間查詢">區間查詢</h4>
+<p>當要查詢的區間 [l, r] 與當前節點表示的區間 [L, R] 完全一致時，回傳此節點的值。
+否則取出當前節點的中點 <code>M</code>，確認 [l, r] 在<code>M</code> 的左邊還右邊後只搜尋該半邊，如果橫跨了 <code>M</code>則切分 [l, r] 區間做搜尋。<code>M</code> 要擺在左邊或右邊也是看個人習慣，我都偏左。
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>LIS</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">cpp</li>
+      
+        <li class="tab ">go</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-cpp cpp" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-cpp cpp"><code class="cpp">int query(int i, int L, int R, int l, int r) {
+    if(l == L &amp;&amp; r == R) 
+        return tree[i];
+    int M = (L&#43;R)&gt;&gt;1;
+    if(M &gt;= r)
+        return query(i*2&#43;1, L, M, l, r);
+    else if(M &lt; l)
+        return query(i*2&#43;2, M&#43;1, R, l, r);
+    return max(query(i*2&#43;1, L, M, l, M), query(i*2&#43;2, M&#43;1, R, M&#43;1, r));
+}</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-go go" style="display: none;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-go go"><code class="go">func (s SegTree) Query(l, r, L, R, i int) int {
+    if L==l &amp;&amp; R==r {
+        return s[i]
+    }
+    M := (L&#43;R)&gt;&gt;1
+    if M &gt;= r {
+        return s.Query(l, r, L, M, i*2&#43;1)
+    } else if M &lt; l {
+        return s.Query(l, r, M&#43;1, R, i*2&#43;2)
+    }
+    return max(s.Query(l, M, L, M, i*2&#43;1), s.Query(M&#43;1, r, M&#43;1, R, i*2&#43;2))
+}</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+</p>
+<h4 id="單點修改">單點修改</h4>
+<p>要修改的是原陣列的某個元素，也就是線段樹的葉節點，因此遞迴的結束條件是 <code>L==R</code>，在非葉節點只要判斷需要修改的節點在左邊或右邊就好了。最後更新為子節點後別忘了更新當前的節點。</p>
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>LIS</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">cpp</li>
+      
+        <li class="tab ">go</li>
+      
+    </ul>
+  </figcaption>
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-cpp cpp" style="display: block;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-cpp cpp"><code class="cpp">void modify(int i, int L, int R, int P, int v) {
+    if(L==R) {
+        tree[i] = max(v, tree[i]);
+        return;
+    }
+    int M = (L&#43;R) &gt;&gt; 1;
+    if(M &gt;= P)
+        modify(i*2&#43;1, L, M, P, v);
+    else modify(i*2&#43;2, M&#43;1, R, P, v);
+    tree[i] = max(tree[i*2&#43;1], tree[i*2&#43;2]);
+}</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-go go" style="display: none;">
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-go go"><code class="go">func (s SegTree) Update(L, R, P, i, v int)  {
+    if L == R {
+        s[i] = max(s[i], v)
+        return
+    }
+    M := (L&#43;R)&gt;&gt;1
+    if P &lt;= M {
+        s.Update(L, M, P, i*2&#43;1, v) 
+    } else { 
+        s.Update(M&#43;1, R, P, i*2&#43;2, v) 
+    }
+    s[i] = max(s[i*2&#43;1], s[i*2&#43;2])
+}</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<h3 id="完整解答">完整解答</h3>
 <p>
 
   
@@ -450,7 +668,7 @@ func max(a, b int) int {
   </div>
 </figure>
 
-<code>TC: nlogn</code></p>
+TC: $O(nlogn)$</p>
               
 
 
@@ -770,6 +988,15 @@ $(document).ready(function() {
 });
 </script>
 
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      CommonHTML: { linebreaks: { automatic: true } },
+      tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+      messageStyle: 'none'
+    });
+  </script>
 
 
 

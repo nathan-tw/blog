@@ -66,7 +66,7 @@
       <pubDate>Tue, 01 Jun 2021 16:52:44 +0800</pubDate>
       
       <guid>https://nathan-tw.github.io/2021/06/%E6%8A%80%E8%A1%93-%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B--mapreduce-%E4%BA%8C/</guid>
-      <description>&lt;p&gt;繼上一篇&lt;a href=&#34;https://nathan-tw.github.io/2021/05/%E6%8A%80%E8%A1%93-%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B--mapreduce-%E4%B8%80/&#34;&gt;&lt;!-- raw HTML omitted --&gt;[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;提到的MapReduce概念，這篇講解的是如何完成&lt;a href=&#34;https://pdos.csail.mit.edu/6.824/schedule.html&#34;&gt;&lt;!-- raw HTML omitted --&gt;MIT 6.824&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;的Lab1，自幹一個MapReduce核心。&lt;/p&gt;</description>
+      <description>&lt;p&gt;繼上一篇&lt;a href=&#34;https://nathan-tw.github.io/2021/05/%E6%8A%80%E8%A1%93-%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B--mapreduce-%E4%B8%80/&#34;&gt;&lt;!-- raw HTML omitted --&gt;[技術雜談] 你不能不知道的軟體架構&amp;ndash;MapReduce (一)&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;提到的 MapReduce 概念，這篇講解的是如何完成&lt;a href=&#34;https://pdos.csail.mit.edu/6.824/schedule.html&#34;&gt;&lt;!-- raw HTML omitted --&gt;MIT 6.824&lt;!-- raw HTML omitted --&gt;&lt;/a&gt;的 Lab1，自幹一個 MapReduce 核心。&lt;/p&gt;</description>
     </item>
     
     <item>
