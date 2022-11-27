@@ -2,7 +2,7 @@
 title: "[技術] 你不能不知道的軟體架構--MapReduce (一)"
 date: 2021-05-23T23:37:48+08:00
 draft: false
-tags: ["Distirbuted System"]
+tags: ["distirbuted-system"]
 categories: ["System Design"]
 thumbnailImagePosition: left
 thumbnailImage: /images/mapreduce/Spark-vs-Hadoop.jpeg

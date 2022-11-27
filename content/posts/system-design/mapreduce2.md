@@ -2,7 +2,7 @@
 title: "[技術] 你不能不知道的軟體架構--MapReduce (二)"
 date: 2021-06-01T16:52:44+08:00
 draft: false
-tags: ["Distirbuted System"]
+tags: ["distirbuted-system"]
 categories: ["System Design"]
 thumbnailImagePosition: left
 thumbnailImage: /images/mapreduce/distributed_network.jpg
