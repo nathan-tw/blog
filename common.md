@@ -1,4 +1,4 @@
-{{< tabbed-codeblock LIS >}}
+{{< tabbed-codeblock>}}
 <!-- tab cpp -->
 <!-- endtab -->
 
