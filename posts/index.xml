@@ -6,7 +6,18 @@
     <description>Recent content in Posts on star67</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Nov 2022 07:50:14 +0800</lastBuildDate><atom:link href="https://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Nov 2022 21:18:34 +0800</lastBuildDate><atom:link href="https://nathan-tw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Leetcode] 1235. Maximum Profit in Job Scheduling</title>
+      <link>https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/</link>
+      <pubDate>Sat, 26 Nov 2022 21:18:34 +0800</pubDate>
+      
+      <guid>https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/</guid>
+      <description>&lt;p&gt;We have n jobs, where every job is scheduled to be done from &lt;code&gt;startTime[i]&lt;/code&gt; to &lt;code&gt;endTime[i]&lt;/code&gt;, obtaining a profit of &lt;code&gt;profit[i]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;re given the startTime, endTime and profit arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.&lt;/p&gt;
+&lt;p&gt;If you choose a job that ends at time X you will be able to start another job that starts at time X.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>[Leetcode] 2407. Longest Increasing Subsequence II</title>
       <link>https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/</link>
@@ -56,7 +67,7 @@
       <pubDate>Wed, 07 Jul 2021 01:55:05 -0400</pubDate>
       
       <guid>https://nathan-tw.github.io/2021/07/%E6%8A%80%E8%A1%93-%E6%B7%BA%E8%AB%87-file-descriptor-%E5%8F%8A-i/o-redirection/</guid>
-      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fprintf(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello world&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;);
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fprintf&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello world&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你可能好奇過 C 語言&lt;code&gt;fprintf&lt;/code&gt;函數中，第一個參數&lt;code&gt;1&lt;/code&gt;代表什麼，你也許聽過在 Unix 家族中&lt;strong&gt;Everything is a file&lt;/strong&gt;，可是他究竟代表什麼意思呢？這篇我們想談談究竟什麼是&lt;code&gt;file&lt;/code&gt;，以及作業系統如何達到&lt;code&gt;i/o redirection&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     

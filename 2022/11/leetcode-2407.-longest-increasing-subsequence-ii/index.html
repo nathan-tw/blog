@@ -40,7 +40,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.105.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.107.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="nathan">
 <meta name="keywords" content="">
 <meta name="description" content="LIS (longest increasing subsequence) 是一個經典的 dp 問題，題目簡述是，給定一個陣列並允許刪除其中某些元素，能夠構成最長的嚴格遞增陣列的長度是多少？詳細的可以參考 這題，本題是基於 LIS 的變化，新增了序列中兩個元素的差 k。">
@@ -307,9 +307,9 @@
 <li>單點修改</li>
 <li>區間修改</li>
 </ul>
-<p>但本題只需要用到前兩個，並且因為所有數字結尾的 LIS 嘗度預設都是 0 ，不用初始化線段樹所以只要實現前兩個功能就好了。</p>
+<p>但本題只需要用到前兩個，並且因為所有數字結尾的 LIS 長度預設都是 0 ，不用初始化線段樹所以只要實現前兩個功能就好了。</p>
 <h4 id="儲存">儲存</h4>
-<p>線段樹的儲存可以用陣列或串列，因為是二元樹的關係用陣列一樣可以利用 index 推算出左右子節點的位置。每個節點代表的區間在實作上我習慣已封閉區間 [start, end] 表示，根節點的 index 從 0 或 1 開始都可以，我以下程式從 0 開始。</p>
+<p>線段樹的儲存可以用陣列或串列，因為是二元樹的關係用陣列一樣可以利用 index 推算出左右子節點的位置。每個節點代表的區間在實作上我習慣用封閉區間 [start, end] 表示，根節點的 index 從 0 或 1 開始都可以，如果用 0 的話左右節點分別是 $2n+1$ 和 $2n+2$，1 的話則是 $2n$ 和 $2n+1$，我以下程式從 0 開始。</p>
 <p>假設一個長度為$n$ 的陣列，</p>
 <ul>
 <li>Best Case: $n$ 為2的次方，其對應的線段樹是一個滿二元素(full tree)，總節點數為 $2^n-1$。</li>
@@ -686,7 +686,7 @@ TC: $O(nlogn)$</p>
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/" data-tooltip="[Leetcode] 1235. Maximum Profit in Job Scheduling" aria-label="NEXT: [Leetcode] 1235. Maximum Profit in Job Scheduling">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -793,7 +793,7 @@ TC: $O(nlogn)$</p>
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/" data-tooltip="[Leetcode] 1235. Maximum Profit in Job Scheduling" aria-label="NEXT: [Leetcode] 1235. Maximum Profit in Job Scheduling">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>

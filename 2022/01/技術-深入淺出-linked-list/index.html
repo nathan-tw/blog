@@ -42,7 +42,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.105.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.107.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="nathan">
 <meta name="keywords" content="">
 <meta name="description" content="假設我們有一串有順序性的數組，要以何種形式存入記憶體呢？
@@ -408,7 +408,7 @@
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> list_node <span style="color:#f92672">*</span>Jerry_list <span style="color:#f92672">=</span> (Tom<span style="color:#f92672">-&gt;</span>list).next;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> container_of(jerry_list, <span style="color:#66d9ef">struct</span> student, list);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> <span style="color:#a6e22e">container_of</span>(jerry_list, <span style="color:#66d9ef">struct</span> student, list);
 </span></span></code></pre></div><p>那<code>container_of</code>是如何實做的呢？我們先從另一個 macro <code>offsetof</code>開始理解。</p>
 <h3 id="offsetof">offsetof</h3>
 <p>給定一個結構體 student，要如何算出結構體與其成員的偏移呢？</p>
@@ -417,7 +417,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define offsetof(TYPE, MEMBER) ((size_t) &amp;((TYPE *)0)-&gt;MEMBER)
 </span></span></span></code></pre></div><p>將數值 0 強制轉型成 TYPE 指標型別，0 會被當作該 TYPE 的起始地址，因為起始位址等於 0
 ，所以 MEMBER 的位址也就等於 MEMBER 與起始位址 0 的偏移(offset)。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>offsetof(<span style="color:#66d9ef">struct</span> student, id)); <span style="color:#75715e">//16
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">offsetof</span>(<span style="color:#66d9ef">struct</span> student, id)); <span style="color:#75715e">//16
 </span></span></span></code></pre></div><h3 id="container_of">container_of</h3>
 <p>container_of 的定義較為複雜：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define container_of(ptr, type, member) ({\
@@ -429,9 +429,9 @@
 以 member 是 list 為例就是 x+20，
 (但目前不知道 offset 為 20)。</p>
 <p>既然有了__mptr 就輕鬆了，第二部份可以利用<code>offsetof</code>計算所在的結構體位置：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>(type <span style="color:#f92672">*</span>)( (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)__mptr <span style="color:#f92672">-</span> offsetof(type,member));
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>(type <span style="color:#f92672">*</span>)( (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)__mptr <span style="color:#f92672">-</span> <span style="color:#a6e22e">offsetof</span>(type,member));
 </span></span></code></pre></div><p>回頭看看 Tom 如何取得 Jerry，利用<code>struct student</code>中的成員 <code>list</code>以<code>offsetof</code>取得 Jerry 的指標。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> container_of(Jerry_list, <span style="color:#66d9ef">struct</span> student, list);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>Jerry <span style="color:#f92672">=</span> <span style="color:#a6e22e">container_of</span>(Jerry_list, <span style="color:#66d9ef">struct</span> student, list);
 </span></span></code></pre></div><p>一切便大功告成！這樣的方式使許多非連續記憶體的操作更廣泛使用，例如<a href="https://github.com/torvalds/linux/blob/master/net/netlabel/netlabel_addrlist.h">network address table</a>及檔案系統的<a href="https://github.com/torvalds/linux/blob/master/fs/mount.h">namespace</a>等等。</p>
 <h2 id="小結與後記">小結與後記</h2>
 <ul>
