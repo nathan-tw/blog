@@ -7,10 +7,10 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "[Leetcode] 446. Arithmetic Slices II - Subsequence",
+  "headline": "[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups",
   
-  "datePublished": "2022-11-28T00:43:10+08:00",
-  "dateModified": "2022-11-28T00:43:10+08:00",
+  "datePublished": "2022-12-06T20:52:52+08:00",
+  "dateModified": "2022-12-06T20:52:52+08:00",
   "author": {
     "@type": "Person",
     "name": "nathan",
@@ -20,7 +20,7 @@
   },
   "mainEntityOfPage": { 
     "@type": "WebPage",
-    "@id": "https:\/\/nathan-tw.github.io\/2022\/11\/leetcode-446.-arithmetic-slices-ii-subsequence\/" 
+    "@id": "https:\/\/nathan-tw.github.io\/2022\/12\/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups\/" 
   },
   "publisher": {
     "@type": "Organization",
@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "Given an integer array nums, return the number of all the arithmetic subsequences of nums.\n給定一個陣列，找出子序列為等差數列的數量。\nA sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.\n",
+  "description": "本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。\nYou are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.\nYou are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.\n",
   "keywords": []
 }
 
@@ -43,33 +43,33 @@
 <meta name="generator" content="Hugo 0.107.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="nathan">
 <meta name="keywords" content="">
-<meta name="description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta name="description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
+You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
 
 
-<meta property="og:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
+You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Leetcode] 446. Arithmetic Slices II - Subsequence">
-<meta name="twitter:title" content="[Leetcode] 446. Arithmetic Slices II - Subsequence">
-<meta property="og:url" content="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/">
-<meta property="twitter:url" content="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/">
+<meta property="og:title" content="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
+<meta name="twitter:title" content="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
+<meta property="og:url" content="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/">
+<meta property="twitter:url" content="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/">
 <meta property="og:site_name" content="star67">
-<meta property="og:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
-<meta name="twitter:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
+You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
+<meta name="twitter:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
+You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2022-11-28T00:43:10">
+    <meta property="article:published_time" content="2022-12-06T20:52:52">
   
   
-    <meta property="article:modified_time" content="2022-11-28T00:43:10">
+    <meta property="article:modified_time" content="2022-12-06T20:52:52">
   
   
   
@@ -77,12 +77,6 @@ A sequence of numbers is called arithmetic if it consists of at least three elem
       <meta property="article:section" content="Leetcode">
     
   
-  
-    
-      <meta property="article:tag" content="leetcode">
-    
-      <meta property="article:tag" content="hard">
-    
   
 
 
@@ -102,14 +96,14 @@ A sequence of numbers is called arithmetic if it consists of at least three elem
 
 
 
-    <title>[Leetcode] 446. Arithmetic Slices II - Subsequence</title>
+    <title>[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups</title>
 
     <link rel="icon" href="https://nathan-tw.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/">
+    <link rel="canonical" href="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -249,15 +243,15 @@ A sequence of numbers is called arithmetic if it consists of at least three elem
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title">
-      [Leetcode] 446. Arithmetic Slices II - Subsequence
+      [Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time datetime="2022-11-28T00:43:10&#43;08:00">
+      <time datetime="2022-12-06T20:52:52&#43;08:00">
         
-  November 28, 2022
+  December 6, 2022
 
       </time>
     
@@ -276,27 +270,50 @@ A sequence of numbers is called arithmetic if it consists of at least three elem
           
           <div class="post-content markdown">
             <div class="main-content-wrap">
-              <p>Given an integer array nums, return the number of all the arithmetic subsequences of nums.</p>
-<p>給定一個陣列，找出子序列為等差數列的數量。</p>
-<p>A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.</p>
-<ul>
-<li>For example, [1, 3, 5, 7, 9], [7, 7, 7, 7], and [3, -1, -5, -9] are arithmetic sequences.</li>
-<li>For example, [1, 1, 2, 5, 7] is not an arithmetic sequence.</li>
+              <p>本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。</p>
+<p>You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.</p>
+<p>You are also given a 2D integer array edges, where <code>edges[i] = [ai, bi]</code> indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.</p>
+<p>Divide the nodes of the graph into m groups (1-indexed) such that:</p>
+<div class="alert info no-icon ">
+  <p><ul>
+<li>Each node in the graph belongs to exactly one group.</li>
+<li>For every pair of nodes in the graph that are connected by an edge [ai, bi], if ai belongs to the group with index x, and bi belongs to the group with index y, then |y - x| = 1.</li>
 </ul>
-<p>A subsequence of an array is a sequence that can be formed by removing some elements (possibly none) of the array.</p>
-<p>For example, [2,5,10] is a subsequence of [1,2,1,2,4,1,5,10].
-The test cases are generated so that the answer fits in 32-bit integer.</p>
-<p><a href="https://leetcode.com/problems/arithmetic-slices-ii-subsequence/">題目連結</a></p>
-<h2 id="解題思路">解題思路</h2>
+</p>
+</div>
+<p>Return the maximum number of groups (i.e., maximum m) into which you can divide the nodes. Return -1 if it is impossible to group the nodes with the given conditions.</p>
+<h4 id="example-1">Example 1:</h4>
+
+
+
+<div class="figure " >
+  
+    <img class="fig-img" src="https://nathan-tw.github.io/images/leetcode/2493/2493.png" >
+  
+  
+</div>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Input: n = 6, edges = [[1,2],[1,4],[1,5],[2,6],[2,3],[4,6]]
+</span></span><span style="display:flex;"><span>Output: 4
+</span></span><span style="display:flex;"><span>Explanation: As shown in the image we:
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add node 5 to the first group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add node 1 to the second group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add nodes 2 and 4 to the third group.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Add nodes 3 and 6 to the fourth group.
+</span></span><span style="display:flex;"><span>We can see that every edge is satisfied.
+</span></span><span style="display:flex;"><span>It can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied.
+</span></span></code></pre></div><h4 id="example-2">Example 2:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Input: n = 3, edges = [[1,2],[2,3],[3,1]]
+</span></span><span style="display:flex;"><span>Output: -1
+</span></span><span style="display:flex;"><span>Explanation: If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.
+</span></span><span style="display:flex;"><span>It can be shown that no grouping is possible.
+</span></span></code></pre></div><h2 id="解題思路">解題思路</h2>
 <ol>
-<li>直觀的想法是列舉所有子序列，列舉的過程判斷是否為等差。</li>
-<li>難的點在紀錄序列，記錄每個序列的樣子太不切實際，可以改成紀錄每個等差對應的序列數量。</li>
-<li>利用<code>dp[i][diff]</code>代表以<code>arr[i]</code>結尾，並且公差為<code>diff</code>的序列數量，可以歸納出以下式子。</li>
+<li>先思考怎樣的情形分群會不成立，可以從範例2看到三個相連的點會失敗，如果四個五個呢？思考一下會發現奇數個節點造成的 cycle 會使得分群失敗，回傳 -1。</li>
+<li>建立所有的 connected conponent，這可以透過 BFS/DFS/UnionFind 實作，每個conponent 會有他可以分群的最大數量，以範例 1 來說就是 5 走到 3或6 的最短距離，也就是 4。</li>
+<li>問題變成了所有 connected conponent 最大的距離總和是多少？可以對每個點做 BFS，過程中順便檢查是否有奇數個節點的 cycle。</li>
 </ol>
-<pre tabindex="0"><code>// j for 0 to i-1
-diff = nums[i]-nums[j]
-dp[i][diff] += dp[j][diff] + 1
-</code></pre><h2 id="解法dp">解法：DP</h2>
+<h2 id="解法unionfindbfs">解法：UnionFind+BFS</h2>
 
 
   
@@ -312,15 +329,11 @@ dp[i][diff] += dp[j][diff] + 1
   
 
 
-  
-    
   
   
 
 <figure class="codeblock codeblock--tabbed">
   <figcaption>
-    
-      <span>LIS</span>
     
     <ul class="tabs">
       
@@ -338,22 +351,61 @@ dp[i][diff] += dp[j][diff] + 1
           <tbody>
             <tr>
               <td class="gutter">
-                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></pre>
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br></pre>
               </td>
               <td class="code">
-                <pre class="code-highlight language-cpp cpp"><code class="cpp">class Solution {
+                <pre class="code-highlight language-cpp cpp"><code class="cpp">class UnionFind {
 public:
-    int numberOfArithmeticSlices(vector&lt;int&gt;&amp; nums) {
-        vector&lt;unordered_map&lt;long long, int&gt;&gt; dp(nums.size());
-        int res = 0;
-        for(int i = 1; i &lt; nums.size(); i&#43;&#43;) {
-            for(int j = 0; j &lt; i; j&#43;&#43;) {
-                long long diff = (long long)nums[i]-nums[j];
-                int cnt = dp[j].count(diff) ? dp[j][diff] : 0;
-                dp[i][diff] &#43;= cnt &#43; 1;
-                res &#43;= cnt;
+    unordered_map&lt;int, int&gt; uf;
+
+    int find(int a) {
+        if(!uf.count(a))
+            uf[a] = a;
+        if(uf[a] != a)
+            uf[a] = find(uf[a]);
+        return uf[a];
+    }
+    void merge(int a, int b) {
+        uf[find(b)] = find(a);
+    }
+};
+
+class Solution {
+public:
+    int magnificentSets(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        auto uf = UnionFind();
+        vector&lt;vector&lt;int&gt;&gt; graph(n&#43;1);
+        for(auto edge: edges) {
+            graph[edge[0]].push_back(edge[1]);
+            graph[edge[1]].push_back(edge[0]);
+            uf.merge(edge[0], edge[1]);
+        }
+        
+        vector&lt;int&gt; max_groups(n&#43;1, 0);
+        for(int i = 1; i &lt; n&#43;1; i&#43;&#43;) {
+            deque&lt;pair&lt;int, int&gt;&gt; queue = {{i, 1}};
+            vector&lt;int&gt; visited(n&#43;1, 0);
+            visited[i] = 1;
+            while(!queue.empty()) {
+                auto pop = queue.front();
+                int cur = pop.first, level = pop.second;
+                queue.pop_front();
+                for(auto&amp; edge: graph[cur]) {
+                    if(!visited[edge]) {
+                        queue.push_back({edge, level&#43;1});
+                        visited[edge] = level&#43;1;
+                    }
+
+                    if(level == visited[edge])
+                        return -1;
+                }
+                int root = uf.find(i);
+                max_groups[root] = max(max_groups[root], level);
             }
         }
+        int res = 0;
+        for(int ele: max_groups)
+            res&#43;=ele;
         return res;
     }
 };</code></pre>
@@ -369,21 +421,52 @@ public:
           <tbody>
             <tr>
               <td class="gutter">
-                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></pre>
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br></pre>
               </td>
               <td class="code">
                 <pre class="code-highlight language-python python"><code class="python">class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -&gt; int:
-        n = len(nums)
-        dp = [defaultdict(int) for _ in range(n)]
-        res = 0
-        for i in range(1, n):
-            for j in range(i):
-                diff = nums[i]-nums[j]
-                cnt = dp[j][diff]
-                dp[i][diff] &#43;= cnt&#43;1
-                res &#43;= cnt
-        return res</code></pre>
+    def magnificentSets(self, n: int, edges: List[List[int]]) -&gt; int:
+        uf = UnionFind()
+        graph = defaultdict(list)
+        for e1, e2 in edges:
+            graph[e1].append(e2)
+            graph[e2].append(e1)
+            uf.union(e1, e2)
+        max_groups = [0]*(n&#43;1)
+        for i in range(1, n&#43;1):
+            q = deque([(i, 1)])
+            visited = [0]*(n&#43;1)
+            visited[i] = 1
+            m = 0
+            while q:
+                curr, level = q.popleft()
+                m = max(m, level)
+                for edge in graph[curr]:
+                    if not visited[edge]:
+                        q.append([edge, level&#43;1])
+                        visited[edge] = level&#43;1
+                    if level == visited[edge]:
+                        return -1
+            root = uf.find(i)
+            max_groups[root] = max(max_groups[root], m)
+        return sum(max_groups)
+
+
+class UnionFind:
+    def __init__(self):
+        self.uf = {}
+
+    def union(self, a, b):
+        roota = self.find(a)
+        rootb = self.find(b)
+        self.uf[rootb] = roota
+
+    def find(self, a):
+        if a not in self.uf:
+            self.uf[a] = a
+        if self.uf[a] != a:
+            self.uf[a] = self.find(self.uf[a])
+        return self.uf[a]</code></pre>
               </td>
             </tr>
           </tbody>
@@ -400,18 +483,6 @@ public:
           <div id="post-footer" class="post-footer main-content-wrap">
             
               
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://nathan-tw.github.io/tags/leetcode/">leetcode</a>
-
-  <a class="tag tag--primary tag--small" href="https://nathan-tw.github.io/tags/hard/">hard</a>
-
-                  </div>
-                
-              
             
             
 <div class="post-actions-wrap">
@@ -420,7 +491,7 @@ public:
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" data-tooltip="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups" aria-label="NEXT: [Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
+            <a class="post-action-btn btn btn--disabled">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -428,7 +499,7 @@ public:
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/" data-tooltip="[Leetcode] 1235. Maximum Profit in Job Scheduling" aria-label="PREVIOUS: [Leetcode] 1235. Maximum Profit in Job Scheduling">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" data-tooltip="[Leetcode] 446. Arithmetic Slices II - Subsequence" aria-label="PREVIOUS: [Leetcode] 446. Arithmetic Slices II - Subsequence">
           
               <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
@@ -446,19 +517,19 @@ public:
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Facebook" aria-label="Share on Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Twitter" aria-label="Share on Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Linkedin" aria-label="Share on Linkedin">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Linkedin" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
@@ -489,9 +560,9 @@ public:
     </div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https:\/\/nathan-tw.github.io\/2022\/11\/leetcode-446.-arithmetic-slices-ii-subsequence\/';
+        this.page.url = 'https:\/\/nathan-tw.github.io\/2022\/12\/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups\/';
         
-          this.page.identifier = '\/2022\/11\/leetcode-446.-arithmetic-slices-ii-subsequence\/'
+          this.page.identifier = '\/2022\/12\/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups\/'
         
       };
       (function() {
@@ -527,7 +598,7 @@ public:
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" data-tooltip="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups" aria-label="NEXT: [Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
+            <a class="post-action-btn btn btn--disabled">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -535,7 +606,7 @@ public:
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/" data-tooltip="[Leetcode] 1235. Maximum Profit in Job Scheduling" aria-label="PREVIOUS: [Leetcode] 1235. Maximum Profit in Job Scheduling">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" data-tooltip="[Leetcode] 446. Arithmetic Slices II - Subsequence" aria-label="PREVIOUS: [Leetcode] 446. Arithmetic Slices II - Subsequence">
           
               <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
@@ -553,19 +624,19 @@ public:
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Facebook" aria-label="Share on Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Twitter" aria-label="Share on Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/" title="Share on Linkedin" aria-label="Share on Linkedin">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/" title="Share on Linkedin" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
@@ -596,19 +667,19 @@ public:
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-446.-arithmetic-slices-ii-subsequence%2F" aria-label="Share on Facebook">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F12%2Fleetcode-2493.-divide-nodes-into-the-maximum-number-of-groups%2F" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-446.-arithmetic-slices-ii-subsequence%2F" aria-label="Share on Twitter">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F12%2Fleetcode-2493.-divide-nodes-into-the-maximum-number-of-groups%2F" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F11%2Fleetcode-446.-arithmetic-slices-ii-subsequence%2F" aria-label="Share on Linkedin">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fnathan-tw.github.io%2F2022%2F12%2Fleetcode-2493.-divide-nodes-into-the-maximum-number-of-groups%2F" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
         </a>
       </li>

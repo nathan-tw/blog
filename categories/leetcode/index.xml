@@ -6,7 +6,18 @@
     <description>Recent content in Leetcode on star67</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Nov 2022 00:43:10 +0800</lastBuildDate><atom:link href="https://nathan-tw.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Dec 2022 20:52:52 +0800</lastBuildDate><atom:link href="https://nathan-tw.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups</title>
+      <link>https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/</link>
+      <pubDate>Tue, 06 Dec 2022 20:52:52 +0800</pubDate>
+      
+      <guid>https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/</guid>
+      <description>&lt;p&gt;本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。&lt;/p&gt;
+&lt;p&gt;You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.&lt;/p&gt;
+&lt;p&gt;You are also given a 2D integer array edges, where &lt;code&gt;edges[i] = [ai, bi]&lt;/code&gt; indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>[Leetcode] 446. Arithmetic Slices II - Subsequence</title>
       <link>https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/</link>
