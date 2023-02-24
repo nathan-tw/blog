@@ -2,94 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/</loc>
-    <lastmod>2022-12-06T20:52:52+08:00</lastmod>
-  </url><url>
     <loc>https://nathan-tw.github.io/categories/</loc>
-    <lastmod>2022-12-06T20:52:52+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/categories/leetcode/</loc>
-    <lastmod>2022-12-06T20:52:52+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/posts/</loc>
-    <lastmod>2022-12-06T20:52:52+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/</loc>
-    <lastmod>2022-12-06T20:52:52+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/</loc>
-    <lastmod>2022-11-28T00:43:10+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/hard/</loc>
-    <lastmod>2022-11-28T00:43:10+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/leetcode/</loc>
-    <lastmod>2022-11-28T00:43:10+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/</loc>
-    <lastmod>2022-11-28T00:43:10+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2022/11/leetcode-1235.-maximum-profit-in-job-scheduling/</loc>
-    <lastmod>2022-11-26T21:18:34+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2022/11/leetcode-2407.-longest-increasing-subsequence-ii/</loc>
-    <lastmod>2022-11-10T07:50:14+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2022/11/leetcode-300.-longest-increasing-subsequence/</loc>
-    <lastmod>2022-11-10T07:50:14+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2022/01/%E6%8A%80%E8%A1%93-%E6%B7%B1%E5%85%A5%E6%B7%BA%E5%87%BA-linked-list/</loc>
-    <lastmod>2022-01-21T06:30:15-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/array/</loc>
-    <lastmod>2022-01-21T06:30:15-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/linked-list/</loc>
-    <lastmod>2022-01-21T06:30:15-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/categories/programming/</loc>
-    <lastmod>2022-01-21T06:30:15-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2021/08/%E7%94%9F%E6%B4%BB-%E5%A4%8F%E5%A4%9C%E5%A4%A2%E8%BF%B4/</loc>
     <lastmod>2021-08-18T09:03:34-04:00</lastmod>
   </url><url>
     <loc>https://nathan-tw.github.io/categories/life/</loc>
     <lastmod>2021-08-18T09:03:34-04:00</lastmod>
   </url><url>
-    <loc>https://nathan-tw.github.io/2021/07/%E6%8A%80%E8%A1%93-%E6%B7%BA%E8%AB%87-file-descriptor-%E5%8F%8A-i/o-redirection/</loc>
-    <lastmod>2021-07-07T01:55:05-04:00</lastmod>
+    <loc>https://nathan-tw.github.io/posts/</loc>
+    <lastmod>2021-08-18T09:03:34-04:00</lastmod>
   </url><url>
-    <loc>https://nathan-tw.github.io/categories/linux/</loc>
-    <lastmod>2021-07-07T01:55:05-04:00</lastmod>
+    <loc>https://nathan-tw.github.io/</loc>
+    <lastmod>2021-08-18T09:03:34-04:00</lastmod>
   </url><url>
-    <loc>https://nathan-tw.github.io/tags/operating-system/</loc>
-    <lastmod>2021-07-07T01:55:05-04:00</lastmod>
+    <loc>https://nathan-tw.github.io/2021/08/%E5%A4%8F%E5%A4%9C%E5%A4%A2%E8%BF%B4/</loc>
+    <lastmod>2021-08-18T09:03:34-04:00</lastmod>
   </url><url>
-    <loc>https://nathan-tw.github.io/2021/06/%E6%8A%80%E8%A1%93-%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B--mapreduce-%E4%BA%8C/</loc>
-    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/distirbuted-system/</loc>
-    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/categories/system-design/</loc>
-    <lastmod>2021-06-01T16:52:44+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2021/05/%E6%8A%80%E8%A1%93-%E4%BD%A0%E4%B8%8D%E8%83%BD%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B--mapreduce-%E4%B8%80/</loc>
-    <lastmod>2021-05-23T23:37:48+08:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2021/04/%E7%94%9F%E6%B4%BB-%E9%97%9C%E6%96%BCstar67/</loc>
+    <loc>https://nathan-tw.github.io/2021/04/%E9%97%9C%E6%96%BCstar67/</loc>
     <lastmod>2021-04-22T07:56:39-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/2021/04/%E6%8A%80%E8%A1%93-worker-pool%E4%BD%B5%E7%99%BC%E8%99%95%E7%90%86%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2021-04-19T05:03:58-04:00</lastmod>
-  </url><url>
-    <loc>https://nathan-tw.github.io/tags/go/</loc>
-    <lastmod>2021-04-19T05:03:58-04:00</lastmod>
   </url><url>
     <loc>https://nathan-tw.github.io/archives/</loc>
   </url><url>
     <loc>https://nathan-tw.github.io/archives/</loc>
   </url><url>
     <loc>https://nathan-tw.github.io/search/</loc>
+  </url><url>
+    <loc>https://nathan-tw.github.io/tags/</loc>
   </url>
 </urlset>
