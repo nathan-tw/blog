@@ -13,9 +13,7 @@
       <pubDate>Tue, 06 Dec 2022 20:52:52 +0800</pubDate>
       
       <guid>https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/</guid>
-      <description>&lt;p&gt;本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。&lt;/p&gt;
-&lt;p&gt;You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.&lt;/p&gt;
-&lt;p&gt;You are also given a 2D integer array edges, where &lt;code&gt;edges[i] = [ai, bi]&lt;/code&gt; indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.&lt;/p&gt;</description>
+      <description>本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。</description>
     </item>
     
     <item>
@@ -24,9 +22,7 @@
       <pubDate>Mon, 28 Nov 2022 00:43:10 +0800</pubDate>
       
       <guid>https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/</guid>
-      <description>&lt;p&gt;Given an integer array nums, return the number of all the arithmetic subsequences of nums.&lt;/p&gt;
-&lt;p&gt;給定一個陣列，找出子序列為等差數列的數量。&lt;/p&gt;
-&lt;p&gt;A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.&lt;/p&gt;</description>
+      <description>給定一個陣列，找出子序列為等差數列的數量。</description>
     </item>
     
     <item>

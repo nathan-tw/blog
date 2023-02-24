@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。\nYou are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.\nYou are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.\n",
+  "description": "本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。",
   "keywords": []
 }
 
@@ -40,29 +40,21 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.107.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.110.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="nathan">
 <meta name="keywords" content="">
-<meta name="description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
-You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
-You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
+<meta name="description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。">
 
 
-<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
-You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
-You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
+<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
 <meta name="twitter:title" content="[Leetcode] 2493. Divide Nodes Into the Maximum Number of Groups">
 <meta property="og:url" content="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/">
 <meta property="twitter:url" content="https://nathan-tw.github.io/2022/12/leetcode-2493.-divide-nodes-into-the-maximum-number-of-groups/">
 <meta property="og:site_name" content="star67">
-<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
-You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
-You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
-<meta name="twitter:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。
-You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
-You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.">
+<meta property="og:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。">
+<meta name="twitter:description" content="本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。">
 <meta property="og:locale" content="en-us">
 
   
@@ -270,10 +262,9 @@ You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates
           
           <div class="post-content markdown">
             <div class="main-content-wrap">
-              <p>本題是 2022/12/04 的週賽第四題，和圖論相關的題目，題目簡述是檢測一個圖是否為二分圖，如果不是則回傳 -1 ，是的話需要計算最多可以分為幾群。</p>
-<p>You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.</p>
-<p>You are also given a 2D integer array edges, where <code>edges[i] = [ai, bi]</code> indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.</p>
-<p>Divide the nodes of the graph into m groups (1-indexed) such that:</p>
+              <p>You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.</p>
+<p>You are also given a 2D integer array edges, where <code>edges[i] = [ai, bi]</code> indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.
+Divide the nodes of the graph into m groups (1-indexed) such that:</p>
 <div class="alert info no-icon ">
   <p><ul>
 <li>Each node in the graph belongs to exactly one group.</li>
@@ -475,6 +466,8 @@ class UnionFind:
     
   </div>
 </figure>
+
+
               
 
 
@@ -585,7 +578,7 @@ class UnionFind:
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2022 nathan. All Rights Reserved
+    &copy; 2023 nathan. All Rights Reserved
   </span>
 </footer>
 

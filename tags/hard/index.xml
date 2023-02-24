@@ -13,9 +13,7 @@
       <pubDate>Mon, 28 Nov 2022 00:43:10 +0800</pubDate>
       
       <guid>https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/</guid>
-      <description>&lt;p&gt;Given an integer array nums, return the number of all the arithmetic subsequences of nums.&lt;/p&gt;
-&lt;p&gt;給定一個陣列，找出子序列為等差數列的數量。&lt;/p&gt;
-&lt;p&gt;A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.&lt;/p&gt;</description>
+      <description>給定一個陣列，找出子序列為等差數列的數量。</description>
     </item>
     
     <item>

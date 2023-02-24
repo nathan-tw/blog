@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "Given an integer array nums, return the number of all the arithmetic subsequences of nums.\n給定一個陣列，找出子序列為等差數列的數量。\nA sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.\n",
+  "description": "給定一個陣列，找出子序列為等差數列的數量。",
   "keywords": []
 }
 
@@ -40,29 +40,21 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.107.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="generator" content="Hugo 0.110.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="nathan">
 <meta name="keywords" content="">
-<meta name="description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta name="description" content="給定一個陣列，找出子序列為等差數列的數量。">
 
 
-<meta property="og:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta property="og:description" content="給定一個陣列，找出子序列為等差數列的數量。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Leetcode] 446. Arithmetic Slices II - Subsequence">
 <meta name="twitter:title" content="[Leetcode] 446. Arithmetic Slices II - Subsequence">
 <meta property="og:url" content="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/">
 <meta property="twitter:url" content="https://nathan-tw.github.io/2022/11/leetcode-446.-arithmetic-slices-ii-subsequence/">
 <meta property="og:site_name" content="star67">
-<meta property="og:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
-<meta name="twitter:description" content="Given an integer array nums, return the number of all the arithmetic subsequences of nums.
-給定一個陣列，找出子序列為等差數列的數量。
-A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.">
+<meta property="og:description" content="給定一個陣列，找出子序列為等差數列的數量。">
+<meta name="twitter:description" content="給定一個陣列，找出子序列為等差數列的數量。">
 <meta property="og:locale" content="en-us">
 
   
@@ -369,21 +361,10 @@ public:
           <tbody>
             <tr>
               <td class="gutter">
-                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></pre>
+                <pre><span>1</span><br></pre>
               </td>
               <td class="code">
-                <pre class="code-highlight language-python python"><code class="python">class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -&gt; int:
-        n = len(nums)
-        dp = [defaultdict(int) for _ in range(n)]
-        res = 0
-        for i in range(1, n):
-            for j in range(i):
-                diff = nums[i]-nums[j]
-                cnt = dp[j][diff]
-                dp[i][diff] &#43;= cnt&#43;1
-                res &#43;= cnt
-        return res</code></pre>
+                <pre class="code-highlight language-python python"><code class="python"></code></pre>
               </td>
             </tr>
           </tbody>
@@ -392,6 +373,8 @@ public:
     
   </div>
 </figure>
+
+
               
 
 
@@ -514,7 +497,7 @@ public:
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2022 nathan. All Rights Reserved
+    &copy; 2023 nathan. All Rights Reserved
   </span>
 </footer>
 
