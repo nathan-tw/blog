@@ -1,9 +1,9 @@
 ---
-title: "[生活] 夏夜夢迴"
+title: "夏夜夢迴"
 date: 2021-08-18T09:03:34-04:00
 draft: false
 categories: ["Life"]
-thumbnailImagePosition: left
+thumbnailImagePosition: bottom
 thumbnailImage: /images/university/graduate.jpg
 coverImage: /images/university/graduate.jpg
 metaAlignment: center

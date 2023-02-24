@@ -1,7 +1,7 @@
 ---
 title: "[技術] 深入淺出 linked list"
 date: 2022-01-21T06:30:15-04:00
-draft: false
+draft: true
 tags: ["linked-list", "array"]
 categories: ["Programming"]
 thumbnailImagePosition: left

@@ -78,6 +78,13 @@ pre = "<i class=\"sidebar-button-icon fab fa-lg fa-github\" aria-hidden=\"true\"
 url = "https://github.com/nathan-tw"
 weight = 1
 
+[[menu.links]]
+identifier = "tech blog"
+name = "Tech Blog"
+pre = "<i class=\"sidebar-button-icon fab fa-lg fa-get-pocket\" aria-hidden=\"true\"></i>"
+url = "https://nathan-tw.github.io/algodoc/"
+weight = 2
+
 
 # -------------
 # Customization
@@ -137,7 +144,7 @@ math = true
 #    large sidebar is swiped on all lower screens
 # 5: Display header bar on all screens and large sidebar is swiped on large screen
 # 6: Display header bar on all screens and medium sidebar is swiped
-sidebarBehavior = 2
+sidebarBehavior = 1
 
 # Customize link of author avatar in sidebar
 #  [params.sidebar.profile]
