@@ -3,7 +3,6 @@ title: "[生活] 關於Star67"
 date: 2021-04-22T07:56:39-04:00
 draft: false
 categories: ["Life"]
-thumbnailImagePosition: left
 thumbnailImage: /images/star67/star67.jpg
 ---
 其實部落格的命名和星星完全沒有關係，大學時在新光路67號住了最久，也最喜歡在那生活的日子，所以部落格本想以此為名，不過如果取為 **New67** 或是 **Light67** 聽起來蠻蠢的，所以乾脆想成 **Star67** aka **星光路67號**。
