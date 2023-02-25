@@ -1,4 +1,4 @@
-baseURL = "http://star-67.com/blog/"
+baseURL = "https://star-67.com/blog/"
 defaultContentLanguage = "en-us"
 disqusShortname = "star67"
 languageCode = "en-us"
