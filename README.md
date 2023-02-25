@@ -1,4 +1,4 @@
-# nathan-tw.github.io
+# blog
 My [personal website](https://nathan-tw.github.io) bootstrapped by [hugo](https://gohugo.io/), a static website generating engine. Also, github actions for CI/CD is triggered when a new article is published
 , that is, new commit is pushed.
 
