@@ -5,7 +5,7 @@ draft: false
 categories: ["Life"]
 thumbnailImagePosition: bottom
 thumbnailImage: images/university/graduate.jpg
-coverImage: /blog/images/university/graduate.jpg
+coverImage: images/university/graduate.jpg
 metaAlignment: center
 coverMeta: out
 ---
