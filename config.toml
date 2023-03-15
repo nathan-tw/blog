@@ -82,7 +82,7 @@ weight = 1
 identifier = "tech blog"
 name = "Tech Blog"
 pre = "<i class=\"sidebar-button-icon fab fa-lg fa-get-pocket\" aria-hidden=\"true\"></i>"
-url = "https://nathan-tw.github.io/algodoc/"
+url = "https://algodoc.star-67.com/"
 weight = 2
 
 
