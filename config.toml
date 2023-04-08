@@ -41,12 +41,6 @@ gravatarEmail = "linnom987321@gmail.com"
 # Sidebar menu
 # ------------
 [[menu.main]]
-identifier = "home"
-name = "Home"
-pre = "<i class=\"sidebar-button-icon fas fa-lg fa-home\" aria-hidden=\"true\"></i>"
-url = "/"
-weight = 1
-[[menu.main]]
 identifier = "categories"
 name = "Categories"
 pre = "<i class=\"sidebar-button-icon fas fa-lg fa-bookmark\" aria-hidden=\"true\"></i>"
@@ -76,15 +70,28 @@ identifier = "github"
 name = "GitHub"
 pre = "<i class=\"sidebar-button-icon fab fa-lg fa-github\" aria-hidden=\"true\"></i>"
 url = "https://github.com/nathan-tw"
-weight = 1
+weight = 2
 
 [[menu.links]]
 identifier = "tech blog"
 name = "Tech Blog"
 pre = "<i class=\"sidebar-button-icon fab fa-lg fa-get-pocket\" aria-hidden=\"true\"></i>"
 url = "https://algodoc.star-67.com/"
-weight = 2
+weight = 3
 
+[[menu.links]]
+identifier = "home page"
+name = "Home Page"
+pre = "<i class=\"sidebar-button-icon fas fa-lg fa-home\" aria-hidden=\"true\"></i>"
+url = "https://star-67.com"
+weight = 1
+
+[[menu.links]]
+identifier = "linkedin"
+name = "Linkedin"
+pre = "<i class=\"sidebar-button-icon fab fa-lg fa-linkedin\" aria-hidden=\"true\"></i>"
+url = "https://www.linkedin.com/in/hsuan-yo-lin-39a1921a9/"
+weight = 4
 
 # -------------
 # Customization
