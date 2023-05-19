@@ -5,6 +5,8 @@ draft: false
 categories: ["Life"]
 thumbnailImage: images/anniversary/ubiquiti-2.jpg
 coverImage: images/anniversary/ubiquiti-2.jpg
+coverSize: partial
+clearReading: true
 summary: 成為了工程師之後呢？工作一週年心得
 ---
 
@@ -15,7 +17,8 @@ summary: 成為了工程師之後呢？工作一週年心得
 離開實習後總是要面對的身為男性的原罪，當兵。我當的是四個月的義務役，優點是只有四個月，缺點是要當四個月。
 義務役分成兩階段，我新訓在宜蘭金六結，下部隊則是關西206旅。當兵在記憶中是一處打翻的墨水，不只黑壓壓，更多的是一種困惑，像你看到國小數學考卷那個白癡小明，怎麼每次直式計算都可以打翻墨水那種困惑。
 
-{{< image src="/images/anniversary/me.jpg" classes="fig-50 clear center fancybox center" title="me" >}}
+
+{{< image src="/images/anniversary/me.jpg" classes="center fancybox fig-100" title="me" >}}
 
 ### 第一階段
 
@@ -25,13 +28,13 @@ summary: 成為了工程師之後呢？工作一週年心得
 
 抽到了新竹，在二馬到之前全台灣最無聊的縣市，關西的天氣比宜蘭晴朗，但也少了宜蘭早晨的神秘感。二階去哪個部隊是一階抽籤的結果，我抽到的是下下籤新訓中心，至於下下籤中的下下籤則是新訓中心的打飯班==，洗碗工的生活著實不易。但比起生活無趣，更折磨的是看著滿地打結的邏輯，要說服自己這些猴子不講道理。當兵期間最討厭聽到有人(尤其是女生)說，才四個月、要當兵才是真的男生，腦子真的很好用希望他們都能有一個。
 
-{{< image src="/images/anniversary/military.jpg"  classes="fig-50 clear  fancybox center" title="退伍"  >}}
+{{< image src="/images/anniversary/military.jpg"  classes="center fancybox fig-100" title="退伍"  >}}
 
 ## Ubiquiti
 
 第一份正職工作，快樂到無可挑剃。剛從軍營出來的我如置身天堂，領著新鮮人相對高的薪水，還有許多不可思議的福利。和我最好的是坐我隔壁的 Dada，也是內推我進來的KK前同事，坐他旁邊一直被餵食。工作上也是各種佩服他定位問題的能力，維運出問題時他都可以快狠準的找到問題在哪。
 
-{{< image src="/images/anniversary/ubiquiti.jpg"  classes="fig-50 clear  fancybox center" title="到職一個月吃頤宮"  >}}
+{{< image src="/images/anniversary/ubiquiti.jpg"  classes="center fancybox fig-100" title="到職一個月吃頤宮"  >}}
 
 雖然進了一間很棒的公司，但很快面臨一個我從沒想過的問題，成為了工程師之後呢？
 
@@ -53,7 +56,7 @@ summary: 成為了工程師之後呢？工作一週年心得
 
 撞球是我近期的娛樂，但因為很花錢最近打得比較克制，搬到公館後還是和以前在新光路一樣喜歡天黑的時光，可是有著明天要上班的壓力，所以對撞球的喜愛總是一陣一陣。看著身旁朋友一個一個開始和我一樣喜歡打心情都很複雜，啊...又多了一個會找我打撞球(花錢)的人了呢！
 
-{{< image src="/images/anniversary/billiard.jpg"  classes="fig-50 clear  fancybox center" title="我們兩個撞球和桌球隊局結果總是相反：）"  >}}
+{{< image src="/images/anniversary/billiard.jpg"  classes="center fancybox fig-100" title="我們兩個撞球和桌球隊局結果總是相反：）"  >}}
 
 ## 後記
 
