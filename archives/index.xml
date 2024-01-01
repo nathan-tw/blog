@@ -5,6 +5,7 @@
     <link>https://blog.star-67.com/archives/</link>
     <description>Recent content in Archives on Star67 | blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://blog.star-67.com/archives/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://blog.star-67.com/archives/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
