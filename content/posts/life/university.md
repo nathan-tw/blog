@@ -1,5 +1,5 @@
 ---
-title: "夏夜夢迴"
+title: "Recap[17:21] 夏夜夢迴"
 date: 2021-08-18T09:03:34-04:00
 draft: false
 categories: ["Life"]
@@ -7,9 +7,9 @@ thumbnailImagePosition: bottom
 thumbnailImage: images/university/graduate.jpg
 coverImage: images/university/graduate.jpg
 coverSize: partial
+coverMeta: out
 clearReading: true
 metaAlignment: center
-
 ---
 
 > 更悲觀更要體貼悲觀，別輕易離席 </br>
