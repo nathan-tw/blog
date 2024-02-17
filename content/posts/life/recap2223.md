@@ -86,9 +86,8 @@ summary: 當兵在記憶中是一處打翻的墨水，不只黑壓壓，更多�
 {{< image src="/images/recap2223/kyoto9.jpg"  classes="nocaption fancybox fig-33" title="" >}}
 {{< image src="/images/recap2223/kyoto10.jpg"  classes="nocaption fancybox fig-33" title="" >}}
 
-{{< youtube ja2plHvNSjI >}}
 
-> 如果沒有遇見你，我將會是在哪裡，日子過得怎麼樣，人生是否要珍惜
+**如果沒有遇見你，我將會是在哪裡，日子過得怎麼樣，人生是否要珍惜**
 
 有陣子我和李睡前最愛聽的歌是王若琳翻唱的「我只在乎你」，她總是能在音樂播完先睡著，我比較難入睡，但這首歌是最容易讓我安心的歌了。我不是一個勇敢的人，即使很想出國工作，但凡多了一絲牽掛，都會是我割捨不了的風箏，所以每次唱到「如果沒有遇見你 我將會是在哪裡」時，念想都會和歌聲共鳴，我想不到如果沒有遇見李的時間線裡會是怎樣的場景，前幾天和肥肥聊到我們都是在選擇上[貪婪](https://zh.wikipedia.org/zh-tw/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95#:~:text=%E8%B2%AA%E5%A9%AA%E6%BC%94%E7%AE%97%E6%B3%95%EF%BC%88%E8%8B%B1%E8%AA%9E%EF%BC%9Agreedy,%E5%B0%B1%E6%98%AF%E4%B8%80%E7%A8%AE%E8%B2%AA%E5%A9%AA%E6%BC%94%E7%AE%97%E6%B3%95%E3%80%82)的人，因為裝備著著迷惘和逃避的心態，總是不能和李一樣勇敢。我想像不到比這樣的旅行更好的樣子，但伴隨的是我缺乏的想像力。
 
